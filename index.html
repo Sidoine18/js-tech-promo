@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JS TECH PROMO VACANCES 2026 – Formation pratique en informatique : Word, Excel, PowerPoint, Anglais appliqué. Inscriptions gratuites. Du 13 Juillet au 28 Août 2026." />
+  <meta name="keywords" content="JS TECH, formation informatique, Bénin, Word, Excel, PowerPoint, Anglais, vacances 2026, Avogbanna" />
+  <meta name="author" content="JS TECH" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="JS TECH – PROMO VACANCES 2026" />
+  <meta property="og:description" content="Formez-vous aujourd'hui, réussissez demain. Rejoignez la PROMO VACANCES 2026 de JS TECH." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://placehold.co/1200x630/0A3D91/ffffff?text=JS+TECH+2026" />
+  <title>JS TECH – PROMO VACANCES 2026</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== PRELOADER ===== -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">JS<span>TECH</span></div>
+      <div class="preloader-bar"><div class="preloader-fill"></div></div>
+      <p>Chargement en cours…</p>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div id="toast" class="toast"></div>
+
+  <!-- ===== SCROLL TOP ===== -->
+  <button id="scrollTop" aria-label="Remonter en haut"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- ===== DARK MODE ===== -->
+  <button id="darkToggle" aria-label="Mode sombre"><i class="fas fa-moon"></i></button>
+
+  <!-- ===== NAVBAR ===== -->
+  <header id="navbar">
+    <nav class="nav-container">
+      <a href="#hero" class="nav-logo">JS<span>TECH</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#formations">Formations</a></li>
+        <li><a href="#formateurs">Formateurs</a></li>
+        <li><a href="#infos">À propos</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" class="btn-login" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+        <li><a href="#inscription" class="btn-primary">S'inscrire</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-content" data-aos="fade-up">
+      <div class="hero-badge"><i class="fas fa-bolt"></i> PROMO VACANCES 2026 — Officielle</div>
+      <h1>Formez-vous aujourd'hui,<br /><span class="gradient-text">réussissez demain.</span></h1>
+      <p class="hero-sub">JS TECH lance officiellement sa <strong>PROMO VACANCES 2026</strong> dédiée à la formation pratique en informatique. Une opportunité unique pour élèves, étudiants, enseignants et directeurs.</p>
+      <div class="hero-checklist">
+        <span><i class="fas fa-check-circle"></i> Microsoft Word</span>
+        <span><i class="fas fa-check-circle"></i> Microsoft Excel</span>
+        <span><i class="fas fa-check-circle"></i> Microsoft PowerPoint</span>
+        <span><i class="fas fa-check-circle"></i> Anglais appliqué</span>
+        <span><i class="fas fa-check-circle"></i> Formation 100% pratique</span>
+        <span><i class="fas fa-check-circle"></i> Attestation incluse</span>
+        <span class="highlight"><i class="fas fa-gift"></i> Inscription GRATUITE</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#inscription" class="btn-primary btn-glow">Réserver ma place <i class="fas fa-arrow-right"></i></a>
+        <a href="#formations" class="btn-outline">Découvrir les formations</a>
+      </div>
+      <div class="hero-stats" data-aos="fade-up" data-aos-delay="200">
+        <div class="stat"><span class="stat-num" data-target="200">0</span><span class="stat-plus">+</span><small>Inscrits attendus</small></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="4">0</span><small>Modules pratiques</small></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="47">0</span><small>Jours de formation</small></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num" data-target="4">0</span><small>Formateurs experts</small></div>
+      </div>
+    </div>
+    <div class="hero-visual" data-aos="fade-left" data-aos-delay="300">
+      <div class="hero-card-float card-1">
+        <i class="fas fa-file-word"></i>
+        <span>Word</span>
+      </div>
+      <div class="hero-card-float card-2">
+        <i class="fas fa-file-excel"></i>
+        <span>Excel</span>
+      </div>
+      <div class="hero-card-float card-3">
+        <i class="fas fa-file-powerpoint"></i>
+        <span>PowerPoint</span>
+      </div>
+      <div class="hero-card-float card-4">
+        <i class="fas fa-language"></i>
+        <span>Anglais</span>
+      </div>
+      <div class="hero-illustration">
+        <div class="illus-screen">
+          <div class="illus-bar"></div>
+          <div class="illus-line l1"></div>
+          <div class="illus-line l2"></div>
+          <div class="illus-line l3"></div>
+          <div class="illus-chart">
+            <div class="bar b1"></div>
+            <div class="bar b2"></div>
+            <div class="bar b3"></div>
+            <div class="bar b4"></div>
+          </div>
+          <div class="illus-badge"><i class="fas fa-graduation-cap"></i> JS TECH</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMATIONS ===== -->
+  <section id="formations">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">Nos Modules</span>
+        <h2>Formations au programme</h2>
+        <p>Des modules conçus pour une maîtrise pratique et immédiate des outils numériques les plus demandés.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card-formation" data-aos="fade-up" data-aos-delay="0">
+          <div class="card-icon word"><i class="fas fa-file-word"></i></div>
+          <h3>Microsoft Word</h3>
+          <p>Rédaction professionnelle, mise en page, publipostage, styles, tableaux et documents avancés. Maîtrisez Word de A à Z.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Mise en page & formatage</li>
+            <li><i class="fas fa-check"></i> Tableaux & graphiques</li>
+            <li><i class="fas fa-check"></i> Modèles professionnels</li>
+          </ul>
+          <a href="#inscription" class="btn-primary btn-sm">S'inscrire</a>
+        </div>
+        <div class="card-formation" data-aos="fade-up" data-aos-delay="100">
+          <div class="card-icon excel"><i class="fas fa-file-excel"></i></div>
+          <h3>Microsoft Excel</h3>
+          <p>Formules avancées, tableaux croisés dynamiques, graphiques, automatisation et analyse de données pour le monde professionnel.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Formules & fonctions</li>
+            <li><i class="fas fa-check"></i> Tableaux dynamiques</li>
+            <li><i class="fas fa-check"></i> Visualisation de données</li>
+          </ul>
+          <a href="#inscription" class="btn-primary btn-sm">S'inscrire</a>
+        </div>
+        <div class="card-formation" data-aos="fade-up" data-aos-delay="200">
+          <div class="card-icon ppt"><i class="fas fa-file-powerpoint"></i></div>
+          <h3>Microsoft PowerPoint</h3>
+          <p>Créez des présentations percutantes, designs modernes, animations professionnelles et pitch decks qui impressionnent.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Design & mise en scène</li>
+            <li><i class="fas fa-check"></i> Animations & transitions</li>
+            <li><i class="fas fa-check"></i> Pitch professionnel</li>
+          </ul>
+          <a href="#inscription" class="btn-primary btn-sm">S'inscrire</a>
+        </div>
+        <div class="card-formation" data-aos="fade-up" data-aos-delay="300">
+          <div class="card-icon eng"><i class="fas fa-language"></i></div>
+          <h3>Anglais Appliqué</h3>
+          <p>Anglais professionnel et technique orienté informatique, communication internationale et gestion de projet.</p>
+          <ul class="card-list">
+            <li><i class="fas fa-check"></i> Vocabulaire technique IT</li>
+            <li><i class="fas fa-check"></i> Communication pro</li>
+            <li><i class="fas fa-check"></i> Projets en anglais</li>
+          </ul>
+          <a href="#inscription" class="btn-primary btn-sm">S'inscrire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HORAIRES ===== -->
+  <section id="horaires">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">Planning</span>
+        <h2>Horaires de formation</h2>
+        <p>Des créneaux adaptés à chaque profil pour concilier formation et emploi du temps.</p>
+      </div>
+      <div class="horaires-grid">
+        <div class="horaire-card" data-aos="fade-right">
+          <div class="horaire-icon"><i class="fas fa-user-graduate"></i></div>
+          <div class="horaire-info">
+            <h3>Élèves &amp; Étudiants</h3>
+            <div class="time-badge">08H00 — 13H00</div>
+            <p>Séances matinales intensives avec encadrement pédagogique dédié.</p>
+            <div class="days">
+              <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span>
+            </div>
+          </div>
+        </div>
+        <div class="horaire-card" data-aos="fade-left">
+          <div class="horaire-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <div class="horaire-info">
+            <h3>Directeurs &amp; Enseignants</h3>
+            <div class="time-badge time-eve">17H00 — 19H00</div>
+            <p>Sessions du soir, conçues pour les professionnels en activité.</p>
+            <div class="days">
+              <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AVANTAGES ===== -->
+  <section id="avantages">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">Pourquoi JS TECH ?</span>
+        <h2>Nos avantages exclusifs</h2>
+        <p>Une formation pensée pour votre réussite immédiate, avec les meilleurs outils pédagogiques.</p>
+      </div>
+      <div class="avantages-grid">
+        <div class="av-card" data-aos="zoom-in" data-aos-delay="0"><i class="fas fa-laptop-code"></i><h4>Formation 100% pratique</h4><p>Exercices réels, cas concrets et projets professionnels dès le premier jour.</p></div>
+        <div class="av-card" data-aos="zoom-in" data-aos-delay="80"><i class="fas fa-users"></i><h4>Encadrement professionnel</h4><p>Des formateurs expérimentés disponibles pour vous accompagner à chaque étape.</p></div>
+        <div class="av-card" data-aos="zoom-in" data-aos-delay="160"><i class="fas fa-certificate"></i><h4>Attestation incluse</h4><p>Recevez une attestation officielle JS TECH à la fin de votre formation.</p></div>
+        <div class="av-card" data-aos="zoom-in" data-aos-delay="240"><i class="fas fa-book-open"></i><h4>Support pédagogique</h4><p>Accès à des ressources numériques, fiches pratiques et exercices supplémentaires.</p></div>
+        <div class="av-card" data-aos="zoom-in" data-aos-delay="320"><i class="fas fa-rocket"></i><h4>Apprentissage rapide</h4><p>Méthode intensive et progressive pour maîtriser les outils en quelques semaines.</p></div>
+        <div class="av-card" data-aos="zoom-in" data-aos-delay="400"><i class="fas fa-star"></i><h4>Formation moderne</h4><p>Contenus mis à jour, outils actuels et environnement numérique de dernière génération.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMATEURS ===== -->
+  <section id="formateurs">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">L'équipe</span>
+        <h2>Nos formateurs experts</h2>
+        <p>Une équipe passionnée, qualifiée et engagée pour votre réussite.</p>
+      </div>
+      <div class="formateurs-grid">
+        <div class="formateur-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="formateur-avatar av1"><span>MH</span></div>
+          <h3>Merveille H. BLE</h3>
+          <span class="formateur-role">Épidémiologiste en Formation</span>
+          <p>Expert en analyse de données médicales et outils bureautiques avancés, il apporte une approche rigoureuse à chaque module.</p>
+          <div class="formateur-socials">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="formateur-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="formateur-avatar av2"><span>ES</span></div>
+          <h3>Elisée SOHOUNGBLE</h3>
+          <span class="formateur-role">Chef d'entreprise &amp; Formateur numérique</span>
+          <p>Entrepreneur et formateur, il partage son expérience pratique du numérique dans le monde professionnel africain.</p>
+          <div class="formateur-socials">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="formateur-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="formateur-avatar av3"><span>AA</span></div>
+          <h3>Abimawelle ADIKPON</h3>
+          <span class="formateur-role">Psychopédagogue en Formation</span>
+          <p>Spécialiste de l'apprentissage humain, elle optimise les méthodes pédagogiques pour un impact maximal.</p>
+          <div class="formateur-socials">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+        <div class="formateur-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="formateur-avatar av4"><span>CK</span></div>
+          <h3>Césaire KPOCHAN</h3>
+          <span class="formateur-role">Étudiant L2 Anglais &amp; Gestion de projets</span>
+          <p>Passionné d'anglais appliqué et de gestion de projets numériques, il anime le module Anglais avec dynamisme.</p>
+          <div class="formateur-socials">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFORMATIONS ===== -->
+  <section id="infos">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">Informations pratiques</span>
+        <h2>Tout ce qu'il faut savoir</h2>
+      </div>
+      <div class="infos-grid">
+        <div class="info-card" data-aos="fade-up" data-aos-delay="0">
+          <i class="fas fa-calendar-alt"></i>
+          <h4>Période</h4>
+          <p>Du <strong>13 Juillet</strong> au <strong>28 Août 2026</strong></p>
+        </div>
+        <div class="info-card" data-aos="fade-up" data-aos-delay="80">
+          <i class="fas fa-map-marker-alt"></i>
+          <h4>Lieu</h4>
+          <p>Derrière la gare routière <strong>d'Avogbanna</strong></p>
+        </div>
+        <div class="info-card" data-aos="fade-up" data-aos-delay="160">
+          <i class="fas fa-money-bill-wave"></i>
+          <h4>Frais de formation</h4>
+          <p><strong>15 000 F CFA</strong></p>
+        </div>
+        <div class="info-card info-free" data-aos="fade-up" data-aos-delay="240">
+          <i class="fas fa-gift"></i>
+          <h4>Inscription</h4>
+          <p><strong>GRATUITE</strong></p>
+        </div>
+        <div class="info-card" data-aos="fade-up" data-aos-delay="320">
+          <i class="fas fa-phone-alt"></i>
+          <h4>Contacts</h4>
+          <p><a href="tel:+22901433343 78">(+229) 01 43 33 43 78</a><br /><a href="tel:+22901911443 44">(+229) 01 91 14 43 44</a></p>
+        </div>
+        <div class="info-card" data-aos="fade-up" data-aos-delay="400">
+          <i class="fas fa-users-cog"></i>
+          <h4>Public cible</h4>
+          <p>Élèves, Étudiants,<br />Directeurs, Enseignants</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TÉMOIGNAGES ===== -->
+  <section id="temoignages">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">Ils témoignent</span>
+        <h2>Ce que disent nos apprenants</h2>
+      </div>
+      <div class="slider-wrapper" data-aos="fade-up">
+        <div class="slider" id="slider">
+          <div class="slide">
+            <div class="stars">★★★★★</div>
+            <p>"Grâce à JS TECH, j'ai enfin maîtrisé Excel. Les exercices pratiques sont excellents et les formateurs sont très disponibles."</p>
+            <div class="slide-author">
+              <div class="slide-av" style="background:#0A3D91">KA</div>
+              <div><strong>Kolade A.</strong><small>Étudiant en Économie</small></div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="stars">★★★★★</div>
+            <p>"La formation PowerPoint m'a permis de créer des présentations professionnelles pour mon école. Résultats immédiats !"</p>
+            <div class="slide-author">
+              <div class="slide-av" style="background:#FF6B00">MB</div>
+              <div><strong>Marie B.</strong><small>Enseignante</small></div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="stars">★★★★★</div>
+            <p>"L'anglais appliqué m'a ouvert des portes. Je peux maintenant lire des documents techniques et communiquer en anglais."</p>
+            <div class="slide-author">
+              <div class="slide-av" style="background:#00b894">FD</div>
+              <div><strong>Franck D.</strong><small>Élève en Terminale</small></div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="stars">★★★★★</div>
+            <p>"JS TECH m'a donné des compétences que j'utilise tous les jours au bureau. Je recommande à tous mes collègues !"</p>
+            <div class="slide-author">
+              <div class="slide-av" style="background:#6c5ce7">SI</div>
+              <div><strong>Samuel I.</strong><small>Directeur d'école</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button id="sliderPrev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+          <div class="slider-dots" id="sliderDots"></div>
+          <button id="sliderNext" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA INSCRIPTION ===== -->
+  <section id="inscription">
+    <div class="container">
+      <div class="cta-box" data-aos="zoom-in">
+        <div class="cta-orb"></div>
+        <span class="tag tag-white">Places limitées</span>
+        <h2>Rejoignez la <span class="gradient-text">PROMO VACANCES 2026</span></h2>
+        <p>Ne laissez pas passer cette opportunité unique. Les inscriptions sont <strong>GRATUITES</strong> et les places sont limitées.</p>
+        <div class="counter-wrap">
+          <span>Places restantes : </span>
+          <span class="counter-num" id="placesCounter">47</span>
+        </div>
+        <a href="#" class="btn-primary btn-glow btn-xl" id="openRegisterModal">
+          <i class="fas fa-pen-to-square"></i> S'inscrire maintenant — GRATUIT
+        </a>
+        <p class="cta-note"><i class="fas fa-lock"></i> Inscription sécurisée. Vos données sont protégées.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="tag">Contact</span>
+        <h2>Nous contacter</h2>
+        <p>Une question ? Notre équipe vous répond rapidement.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info" data-aos="fade-right">
+          <div class="c-item"><i class="fas fa-phone"></i><div><strong>Téléphone</strong><p>(+229) 01 43 33 43 78<br />(+229) 01 91 14 43 44</p></div></div>
+          <div class="c-item"><i class="fas fa-map-marker-alt"></i><div><strong>Adresse</strong><p>Derrière la gare routière d'Avogbanna</p></div></div>
+          <div class="c-item"><i class="fas fa-clock"></i><div><strong>Horaires d'accueil</strong><p>Lundi – Samedi : 8h – 19h</p></div></div>
+        </div>
+        <form class="contact-form" data-aos="fade-left" id="contactForm">
+          <input type="text" placeholder="Votre nom complet" id="cName" required />
+          <input type="tel" placeholder="Votre numéro de téléphone" id="cPhone" required />
+          <select id="cModule">
+            <option value="">— Module souhaité —</option>
+            <option>Microsoft Word</option>
+            <option>Microsoft Excel</option>
+            <option>Microsoft PowerPoint</option>
+            <option>Anglais Appliqué</option>
+            <option>Tous les modules</option>
+          </select>
+          <textarea placeholder="Votre message (optionnel)" id="cMessage" rows="4"></textarea>
+          <button type="submit" class="btn-primary">Envoyer <i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo footer-logo">JS<span>TECH</span></div>
+          <p>Centre de formation numérique dédié à l'excellence. PROMO VACANCES 2026 — Formez-vous, réussissez.</p>
+          <div class="socials">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#formations">Formations</a></li>
+            <li><a href="#horaires">Horaires</a></li>
+            <li><a href="#formateurs">Formateurs</a></li>
+            <li><a href="#infos">Informations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Formations</h4>
+          <ul>
+            <li><a href="#formations">Microsoft Word</a></li>
+            <li><a href="#formations">Microsoft Excel</a></li>
+            <li><a href="#formations">Microsoft PowerPoint</a></li>
+            <li><a href="#formations">Anglais Appliqué</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Restez informé</h4>
+          <p>Recevez les dernières actualités de JS TECH.</p>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Votre email" id="newsletterEmail" />
+            <button id="newsletterBtn"><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 JS TECH – PROMO VACANCES. Tous droits réservés.</p>
+      <p>Développé avec <i class="fas fa-heart" style="color:#FF6B00"></i> pour votre réussite.</p>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL INSCRIPTION ===== -->
+  <div id="registerModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+      <h2>Inscription <span class="gradient-text">GRATUITE</span></h2>
+      <p class="modal-sub">PROMO VACANCES 2026 — Remplissez le formulaire ci-dessous.</p>
+      <form id="registerForm">
+        <div class="form-row">
+          <input type="text" placeholder="Nom *" id="rNom" required />
+          <input type="text" placeholder="Prénom *" id="rPrenom" required />
+        </div>
+        <input type="tel" placeholder="Téléphone *" id="rPhone" required />
+        <select id="rProfile" required>
+          <option value="">— Votre profil —</option>
+          <option>Élève</option>
+          <option>Étudiant</option>
+          <option>Enseignant</option>
+          <option>Directeur</option>
+          <option>Autre</option>
+        </select>
+        <select id="rModule" required>
+          <option value="">— Module souhaité —</option>
+          <option>Microsoft Word</option>
+          <option>Microsoft Excel</option>
+          <option>Microsoft PowerPoint</option>
+          <option>Anglais Appliqué</option>
+          <option>Tous les modules</option>
+        </select>
+        <select id="rHoraire">
+          <option value="">— Horaire préféré —</option>
+          <option>08H – 13H (Élèves & Étudiants)</option>
+          <option>17H – 19H (Directeurs & Enseignants)</option>
+        </select>
+        <button type="submit" class="btn-primary btn-xl" id="submitRegister">
+          <span id="submitText">Confirmer mon inscription</span>
+          <span id="submitSpinner" style="display:none"><i class="fas fa-spinner fa-spin"></i> Envoi…</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+    // ── Firebase Configuration ──
+    const firebaseConfig = {
+      apiKey: "AIzaSyD-GqWDwWmE3g6oUrsrVZ9vGhwyn64YVkc",
+      authDomain: "js-tech-978a1.firebaseapp.com",
+      projectId: "js-tech-978a1",
+      storageBucket: "js-tech-978a1.firebasestorage.app",
+      messagingSenderId: "174162300177",
+      appId: "1:174162300177:web:0a51ee1363ac8e14d610b0",
+      measurementId: "G-VFWPDZPCBH"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const analytics = getAnalytics(app);
+
+    // ── Inscription Form ──
+    document.getElementById("registerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitText = document.getElementById("submitText");
+      const submitSpinner = document.getElementById("submitSpinner");
+      submitText.style.display = "none";
+      submitSpinner.style.display = "inline";
+      try {
+        await addDoc(collection(db, "inscriptions"), {
+          nom: document.getElementById("rNom").value,
+          prenom: document.getElementById("rPrenom").value,
+          telephone: document.getElementById("rPhone").value,
+          profil: document.getElementById("rProfile").value,
+          module: document.getElementById("rModule").value,
+          horaire: document.getElementById("rHoraire").value,
+          createdAt: serverTimestamp()
+        });
+        showToast("✅ Inscription confirmée ! Nous vous contactons bientôt.", "success");
+        document.getElementById("registerModal").classList.remove("active");
+        document.getElementById("registerForm").reset();
+      } catch (err) {
+        showToast("❌ Erreur lors de l'inscription. Réessayez.", "error");
+        console.error(err);
+      } finally {
+        submitText.style.display = "inline";
+        submitSpinner.style.display = "none";
+      }
+    });
+
+    // ── Contact Form ──
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      try {
+        await addDoc(collection(db, "messages"), {
+          nom: document.getElementById("cName").value,
+          telephone: document.getElementById("cPhone").value,
+          module: document.getElementById("cModule").value,
+          message: document.getElementById("cMessage").value,
+          createdAt: serverTimestamp()
+        });
+        showToast("✅ Message envoyé ! On vous répond rapidement.", "success");
+        document.getElementById("contactForm").reset();
+      } catch (err) {
+        showToast("❌ Erreur d'envoi. Réessayez.", "error");
+      }
+    });
+
+    // ── Newsletter ──
+    document.getElementById("newsletterBtn").addEventListener("click", async () => {
+      const email = document.getElementById("newsletterEmail").value;
+      if (!email || !email.includes("@")) { showToast("Entrez un email valide.", "error"); return; }
+      try {
+        await addDoc(collection(db, "newsletter"), { email, createdAt: serverTimestamp() });
+        showToast("✅ Inscription newsletter confirmée !", "success");
+        document.getElementById("newsletterEmail").value = "";
+      } catch (err) { showToast("Erreur. Réessayez.", "error"); }
+    });
+
+    window._db = db;
+    window._collection = collection;
+    window._addDoc = addDoc;
+    window._serverTimestamp = serverTimestamp;
+  </script>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
