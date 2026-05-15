@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JS TECH — Créez votre compte étudiant pour la Promo Vacances 2026" />
+  <title>Créer un compte — JS TECH PROMO VACANCES 2026</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Page CSS -->
+  <link rel="stylesheet" href="create-account.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     PRELOADER
+============================================================ -->
+<div id="preloader">
+  <div class="pre-logo">
+    <div class="pre-icon">J</div>
+    <span>JS <em>TECH</em></span>
+  </div>
+  <div class="pre-bar"><div class="pre-bar-fill"></div></div>
+</div>
+
+<!-- ============================================================
+     DECORATIVE BACKGROUND
+============================================================ -->
+<div class="bg-wrapper">
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+</div>
+<div class="bg-grid"></div>
+
+<!-- ============================================================
+     TOAST CONTAINER
+============================================================ -->
+<div id="toastContainer"></div>
+
+<!-- ============================================================
+     PAGE LAYOUT
+============================================================ -->
+<div class="page-layout">
+
+  <!-- ── HEADER ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">J</div>
+        <div class="brand-name">JS <em>TECH</em></div>
+      </a>
+      <span class="brand-promo">
+        <i class="fas fa-fire"></i> Promo Vacances 2026
+      </span>
+      <div class="header-right">
+        <a href="login.html" class="header-link">Se connecter</a>
+        <a href="registration.html" class="header-btn">S'inscrire</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── MAIN ── -->
+  <main class="main-content">
+    <div class="form-wrap">
+
+      <!-- Page heading -->
+      <div class="page-head">
+        <div class="badge">
+          <i class="fas fa-shield-halved"></i>
+          Espace Étudiant Sécurisé
+        </div>
+        <h1>Créez votre compte <span>étudiant</span></h1>
+        <p>Réservé aux participants officiellement inscrits à la Promo Vacances 2026.</p>
+      </div>
+
+      <!-- Steps indicator -->
+      <div class="steps-bar">
+        <div class="step-item active" id="stepItem1">
+          <div class="step-circle">1</div>
+          <div class="step-label">Vérification<br>inscription</div>
+        </div>
+        <div class="step-item" id="stepItem2">
+          <div class="step-circle">2</div>
+          <div class="step-label">Création<br>du compte</div>
+        </div>
+        <div class="step-item" id="stepItem3">
+          <div class="step-circle">3</div>
+          <div class="step-label">Compte<br>activé</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           CARD 1 — VERIFICATION
+      ══════════════════════════════════════════ -->
+      <div class="form-card" id="formCard1">
+        <div class="card-header">
+          <div class="card-header-icon blue"><i class="fas fa-id-card"></i></div>
+          <div class="card-header-text">
+            <h2>Vérification de votre inscription</h2>
+            <p>Entrez votre matricule + téléphone ou email pour continuer</p>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <!-- Alert notice -->
+          <div style="background:rgba(255,107,0,0.07);border:1px solid rgba(255,107,0,0.2);border-radius:10px;padding:14px 16px;margin-bottom:22px;display:flex;gap:12px;align-items:flex-start;">
+            <i class="fas fa-lock" style="color:var(--orange);margin-top:2px;flex-shrink:0"></i>
+            <div>
+              <div style="font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:3px;">Accès restreint</div>
+              <div style="font-size:0.77rem;color:var(--text-soft);line-height:1.5;">
+                Seuls les étudiants ayant effectué leur <strong>inscription officielle</strong> peuvent créer un compte. Vos données seront vérifiées en temps réel dans notre base de données.
+              </div>
+            </div>
+          </div>
+
+          <!-- Matricule -->
+          <div class="form-group">
+            <label class="form-label" for="matricule">
+              Numéro de Matricule <span>*</span>
+            </label>
+            <div class="input-wrap">
+              <i class="fas fa-id-badge input-icon"></i>
+              <input
+                type="text" id="matricule" class="form-input"
+                placeholder="Ex. : JT-2026-0001"
+                autocomplete="off" spellcheck="false"
+              />
+              <span class="input-status"></span>
+            </div>
+            <div class="field-hint" id="hint-matricule">
+              <i class="fas fa-info-circle"></i> Matricule reçu lors de votre inscription officielle.
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="or-divider"><span>+ Téléphone WhatsApp ou Email</span></div>
+
+          <!-- Phone -->
+          <div class="form-group">
+            <label class="form-label" for="phone">
+              Numéro WhatsApp
+            </label>
+            <div class="input-wrap">
+              <i class="fab fa-whatsapp input-icon" style="color:#25D366"></i>
+              <input
+                type="tel" id="phone" class="form-input"
+                placeholder="+229 XX XX XX XX"
+                autocomplete="tel"
+              />
+              <span class="input-status"></span>
+            </div>
+          </div>
+
+          <div class="or-divider"><span>ou</span></div>
+
+          <!-- Email verif -->
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label" for="emailVerif">
+              Adresse email
+            </label>
+            <div class="input-wrap">
+              <i class="fas fa-envelope input-icon"></i>
+              <input
+                type="email" id="emailVerif" class="form-input"
+                placeholder="votre@email.com"
+                autocomplete="email"
+              />
+              <span class="input-status"></span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Student preview (hidden by default) -->
+        <div id="studentPreview" style="margin:0 28px 0;">
+          <div class="preview-header">
+            <div class="preview-avatar" id="previewAvatar">
+              <span id="previewInitials">?</span>
+            </div>
+            <div>
+              <div class="preview-name" id="previewName">—</div>
+              <div class="preview-matri" id="previewMatri">—</div>
+            </div>
+          </div>
+          <div class="preview-grid">
+            <div class="preview-item">
+              <div class="preview-item-label">Session</div>
+              <div class="preview-item-val" id="previewSession">—</div>
+            </div>
+            <div class="preview-item">
+              <div class="preview-item-label">Téléphone</div>
+              <div class="preview-item-val" id="previewPhone">—</div>
+            </div>
+            <div class="preview-item" style="grid-column:1/-1">
+              <div class="preview-item-label">Statut paiement</div>
+              <div class="preview-item-val"><span class="badge-status" id="previewStatus">—</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body" style="padding-top:20px">
+          <button class="btn btn-primary" id="verifyBtn">
+            <div class="btn-spinner"></div>
+            <i class="fas fa-search btn-text-icon"></i>
+            <span class="btn-text">Vérifier mon inscription</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           CARD 2 — ACCOUNT CREATION
+      ══════════════════════════════════════════ -->
+      <div id="step2Section">
+        <div class="form-card" id="formCard2">
+          <div class="card-header">
+            <div class="card-header-icon orange"><i class="fas fa-user-plus"></i></div>
+            <div class="card-header-text">
+              <h2>Créez votre compte étudiant</h2>
+              <p>Choisissez vos identifiants de connexion</p>
+            </div>
+          </div>
+          <div class="card-body">
+
+            <!-- Username -->
+            <div class="form-group">
+              <label class="form-label" for="username">
+                Nom d'utilisateur <span>*</span>
+              </label>
+              <div class="input-wrap">
+                <i class="fas fa-at input-icon"></i>
+                <input
+                  type="text" id="username" class="form-input"
+                  placeholder="ex. : aminata_diallo"
+                  autocomplete="username" spellcheck="false"
+                />
+                <span class="input-status"></span>
+              </div>
+              <div class="field-hint" id="hint-username">
+                <i class="fas fa-info-circle"></i> Minimum 3 caractères. Uniquement lettres, chiffres et underscores.
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="form-label" for="email">
+                Adresse email <span>*</span>
+              </label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope input-icon"></i>
+                <input
+                  type="email" id="email" class="form-input"
+                  placeholder="votre@email.com"
+                  autocomplete="email"
+                />
+                <span class="input-status"></span>
+              </div>
+              <div class="field-hint" id="hint-email">
+                <i class="fas fa-info-circle"></i> Cet email sera utilisé pour vous connecter.
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label class="form-label" for="password">
+                Mot de passe <span>*</span>
+              </label>
+              <div class="input-wrap">
+                <i class="fas fa-lock input-icon"></i>
+                <input
+                  type="password" id="password" class="form-input"
+                  placeholder="Minimum 8 caractères"
+                  autocomplete="new-password"
+                />
+                <button type="button" class="pw-toggle" aria-label="Afficher mot de passe">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="pw-strength" id="pwStrength">
+                <div class="pw-strength-bar">
+                  <div class="pw-strength-seg"></div>
+                  <div class="pw-strength-seg"></div>
+                  <div class="pw-strength-seg"></div>
+                </div>
+                <div class="pw-strength-label" id="pwStrengthLabel"></div>
+              </div>
+            </div>
+
+            <!-- Password confirm -->
+            <div class="form-group">
+              <label class="form-label" for="passwordConfirm">
+                Confirmer le mot de passe <span>*</span>
+              </label>
+              <div class="input-wrap">
+                <i class="fas fa-lock-open input-icon"></i>
+                <input
+                  type="password" id="passwordConfirm" class="form-input"
+                  placeholder="Répétez votre mot de passe"
+                  autocomplete="new-password"
+                />
+                <button type="button" class="pw-toggle" aria-label="Afficher confirmation">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="field-hint" id="hint-passwordConfirm">
+                <i class="fas fa-info-circle"></i> Les deux mots de passe doivent être identiques.
+              </div>
+            </div>
+
+            <!-- Terms -->
+            <div class="form-group">
+              <div class="checkbox-wrap">
+                <input type="checkbox" id="termsCheck" />
+                <div class="checkbox-custom"></div>
+                <label class="checkbox-label" for="termsCheck">
+                  J'ai lu et j'accepte les <a href="terms.html" target="_blank">conditions d'utilisation</a>
+                  et la <a href="privacy.html" target="_blank">politique de confidentialité</a> de JS TECH.
+                </label>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <button class="btn btn-orange" id="createAccountBtn">
+              <div class="btn-spinner"></div>
+              <i class="fas fa-rocket btn-text-icon"></i>
+              <span class="btn-text">Créer mon compte étudiant</span>
+            </button>
+
+            <p style="text-align:center;font-size:0.78rem;color:var(--text-soft);margin-top:16px;">
+              <i class="fas fa-shield-alt" style="color:var(--blue-light)"></i>
+              &nbsp;Connexion sécurisée via Firebase Authentication &amp; Firestore
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           SUCCESS SCREEN
+      ══════════════════════════════════════════ -->
+      <div class="form-card" id="successScreen">
+        <div class="success-icon"><i class="fas fa-check"></i></div>
+        <h2 class="success-title">Compte créé avec succès ! 🎉</h2>
+        <p class="success-msg">
+          Bienvenue <strong id="successName">étudiant</strong> !<br>
+          Votre compte étudiant JST est actif. Vous pouvez maintenant accéder à votre espace personnel.
+        </p>
+        <div class="success-uid" id="successUid"></div>
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:320px;margin:0 auto;padding:0 32px 40px;">
+          <button class="btn btn-primary" onclick="goToLogin()">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Accéder à mon espace</span>
+          </button>
+          <a href="index.html" class="btn btn-outline">
+            <i class="fas fa-home"></i>
+            <span>Retour à l'accueil</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom link -->
+      <p style="text-align:center;font-size:0.8rem;color:var(--text-soft);margin-top:16px;">
+        Déjà un compte ? <a href="login.html" style="color:var(--blue);font-weight:700;">Se connecter</a>
+        &nbsp;·&nbsp;
+        Pas encore inscrit ? <a href="registration.html" style="color:var(--orange);font-weight:700;">S'inscrire</a>
+      </p>
+
+    </div><!-- /.form-wrap -->
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p>
+      © 2026 <a href="index.html">JS TECH</a> — Plateforme éducative Promo Vacances 2026.
+      Tous droits réservés. &nbsp;·&nbsp;
+      <a href="privacy.html">Confidentialité</a> &nbsp;·&nbsp;
+      <a href="terms.html">CGU</a>
+    </p>
+  </footer>
+
+</div><!-- /.page-layout -->
+
+<!-- ============================================================
+     FIREBASE — ES MODULES (type="module")
+============================================================ -->
+<script type="module" src="create-account.js"></script>
+
+</body>
+</html>
