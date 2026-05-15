@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connexion — JS TECH PROMO VACANCES 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0A3D91;
+      --blue-light: #1558c0;
+      --blue-dark: #062a68;
+      --blue-glow: rgba(10,61,145,.3);
+      --orange: #FF6B00;
+      --orange-light: #ff8c33;
+      --orange-glow: rgba(255,107,0,.25);
+      --white: #ffffff;
+      --gray-50: #f8faff;
+      --gray-100: #eef2fb;
+      --gray-200: #dde4f5;
+      --gray-400: #9aaacf;
+      --gray-600: #5a6a8a;
+      --gray-800: #1e2d4a;
+      --success: #059669;
+      --error: #dc2626;
+      --warning: #d97706;
+      --font: 'Poppins', sans-serif;
+      --t: .25s cubic-bezier(.4,0,.2,1);
+
+      /* Dark mode */
+      --bg: #f8faff;
+      --card-bg: rgba(255,255,255,.92);
+      --card-border: rgba(221,228,245,.8);
+      --text: #1e2d4a;
+      --text-sub: #5a6a8a;
+      --input-bg: #f8faff;
+      --input-border: #dde4f5;
+    }
+    [data-theme="dark"] {
+      --bg: #0d1526;
+      --card-bg: rgba(20,32,64,.92);
+      --card-border: rgba(255,255,255,.08);
+      --text: #e8eeff;
+      --text-sub: #7a90c0;
+      --input-bg: rgba(255,255,255,.05);
+      --input-border: rgba(255,255,255,.1);
+      --gray-50: #0d1526;
+      --gray-100: #1a2540;
+      --gray-200: rgba(255,255,255,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background .35s, color .35s;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 10px; }
+
+    /* ─── PARTICLES BG ─── */
+    #particleCanvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: .35;
+    }
+
+    /* ─── LOADER ─── */
+    #loader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--blue-dark);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+      transition: opacity .5s ease;
+    }
+    #loader.out { opacity: 0; pointer-events: none; }
+    .ld-logo { font-size: 2.2rem; font-weight: 900; color: var(--white); letter-spacing: -1px; }
+    .ld-logo span { color: var(--orange); }
+    .ld-ring { width: 44px; height: 44px; border: 3px solid rgba(255,255,255,.15); border-top-color: var(--orange); border-radius: 50%; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .ld-text { color: rgba(255,255,255,.4); font-size: .78rem; font-weight: 500; letter-spacing: .05em; }
+
+    /* ─── TOAST ─── */
+    .toast-stack { position: fixed; top: 20px; right: 20px; z-index: 8000; display: flex; flex-direction: column; gap: 8px; }
+    .toast {
+      display: flex; align-items: center; gap: 10px; padding: 12px 18px;
+      border-radius: 12px; font-size: .83rem; font-weight: 600; min-width: 240px;
+      box-shadow: 0 10px 32px rgba(0,0,0,.15);
+      transform: translateX(120%); transition: transform .35s cubic-bezier(.34,1.56,.64,1);
+      backdrop-filter: blur(12px);
+    }
+    .toast.show { transform: translateX(0); }
+    .toast.info    { background: rgba(10,61,145,.92); color: var(--white); border: 1px solid rgba(255,255,255,.15); }
+    .toast.success { background: rgba(5,150,105,.92); color: var(--white); }
+    .toast.error   { background: rgba(220,38,38,.92); color: var(--white); }
+    .toast.warning { background: rgba(217,119,6,.92); color: var(--white); }
+
+    /* ─── LAYOUT ─── */
+    .login-wrap {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 100vh; position: relative; z-index: 1;
+    }
+
+    /* ─── LEFT PANEL ─── */
+    .left-panel {
+      background: linear-gradient(145deg, var(--blue-dark) 0%, var(--blue) 55%, #1558c0 100%);
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 56px 52px; position: relative; overflow: hidden;
+    }
+    .left-panel::before {
+      content: ''; position: absolute; inset: 0; opacity: .05;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .lp-glow1 { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,107,0,.2) 0%, transparent 65%); top: -150px; right: -150px; animation: gb 10s ease-in-out infinite; }
+    .lp-glow2 { position: absolute; width: 350px; height: 350px; background: radial-gradient(circle, rgba(255,255,255,.07) 0%, transparent 65%); bottom: -80px; left: -80px; animation: gb 13s .5s ease-in-out infinite; }
+    @keyframes gb { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,-20px) scale(1.05)} }
+
+    .lp-content { position: relative; z-index: 2; }
+    .lp-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 48px; }
+    .lp-logo-icon { width: 48px; height: 48px; background: var(--orange); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; color: var(--white); box-shadow: 0 6px 20px var(--orange-glow); }
+    .lp-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .lp-logo-text span:first-child { color: var(--white); font-weight: 800; font-size: 1.1rem; }
+    .lp-logo-text span:last-child { color: rgba(255,255,255,.5); font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+
+    .lp-title { font-size: clamp(1.7rem,2.8vw,2.4rem); font-weight: 900; color: var(--white); line-height: 1.2; margin-bottom: 14px; }
+    .lp-title span { color: var(--orange); }
+    .lp-sub { font-size: .9rem; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 44px; max-width: 360px; }
+
+    /* Feature bullets */
+    .lp-features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 48px; }
+    .lp-feat { display: flex; align-items: center; gap: 12px; }
+    .lp-feat-icon { width: 34px; height: 34px; background: rgba(255,255,255,.1); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--orange); font-size: .85rem; flex-shrink: 0; }
+    .lp-feat-text { font-size: .85rem; color: rgba(255,255,255,.8); font-weight: 500; }
+
+    /* Stats */
+    .lp-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+    .lp-stat { text-align: center; }
+    .lp-stat-n { font-size: 1.6rem; font-weight: 900; color: var(--white); }
+    .lp-stat-n span { color: var(--orange); }
+    .lp-stat-l { font-size: .65rem; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+
+    /* ─── RIGHT PANEL ─── */
+    .right-panel {
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: 40px 32px; background: var(--bg); position: relative;
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+      position: absolute; top: 20px; right: 20px;
+      width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--gray-200);
+      background: var(--card-bg); cursor: pointer; display: flex; align-items: center; justify-content: center;
+      color: var(--gray-600); font-size: .85rem; transition: var(--t);
+    }
+    .theme-toggle:hover { border-color: var(--blue); color: var(--blue); }
+
+    .back-link {
+      position: absolute; top: 20px; left: 20px;
+      display: flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 500;
+      color: var(--gray-600); text-decoration: none; transition: var(--t);
+    }
+    .back-link:hover { color: var(--blue); }
+
+    /* ─── LOGIN CARD ─── */
+    .login-card {
+      width: 100%; max-width: 420px;
+      background: var(--card-bg); border: 1.5px solid var(--card-border);
+      border-radius: 22px; padding: 36px 32px;
+      box-shadow: 0 20px 60px rgba(10,61,145,.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: background .35s, border-color .35s;
+    }
+
+    .card-header { text-align: center; margin-bottom: 28px; }
+    .card-badge {
+      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      background: rgba(10,61,145,.08); color: var(--blue);
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 4px 14px; border-radius: 50px;
+    }
+    [data-theme="dark"] .card-badge { background: rgba(10,61,145,.3); }
+    .card-title { font-size: 1.5rem; font-weight: 900; color: var(--text); margin-bottom: 5px; }
+    .card-sub { font-size: .83rem; color: var(--text-sub); line-height: 1.55; }
+
+    /* ─── TABS ─── */
+    .tabs { display: flex; background: var(--gray-100); border-radius: 12px; padding: 4px; gap: 4px; margin-bottom: 26px; }
+    .tab {
+      flex: 1; padding: 9px 14px; border-radius: 9px; border: none;
+      background: none; font-family: var(--font); font-size: .82rem; font-weight: 700;
+      color: var(--text-sub); cursor: pointer; transition: var(--t); display: flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .tab.active { background: var(--white); color: var(--blue); box-shadow: 0 2px 8px rgba(10,61,145,.12); }
+    [data-theme="dark"] .tab.active { background: var(--blue); color: var(--white); }
+    .tab-admin.active { background: var(--blue-dark); color: var(--white); }
+
+    /* ─── FORMS ─── */
+    .form-section { display: none; animation: fadeSlide .3s ease; }
+    .form-section.active { display: block; }
+    @keyframes fadeSlide { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: .76rem; font-weight: 700; color: var(--text-sub); margin-bottom: 5px; letter-spacing: .03em; }
+    .input-wrap { position: relative; }
+    .input-wrap input {
+      width: 100%; padding: 11px 14px 11px 40px;
+      border: 1.5px solid var(--input-border); border-radius: 10px;
+      background: var(--input-bg); color: var(--text);
+      font-family: var(--font); font-size: .88rem; outline: none;
+      transition: var(--t);
+    }
+    .input-wrap input::placeholder { color: var(--gray-400); }
+    .input-wrap input:focus { border-color: var(--blue); background: var(--white); box-shadow: 0 0 0 3px var(--blue-glow); }
+    [data-theme="dark"] .input-wrap input:focus { background: rgba(255,255,255,.07); }
+    .input-wrap input.error { border-color: var(--error); box-shadow: 0 0 0 3px rgba(220,38,38,.12); }
+    .input-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--gray-400); font-size: .82rem; transition: var(--t); pointer-events: none; }
+    .input-wrap input:focus ~ .input-icon, .input-wrap:focus-within .input-icon { color: var(--blue); }
+    .input-toggle { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--gray-400); font-size: .82rem; border: none; background: none; padding: 4px; transition: var(--t); }
+    .input-toggle:hover { color: var(--blue); }
+    .field-err { font-size: .7rem; color: var(--error); font-weight: 600; margin-top: 4px; display: none; }
+    .field.err .field-err { display: block; }
+    .field.err input { border-color: var(--error); }
+
+    /* Admin code field */
+    .admin-code-field .input-wrap input { padding-left: 40px; letter-spacing: .1em; font-weight: 700; font-size: .86rem; }
+    .pin-input { letter-spacing: .3em !important; font-size: 1.1rem !important; font-weight: 800 !important; text-align: center; }
+
+    /* ─── OPTIONS ROW ─── */
+    .options-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .remember { display: flex; align-items: center; gap: 7px; cursor: pointer; font-size: .8rem; color: var(--text-sub); font-weight: 500; }
+    .remember input[type="checkbox"] { display: none; }
+    .check-box { width: 18px; height: 18px; border: 1.5px solid var(--input-border); border-radius: 5px; display: flex; align-items: center; justify-content: center; transition: var(--t); }
+    .remember input:checked ~ .check-box { background: var(--blue); border-color: var(--blue); }
+    .remember input:checked ~ .check-box::after { content: '✓'; color: white; font-size: .65rem; font-weight: 900; }
+    .forgot { font-size: .8rem; color: var(--blue); text-decoration: none; font-weight: 600; transition: var(--t); }
+    .forgot:hover { color: var(--orange); }
+
+    /* ─── SUBMIT BTN ─── */
+    .btn-submit {
+      width: 100%; padding: 13px; border-radius: 50px; border: none;
+      font-family: var(--font); font-size: .95rem; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: var(--t); position: relative; overflow: hidden;
+    }
+    .btn-student { background: var(--blue); color: var(--white); box-shadow: 0 6px 20px var(--blue-glow); }
+    .btn-student:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 10px 28px var(--blue-glow); }
+    .btn-admin { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: var(--white); box-shadow: 0 6px 20px var(--blue-glow); border: 1px solid rgba(255,255,255,.1); }
+    .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(10,61,145,.4); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+    .btn-submit .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(255,255,255,.3); border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite; }
+    .btn-submit.loading .btn-label { display: none; }
+    .btn-submit.loading .spinner { display: block; }
+
+    /* ─── DIVIDER ─── */
+    .divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; }
+    .divider span { font-size: .72rem; color: var(--gray-400); font-weight: 500; white-space: nowrap; }
+    .div-line { flex: 1; height: 1px; background: var(--gray-200); }
+
+    /* ─── FOOTER LINKS ─── */
+    .card-footer { text-align: center; margin-top: 18px; font-size: .8rem; color: var(--text-sub); }
+    .card-footer a { color: var(--blue); font-weight: 700; text-decoration: none; transition: var(--t); }
+    .card-footer a:hover { color: var(--orange); }
+
+    /* ─── ADMIN SECURITY BADGE ─── */
+    .security-badge {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(10,61,145,.06); border: 1px solid rgba(10,61,145,.12);
+      border-radius: 10px; padding: 11px 14px; margin-bottom: 20px;
+    }
+    [data-theme="dark"] .security-badge { background: rgba(10,61,145,.25); border-color: rgba(10,61,145,.4); }
+    .security-badge i { color: var(--blue); font-size: .9rem; }
+    .security-badge span { font-size: .77rem; color: var(--text-sub); font-weight: 500; line-height: 1.4; }
+
+    /* Locked attempts badge */
+    .attempts-badge {
+      display: none; background: rgba(220,38,38,.08); border: 1px solid rgba(220,38,38,.15);
+      border-radius: 10px; padding: 10px 14px; margin-bottom: 16px;
+      font-size: .78rem; color: var(--error); font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .attempts-badge.hidden { display: none !important; }
+
+    /* ─── BOTTOM BRAND ─── */
+    .brand-footer { text-align: center; margin-top: 24px; }
+    .brand-footer p { font-size: .72rem; color: var(--gray-400); }
+    .brand-footer span { color: var(--blue); font-weight: 700; }
+
+    /* ─── LOCK ANIMATION ─── */
+    @keyframes shakeX {
+      0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)}
+      60%{transform:translateX(-4px)} 80%{transform:translateX(4px)}
+    }
+    .shake { animation: shakeX .4s ease; }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width: 820px) {
+      .login-wrap { grid-template-columns: 1fr; }
+      .left-panel { display: none; }
+      .right-panel { min-height: 100vh; padding: 32px 20px; }
+    }
+    @media(max-width: 440px) {
+      .login-card { padding: 28px 20px; }
+      .tabs { gap: 3px; }
+      .tab { font-size: .75rem; padding: 8px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── LOADER ─── -->
+<div id="loader">
+  <div class="ld-logo">JS<span>TECH</span></div>
+  <div class="ld-ring"></div>
+  <div class="ld-text">Initialisation sécurisée...</div>
+</div>
+
+<!-- ─── TOASTS ─── -->
+<div class="toast-stack" id="toastStack"></div>
+
+<!-- ─── CANVAS PARTICLES ─── -->
+<canvas id="particleCanvas"></canvas>
+
+<!-- ─── MAIN ─── -->
+<div class="login-wrap">
+
+  <!-- ═══ LEFT ═══ -->
+  <div class="left-panel">
+    <div class="lp-glow1"></div>
+    <div class="lp-glow2"></div>
+    <div class="lp-content">
+      <div class="lp-logo">
+        <div class="lp-logo-icon">JS</div>
+        <div class="lp-logo-text">
+          <span>JS TECH</span>
+          <span>PROMO VACANCES 2026</span>
+        </div>
+      </div>
+
+      <h1 class="lp-title">Bienvenue sur la<br/> plateforme <span>numérique</span><br/> officielle JS TECH.</h1>
+      <p class="lp-sub">Accédez à votre espace personnel pour gérer vos formations, présences, notes et bien plus encore.</p>
+
+      <div class="lp-features">
+        <div class="lp-feat"><div class="lp-feat-icon"><i class="fa-solid fa-graduation-cap"></i></div><div class="lp-feat-text">Suivi pédagogique complet en temps réel</div></div>
+        <div class="lp-feat"><div class="lp-feat-icon"><i class="fa-solid fa-chart-line"></i></div><div class="lp-feat-text">Résultats, notes et bulletins instantanés</div></div>
+        <div class="lp-feat"><div class="lp-feat-icon"><i class="fa-solid fa-bell"></i></div><div class="lp-feat-text">Notifications et annonces officielles</div></div>
+        <div class="lp-feat"><div class="lp-feat-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="lp-feat-text">Plateforme sécurisée et chiffrée</div></div>
+      </div>
+
+      <div class="lp-stats">
+        <div class="lp-stat"><div class="lp-stat-n">4<span>+</span></div><div class="lp-stat-l">Modules</div></div>
+        <div class="lp-stat"><div class="lp-stat-n">200<span>+</span></div><div class="lp-stat-l">Places</div></div>
+        <div class="lp-stat"><div class="lp-stat-n">13<span>Jul</span></div><div class="lp-stat-l">Début</div></div>
+        <div class="lp-stat"><div class="lp-stat-n">100<span>%</span></div><div class="lp-stat-l">Pratique</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RIGHT ═══ -->
+  <div class="right-panel">
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Accueil</a>
+    <button class="theme-toggle" id="themeBtn" title="Changer le thème" onclick="toggleTheme()">
+      <i class="fa-solid fa-moon" id="themeIcon"></i>
+    </button>
+
+    <div class="login-card" id="loginCard">
+      <div class="card-header">
+        <div class="card-badge"><i class="fa-solid fa-lock"></i> Espace sécurisé</div>
+        <h2 class="card-title" id="cardTitle">Connexion</h2>
+        <p class="card-sub" id="cardSub">Accédez à votre espace JS TECH.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab active" id="tabStudent" onclick="switchTab('student')">
+          <i class="fa-solid fa-user-graduate"></i> Étudiant
+        </button>
+        <button class="tab tab-admin" id="tabAdmin" onclick="switchTab('admin')">
+          <i class="fa-solid fa-shield-halved"></i> Administrateur
+        </button>
+      </div>
+
+      <!-- ─── STUDENT FORM ─── -->
+      <div class="form-section active" id="formStudent">
+        <div class="field" id="fStudEmail">
+          <label>Adresse email</label>
+          <div class="input-wrap">
+            <input type="email" id="studEmail" placeholder="votre@email.com" autocomplete="email" oninput="clearErr('fStudEmail')"/>
+            <i class="fa-solid fa-envelope input-icon"></i>
+          </div>
+          <div class="field-err">Adresse email invalide</div>
+        </div>
+
+        <div class="field" id="fStudPwd">
+          <label>Mot de passe</label>
+          <div class="input-wrap">
+            <input type="password" id="studPwd" placeholder="••••••••" autocomplete="current-password" oninput="clearErr('fStudPwd')"/>
+            <i class="fa-solid fa-lock input-icon"></i>
+            <button class="input-toggle" type="button" onclick="togglePwd('studPwd', this)"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <div class="field-err">Mot de passe requis</div>
+        </div>
+
+        <div class="options-row">
+          <label class="remember">
+            <input type="checkbox" id="rememberMe"/>
+            <div class="check-box"></div>
+            Se souvenir de moi
+          </label>
+          <a href="#" class="forgot" onclick="forgotPassword()">Mot de passe oublié ?</a>
+        </div>
+
+        <button class="btn-submit btn-student" id="btnStudent" onclick="loginStudent()">
+          <span class="btn-label"><i class="fa-solid fa-right-to-bracket"></i> Connexion Étudiant</span>
+          <div class="spinner"></div>
+        </button>
+
+        <div class="divider"><div class="div-line"></div><span>Vous n'avez pas de compte ?</span><div class="div-line"></div></div>
+
+        <div class="card-footer">
+          <a href="registration.html"><i class="fa-solid fa-user-plus"></i> Créer un compte étudiant</a>
+        </div>
+      </div>
+
+      <!-- ─── ADMIN FORM ─── -->
+      <div class="form-section" id="formAdmin">
+        <div class="security-badge">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>Accès réservé aux administrateurs JS TECH. Toutes les tentatives sont enregistrées.</span>
+        </div>
+
+        <div class="attempts-badge hidden" id="attemptsBadge">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span id="attemptsMsg">Tentatives restantes : 5</span>
+        </div>
+
+        <div class="field" id="fAdminEmail">
+          <label>Email administrateur</label>
+          <div class="input-wrap">
+            <input type="email" id="adminEmail" placeholder="admin@jstech.com" oninput="clearErr('fAdminEmail')"/>
+            <i class="fa-solid fa-envelope input-icon"></i>
+          </div>
+          <div class="field-err">Email administrateur requis</div>
+        </div>
+
+        <div class="field admin-code-field" id="fAdminCode">
+          <label>Code administrateur</label>
+          <div class="input-wrap">
+            <input type="text" id="adminCode" placeholder="JST-ADMIN-XXXX" autocomplete="off" oninput="clearErr('fAdminCode')"/>
+            <i class="fa-solid fa-key input-icon"></i>
+          </div>
+          <div class="field-err">Code administrateur requis</div>
+        </div>
+
+        <div class="field" id="fAdminPin">
+          <label>PIN sécurisé</label>
+          <div class="input-wrap">
+            <input type="password" id="adminPin" placeholder="• • • •" maxlength="8" class="pin-input" autocomplete="off" oninput="clearErr('fAdminPin')"/>
+            <i class="fa-solid fa-hashtag input-icon"></i>
+            <button class="input-toggle" type="button" onclick="togglePwd('adminPin', this)"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <div class="field-err">PIN requis</div>
+        </div>
+
+        <button class="btn-submit btn-admin" id="btnAdmin" onclick="loginAdmin()">
+          <span class="btn-label"><i class="fa-solid fa-shield-halved"></i> Connexion Administrateur</span>
+          <div class="spinner"></div>
+        </button>
+      </div>
+
+    </div><!-- /login-card -->
+
+    <div class="brand-footer">
+      <p>© 2026 <span>JS TECH</span> · Plateforme numérique éducative · Tous droits réservés</p>
+    </div>
+  </div><!-- /right-panel -->
+
+</div><!-- /login-wrap -->
+
+<!-- ─── FIREBASE ─── -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+  import {
+    getAuth, signInWithEmailAndPassword, setPersistence,
+    browserLocalPersistence, browserSessionPersistence,
+    onAuthStateChanged, sendPasswordResetEmail
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import {
+    getFirestore, collection, query, where, getDocs,
+    addDoc, serverTimestamp, doc, getDoc
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD-GqWDwWmE3g6oUrsrVZ9vGhwyn64YVkc",
+    authDomain: "js-tech-978a1.firebaseapp.com",
+    projectId: "js-tech-978a1",
+    storageBucket: "js-tech-978a1.firebasestorage.app",
+    messagingSenderId: "174162300177",
+    appId: "1:174162300177:web:0a51ee1363ac8e14d610b0",
+    measurementId: "G-VFWPDZPCBH"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ── Expose to window
+  window._auth = auth;
+  window._db = db;
+  window._signIn = signInWithEmailAndPassword;
+  window._setPersistence = setPersistence;
+  window._localPersistence = browserLocalPersistence;
+  window._sessionPersistence = browserSessionPersistence;
+  window._onAuthChanged = onAuthStateChanged;
+  window._sendReset = sendPasswordResetEmail;
+  window._fsQuery = query;
+  window._fsCollection = collection;
+  window._fsWhere = where;
+  window._fsGetDocs = getDocs;
+  window._fsAddDoc = addDoc;
+  window._fsTimestamp = serverTimestamp;
+  window._fsDoc = doc;
+  window._fsGetDoc = getDoc;
+  window._firebaseReady = true;
+
+  // ── Auto redirect if already logged in
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      try {
+        const snap = await getDoc(doc(db, 'users', user.uid));
+        if (snap.exists()) {
+          const role = snap.data().role;
+          if (role === 'admin') { window.location.href = 'admin-dashboard.html'; return; }
+        }
+        window.location.href = 'student-dashboard.html';
+      } catch(e) { /* not logged in cleanly */ }
+    }
+  });
+
+  console.log('✅ Firebase Auth + Firestore initialisés');
+</script>
+
+<!-- ─── MAIN JS ─── -->
+<script>
+/* ════════════════════════════════════════════
+   SECURITY STATE
+════════════════════════════════════════════ */
+const ADMIN_MAX_ATTEMPTS = 5;
+const LOCKOUT_MS = 15 * 60 * 1000; // 15 min
+let adminAttempts = parseInt(sessionStorage.getItem('adminAttempts') || '0');
+let lockUntil = parseInt(sessionStorage.getItem('lockUntil') || '0');
+
+/* ════════════════════════════════════════════
+   LOADER
+════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('out'), 1600);
+});
+
+/* ════════════════════════════════════════════
+   PARTICLES
+════════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  class P {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.r = Math.random() * 2 + 0.5;
+      this.dx = (Math.random() - .5) * .4;
+      this.dy = (Math.random() - .5) * .4;
+      this.alpha = Math.random() * .5 + .1;
+    }
+    update() {
+      this.x += this.dx; this.y += this.dy;
+      if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(10,61,145,${this.alpha})`;
+      ctx.fill();
+    }
+  }
+  for (let i = 0; i < 60; i++) particles.push(new P());
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    particles.forEach((a, i) => {
+      for (let j = i+1; j < particles.length; j++) {
+        const b = particles[j];
+        const d = Math.hypot(a.x-b.x, a.y-b.y);
+        if (d < 80) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(10,61,145,${.08 * (1 - d/80)})`;
+          ctx.lineWidth = .5;
+          ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ════════════════════════════════════════════
+   THEME
+════════════════════════════════════════════ */
+let dark = localStorage.getItem('theme') === 'dark';
+if (dark) document.documentElement.setAttribute('data-theme','dark');
+function toggleTheme() {
+  dark = !dark;
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+  document.getElementById('themeIcon').className = dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+  localStorage.setItem('theme', dark ? 'dark' : 'light');
+}
+if (dark) document.getElementById('themeIcon').className = 'fa-solid fa-sun';
+
+/* ════════════════════════════════════════════
+   TABS
+════════════════════════════════════════════ */
+function switchTab(tab) {
+  const isAdmin = tab === 'admin';
+  document.getElementById('formStudent').classList.toggle('active', !isAdmin);
+  document.getElementById('formAdmin').classList.toggle('active', isAdmin);
+  document.getElementById('tabStudent').classList.toggle('active', !isAdmin);
+  document.getElementById('tabAdmin').classList.toggle('active', isAdmin);
+  document.getElementById('cardTitle').textContent = isAdmin ? 'Accès Admin' : 'Connexion';
+  document.getElementById('cardSub').textContent = isAdmin
+    ? 'Accès réservé aux administrateurs JS TECH.'
+    : 'Accédez à votre espace étudiant JS TECH.';
+}
+
+/* ════════════════════════════════════════════
+   FIELD HELPERS
+════════════════════════════════════════════ */
+function clearErr(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('err');
+}
+function setErr(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.add('err');
+  return false;
+}
+function togglePwd(id, btn) {
+  const el = document.getElementById(id);
+  const isText = el.type === 'text';
+  el.type = isText ? 'password' : 'text';
+  btn.innerHTML = `<i class="fa-solid fa-eye${isText ? '' : '-slash'}"></i>`;
+}
+function setLoading(btnId, on) {
+  const btn = document.getElementById(btnId);
+  btn.classList.toggle('loading', on);
+  btn.disabled = on;
+}
+function shakeCard() {
+  const c = document.getElementById('loginCard');
+  c.classList.add('shake');
+  setTimeout(() => c.classList.remove('shake'), 400);
+}
+
+/* ════════════════════════════════════════════
+   TOAST
+════════════════════════════════════════════ */
+function toast(msg, type = 'info', duration = 3500) {
+  const stack = document.getElementById('toastStack');
+  const icons = { info:'circle-info', success:'circle-check', error:'circle-xmark', warning:'triangle-exclamation' };
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fa-solid fa-${icons[type]||icons.info}"></i><span>${msg}</span>`;
+  stack.appendChild(t);
+  requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, duration);
+}
+
+/* ════════════════════════════════════════════
+   STUDENT LOGIN
+════════════════════════════════════════════ */
+async function loginStudent() {
+  const email = document.getElementById('studEmail').value.trim();
+  const pwd = document.getElementById('studPwd').value;
+  const remember = document.getElementById('rememberMe').checked;
+
+  let valid = true;
+  if (!email || !email.includes('@')) { setErr('fStudEmail'); valid = false; }
+  if (!pwd || pwd.length < 4) { setErr('fStudPwd'); valid = false; }
+  if (!valid) { toast('Veuillez corriger les champs', 'warning'); return; }
+
+  if (!window._firebaseReady) { toast('Firebase non initialisé, réessayez', 'error'); return; }
+
+  setLoading('btnStudent', true);
+  toast('Vérification en cours...', 'info');
+
+  try {
+    // Persistence
+    const persistence = remember ? window._localPersistence : window._sessionPersistence;
+    await window._setPersistence(window._auth, persistence);
+
+    // Sign in
+    const cred = await window._signIn(window._auth, email, pwd);
+    const user = cred.user;
+
+    // Fetch user doc from Firestore
+    let role = 'student';
+    try {
+      const snap = await window._fsGetDoc(window._fsDoc(window._db, 'users', user.uid));
+      if (snap.exists()) role = snap.data().role || 'student';
+    } catch(e) {}
+
+    // Log connexion
+    try {
+      await window._fsAddDoc(window._fsCollection(window._db, 'logs'), {
+        type: 'login_student', uid: user.uid, email,
+        timestamp: window._fsTimestamp()
+      });
+    } catch(e) {}
+
+    toast('Connexion réussie ! Redirection...', 'success');
+    setLoading('btnStudent', false);
+
+    setTimeout(() => {
+      if (role === 'admin') {
+        window.location.href = 'admin-dashboard.html';
+      } else {
+        window.location.href = 'student-dashboard.html';
+      }
+    }, 1200);
+
+  } catch(err) {
+    setLoading('btnStudent', false);
+    shakeCard();
+
+    const msgs = {
+      'auth/user-not-found': 'Aucun compte trouvé avec cet email.',
+      'auth/wrong-password': 'Mot de passe incorrect.',
+      'auth/invalid-email': 'Format d\'email invalide.',
+      'auth/too-many-requests': 'Trop de tentatives. Réessayez plus tard.',
+      'auth/user-disabled': 'Ce compte a été désactivé.',
+      'auth/invalid-credential': 'Identifiants invalides. Vérifiez votre email et mot de passe.',
+    };
+    toast(msgs[err.code] || 'Erreur de connexion : ' + err.message, 'error', 5000);
+    console.error('Login error:', err.code, err.message);
+  }
+}
+
+/* ════════════════════════════════════════════
+   ADMIN LOGIN
+════════════════════════════════════════════ */
+async function loginAdmin() {
+  // ── Lockout check
+  if (Date.now() < lockUntil) {
+    const remaining = Math.ceil((lockUntil - Date.now()) / 60000);
+    toast(`Accès bloqué pour ${remaining} minute(s). Trop de tentatives.`, 'error', 6000);
+    return;
+  }
+
+  const email = document.getElementById('adminEmail').value.trim();
+  const code = document.getElementById('adminCode').value.trim().toUpperCase();
+  const pin = document.getElementById('adminPin').value.trim();
+
+  let valid = true;
+  if (!email || !email.includes('@')) { setErr('fAdminEmail'); valid = false; }
+  if (!code) { setErr('fAdminCode'); valid = false; }
+  if (!pin || pin.length < 3) { setErr('fAdminPin'); valid = false; }
+  if (!valid) { toast('Tous les champs administrateur sont requis.', 'warning'); return; }
+
+  if (!window._firebaseReady) { toast('Firebase non initialisé', 'error'); return; }
+
+  setLoading('btnAdmin', true);
+  toast('Vérification sécurisée...', 'info');
+
+  try {
+    // Query Firestore admins collection
+    const q = window._fsQuery(
+      window._fsCollection(window._db, 'admins'),
+      window._fsWhere('email', '==', email)
+    );
+    const snap = await window._fsGetDocs(q);
+
+    if (snap.empty) {
+      handleAdminFail('Accès administrateur refusé.');
+      return;
+    }
+
+    const adminDoc = snap.docs[0].data();
+
+    // Verify code & pin
+    if (adminDoc.adminCode !== code || String(adminDoc.pin) !== String(pin)) {
+      handleAdminFail('Code ou PIN incorrect.');
+      return;
+    }
+
+    if (adminDoc.role !== 'admin') {
+      handleAdminFail('Rôle non autorisé.');
+      return;
+    }
+
+    // ── Success
+    adminAttempts = 0;
+    sessionStorage.setItem('adminAttempts', '0');
+    sessionStorage.removeItem('lockUntil');
+
+    // Store admin session info
+    sessionStorage.setItem('adminEmail', email);
+    sessionStorage.setItem('adminLoggedIn', 'true');
+    sessionStorage.setItem('adminName', adminDoc.name || 'Administrateur');
+
+    // Log
+    try {
+      await window._fsAddDoc(window._fsCollection(window._db, 'logs'), {
+        type: 'login_admin', email, code,
+        timestamp: window._fsTimestamp()
+      });
+    } catch(e) {}
+
+    setLoading('btnAdmin', false);
+    toast('✅ Accès administrateur accordé !', 'success');
+
+    setTimeout(() => { window.location.href = 'admin-dashboard.html'; }, 1200);
+
+  } catch(err) {
+    setLoading('btnAdmin', false);
+    console.error('Admin login error:', err);
+    handleAdminFail('Erreur système : ' + err.message);
+  }
+}
+
+function handleAdminFail(msg) {
+  setLoading('btnAdmin', false);
+  adminAttempts++;
+  sessionStorage.setItem('adminAttempts', adminAttempts);
+  shakeCard();
+
+  const remaining = ADMIN_MAX_ATTEMPTS - adminAttempts;
+  const badge = document.getElementById('attemptsBadge');
+  badge.classList.remove('hidden');
+  document.getElementById('attemptsMsg').textContent = `Tentatives restantes : ${Math.max(0, remaining)}`;
+
+  if (adminAttempts >= ADMIN_MAX_ATTEMPTS) {
+    lockUntil = Date.now() + LOCKOUT_MS;
+    sessionStorage.setItem('lockUntil', lockUntil);
+    toast('🔒 Compte bloqué temporairement pour 15 minutes.', 'error', 8000);
+    document.getElementById('btnAdmin').disabled = true;
+    document.getElementById('attemptsMsg').textContent = `Compte bloqué — réessayez dans 15 min`;
+  } else {
+    toast(msg + (remaining > 0 ? ` (${remaining} tentative${remaining > 1 ? 's' : ''} restante${remaining > 1 ? 's' : ''})` : ''), 'error', 5000);
+  }
+
+  // Log failed attempt
+  try {
+    if (window._firebaseReady) {
+      window._fsAddDoc(window._fsCollection(window._db, 'logs'), {
+        type: 'failed_admin_login',
+        email: document.getElementById('adminEmail').value.trim(),
+        timestamp: window._fsTimestamp(),
+        attempts: adminAttempts
+      });
+    }
+  } catch(e) {}
+}
+
+/* ════════════════════════════════════════════
+   FORGOT PASSWORD
+════════════════════════════════════════════ */
+async function forgotPassword() {
+  const email = document.getElementById('studEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('fStudEmail').classList.add('err');
+    toast('Entrez votre email dans le champ ci-dessus.', 'warning');
+    return;
+  }
+  if (!window._firebaseReady) { toast('Firebase non prêt', 'error'); return; }
+  try {
+    await window._sendReset(window._auth, email);
+    toast('Email de réinitialisation envoyé ! Vérifiez votre boîte mail.', 'success', 5000);
+  } catch(err) {
+    const msgs = {
+      'auth/user-not-found': 'Aucun compte trouvé avec cet email.',
+      'auth/invalid-email': 'Email invalide.',
+    };
+    toast(msgs[err.code] || 'Erreur : ' + err.message, 'error');
+  }
+}
+
+/* ════════════════════════════════════════════
+   KEYBOARD ENTER
+════════════════════════════════════════════ */
+document.getElementById('studPwd').addEventListener('keydown', e => { if(e.key==='Enter') loginStudent(); });
+document.getElementById('adminPin').addEventListener('keydown', e => { if(e.key==='Enter') loginAdmin(); });
+
+/* ── Expose ── */
+window.switchTab = switchTab;
+window.loginStudent = loginStudent;
+window.loginAdmin = loginAdmin;
+window.forgotPassword = forgotPassword;
+window.togglePwd = togglePwd;
+window.toggleTheme = toggleTheme;
+window.clearErr = clearErr;
+</script>
+</body>
+</html>
