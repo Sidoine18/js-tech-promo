@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer mon compte Étudiant | JS TECH 2026</title>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="create-account.css">
+</head>
+<body>
+
+    <div id="preloader"><div class="loader"></div></div>
+
+    <div class="auth-wrapper">
+        <div class="auth-container" data-aos="zoom-in">
+            
+            <!-- Header Logo -->
+            <div class="auth-header">
+                <div class="logo">JS<span>TECH</span></div>
+                <h1>Espace Étudiant</h1>
+                <p>Initialisez votre accès à la Promo Vacances 2026</p>
+            </div>
+
+            <!-- STEP 1: VERIFICATION -->
+            <div id="step-1" class="auth-card">
+                <div class="card-title">
+                    <i class='bx bx-shield-quarter'></i>
+                    <span>Vérification d'inscription</span>
+                </div>
+                
+                <form id="verify-form">
+                    <div class="input-group">
+                        <label>Matricule Officiel</label>
+                        <div class="input-wrapper">
+                            <i class='bx bx-id-card'></i>
+                            <input type="text" id="v-matricule" placeholder="Ex: JSTECH-2026-XXXX" required>
+                        </div>
+                    </div>
+
+                    <div class="divider"><span>OU</span></div>
+
+                    <div class="input-group">
+                        <label>Contact WhatsApp ou Email</label>
+                        <div class="input-wrapper">
+                            <i class='bx bx-user-pin'></i>
+                            <input type="text" id="v-contact" placeholder="Email ou Numéro" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block" id="btn-verify">
+                        <span>Vérifier mon inscription</span>
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- STEP 2: CREATION (Caché par défaut) -->
+            <div id="step-2" class="auth-card hidden">
+                <div class="student-info-box">
+                    <div class="avatar-circle" id="student-avatar">
+                        <i class='bx bxs-user-circle'></i>
+                    </div>
+                    <div class="info-text">
+                        <h3 id="display-name">---</h3>
+                        <p id="display-session">Session : ---</p>
+                        <span class="badge" id="display-payment">Statut : ---</span>
+                    </div>
+                </div>
+
+                <form id="create-form">
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Email de connexion</label>
+                            <input type="email" id="c-email" readonly class="readonly-input">
+                        </div>
+                        <div class="input-group">
+                            <label>Nom d'utilisateur</label>
+                            <input type="text" id="c-username" placeholder="Pseudo" required>
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="input-group">
+                            <label>Mot de passe</label>
+                            <input type="password" id="c-password" placeholder="••••••••" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Confirmer</label>
+                            <input type="password" id="c-confirm" placeholder="••••••••" required>
+                        </div>
+                    </div>
+
+                    <label class="checkbox-container">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        J'accepte les conditions d'utilisation et la politique de confidentialité.
+                    </label>
+
+                    <button type="submit" class="btn btn-orange btn-block" id="btn-register">
+                        <span>Créer mon compte étudiant</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="auth-footer">
+                <p>Déjà un compte ? <a href="login.html">Se connecter</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="app-account.js"></script>
+</body>
+</html>
