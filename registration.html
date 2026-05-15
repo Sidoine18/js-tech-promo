@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscription — JS TECH PROMO VACANCES 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #0A3D91;
+      --blue-light: #1558c0;
+      --blue-dark: #062a68;
+      --orange: #FF6B00;
+      --orange-light: #ff8c33;
+      --white: #ffffff;
+      --gray-50: #f8faff;
+      --gray-100: #eef2fb;
+      --gray-200: #dde4f5;
+      --gray-400: #9aaacf;
+      --gray-600: #5a6a8a;
+      --gray-800: #1e2d4a;
+      --success: #059669;
+      --error: #dc2626;
+      --font: 'Poppins', sans-serif;
+      --shadow-sm: 0 2px 12px rgba(10,61,145,.08);
+      --shadow-md: 0 8px 32px rgba(10,61,145,.13);
+      --shadow-lg: 0 20px 60px rgba(10,61,145,.18);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --radius-lg: 20px;
+      --transition: .25s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--gray-50); color: var(--gray-800); min-height: 100vh; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 10px; }
+
+    /* ─── LOADER ─── */
+    #pageLoader {
+      position: fixed; inset: 0; background: var(--blue-dark); z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+      transition: opacity .4s ease;
+    }
+    #pageLoader.hidden { opacity: 0; pointer-events: none; }
+    .loader-logo { color: var(--white); font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; }
+    .loader-logo span { color: var(--orange); }
+    .loader-bar { width: 200px; height: 4px; background: rgba(255,255,255,.15); border-radius: 10px; overflow: hidden; }
+    .loader-bar-fill { height: 100%; background: linear-gradient(90deg, var(--blue-light), var(--orange)); border-radius: 10px; animation: loadBar 1.6s ease forwards; }
+    @keyframes loadBar { from{width:0} to{width:100%} }
+    .loader-text { color: rgba(255,255,255,.5); font-size: .8rem; font-weight: 500; }
+
+    /* ─── HEADER ─── */
+    header {
+      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+      padding: 0;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 24px rgba(10,61,145,.25);
+    }
+    .header-inner {
+      max-width: 900px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 66px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-icon { width: 38px; height: 38px; background: var(--orange); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 900; font-size: .9rem; }
+    .logo-label { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-label span:first-child { color: var(--white); font-weight: 800; font-size: .95rem; }
+    .logo-label span:last-child { color: rgba(255,255,255,.5); font-size: .62rem; letter-spacing: .07em; text-transform: uppercase; }
+    .header-back { color: rgba(255,255,255,.7); font-size: .82rem; font-weight: 500; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: var(--transition); }
+    .header-back:hover { color: var(--white); }
+
+    /* ─── HERO BAND ─── */
+    .hero-band {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--orange) 200%);
+      padding: 56px 24px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero-band::before {
+      content:''; position:absolute; inset:0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20.5V18H0v5h5v5H0v5h5v4H0v5h5V0h15v5h5V0h15v5h-5v5h5v5h-5v5h5v5h-5v4h5v5h-5V0H20v5h5v5h-5v5zM0 5h5v-5H0v5zm10 0h5v-5h-5v5z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-band h1 { font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 900; color: var(--white); margin-bottom: 8px; position: relative; }
+    .hero-band p { color: rgba(255,255,255,.75); font-size: .95rem; position: relative; margin-bottom: 22px; }
+    .hero-stats { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; position: relative; }
+    .hs { background: rgba(255,255,255,.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.15); border-radius: 12px; padding: 10px 20px; text-align: center; }
+    .hs-num { font-size: 1.35rem; font-weight: 900; color: var(--white); }
+    .hs-num span { color: var(--orange); }
+    .hs-label { font-size: .65rem; color: rgba(255,255,255,.55); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-wrap { max-width: 900px; margin: 0 auto; padding: 28px 24px 0; }
+    .progress-steps { display: flex; align-items: center; gap: 0; }
+    .step-item { display: flex; flex-direction: column; align-items: center; flex: 1; position: relative; }
+    .step-item:not(:last-child)::after {
+      content: ''; position: absolute; top: 18px; left: calc(50% + 18px);
+      width: calc(100% - 36px); height: 2px;
+      background: var(--gray-200); transition: background .5s ease;
+    }
+    .step-item.done:not(:last-child)::after { background: var(--blue); }
+    .step-circle {
+      width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--gray-200);
+      background: var(--white); display: flex; align-items: center; justify-content: center;
+      font-size: .78rem; font-weight: 700; color: var(--gray-400);
+      transition: var(--transition); position: relative; z-index: 2;
+    }
+    .step-item.active .step-circle { border-color: var(--blue); background: var(--blue); color: var(--white); box-shadow: 0 0 0 4px rgba(10,61,145,.15); }
+    .step-item.done .step-circle { border-color: var(--success); background: var(--success); color: var(--white); }
+    .step-label { font-size: .68rem; font-weight: 600; color: var(--gray-400); margin-top: 6px; text-align: center; transition: color .3s; }
+    .step-item.active .step-label { color: var(--blue); }
+    .step-item.done .step-label { color: var(--success); }
+
+    /* ─── MAIN FORM AREA ─── */
+    .form-area { max-width: 900px; margin: 0 auto; padding: 28px 24px 60px; }
+
+    /* ─── FORM STEPS ─── */
+    .form-step { display: none; animation: fadeIn .4s ease; }
+    .form-step.active { display: block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--white); border-radius: var(--radius-lg); padding: 32px;
+      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-200); margin-bottom: 20px;
+    }
+    .card-title { font-size: 1.05rem; font-weight: 800; color: var(--gray-800); margin-bottom: 6px; display: flex; align-items: center; gap: 10px; }
+    .card-title i { width: 34px; height: 34px; background: rgba(10,61,145,.08); color: var(--blue); border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; font-size: .85rem; flex-shrink: 0; }
+    .card-subtitle { font-size: .82rem; color: var(--gray-600); margin-bottom: 24px; padding-left: 44px; }
+
+    /* ─── FORM FIELDS ─── */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .form-row.single { grid-template-columns: 1fr; }
+    .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: .78rem; font-weight: 700; color: var(--gray-600); letter-spacing: .03em; }
+    .field label .req { color: var(--orange); margin-left: 2px; }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 11px 14px; border-radius: var(--radius-sm);
+      border: 1.5px solid var(--gray-200); background: var(--gray-50);
+      font-family: var(--font); font-size: .88rem; color: var(--gray-800);
+      outline: none; transition: var(--transition);
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--blue); background: var(--white);
+      box-shadow: 0 0 0 3px rgba(10,61,145,.1);
+    }
+    .field input.error, .field select.error { border-color: var(--error); box-shadow: 0 0 0 3px rgba(220,38,38,.1); }
+    .field .err-msg { font-size: .72rem; color: var(--error); font-weight: 600; display: none; }
+    .field.has-error .err-msg { display: block; }
+    .field input::placeholder { color: var(--gray-400); }
+    .field-hint { font-size: .72rem; color: var(--gray-400); margin-top: 3px; }
+
+    /* Photo upload */
+    .photo-upload { border: 2px dashed var(--gray-200); border-radius: var(--radius); padding: 28px; text-align: center; cursor: pointer; transition: var(--transition); position: relative; }
+    .photo-upload:hover { border-color: var(--blue); background: rgba(10,61,145,.02); }
+    .photo-upload input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .photo-preview { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin: 0 auto 12px; display: none; border: 3px solid var(--blue); }
+    .photo-placeholder i { font-size: 2rem; color: var(--gray-400); margin-bottom: 10px; }
+    .photo-placeholder p { font-size: .82rem; color: var(--gray-600); font-weight: 500; }
+    .photo-placeholder span { font-size: .72rem; color: var(--gray-400); }
+
+    /* Radio & Checkbox groups */
+    .radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
+    .radio-btn { position: relative; }
+    .radio-btn input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .radio-btn label {
+      display: flex; align-items: center; gap: 8px; padding: 10px 18px;
+      border: 1.5px solid var(--gray-200); border-radius: 50px;
+      cursor: pointer; font-size: .85rem; font-weight: 600; color: var(--gray-600);
+      transition: var(--transition); white-space: nowrap;
+    }
+    .radio-btn input:checked + label { border-color: var(--blue); background: rgba(10,61,145,.07); color: var(--blue); }
+    .radio-btn label i { font-size: .8rem; }
+
+    /* Session cards */
+    .session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .session-card { position: relative; }
+    .session-card input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .session-label {
+      display: flex; flex-direction: column; gap: 8px;
+      border: 2px solid var(--gray-200); border-radius: var(--radius); padding: 22px;
+      cursor: pointer; transition: var(--transition);
+    }
+    .session-card input:checked + .session-label { border-color: var(--blue); background: rgba(10,61,145,.04); }
+    .session-label:hover { border-color: var(--blue-light); }
+    .session-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 4px; }
+    .si-blue { background: rgba(10,61,145,.1); color: var(--blue); }
+    .si-orange { background: rgba(255,107,0,.1); color: var(--orange); }
+    .session-name { font-size: 1rem; font-weight: 800; color: var(--gray-800); }
+    .session-group { font-size: .78rem; color: var(--gray-600); font-weight: 500; }
+    .session-time { display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; color: var(--blue); background: rgba(10,61,145,.08); padding: 4px 10px; border-radius: 50px; width: fit-content; margin-top: 4px; }
+    .session-card input:checked + .session-label .session-time { background: var(--blue); color: var(--white); }
+    .session-check { position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--gray-200); background: var(--white); display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .session-card input:checked + .session-label .session-check { display: none; }
+    .session-checked { display: none; position: absolute; top: 12px; right: 12px; width: 22px; height: 22px; border-radius: 50%; background: var(--blue); color: var(--white); align-items: center; justify-content: center; font-size: .7rem; }
+    .session-card input:checked ~ .session-checked { display: flex; }
+
+    /* Payment mode */
+    .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .payment-card { position: relative; }
+    .payment-card input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .payment-label {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      border: 2px solid var(--gray-200); border-radius: var(--radius); padding: 28px 20px;
+      cursor: pointer; transition: var(--transition); text-align: center;
+    }
+    .payment-card input:checked + .payment-label { border-color: var(--orange); background: rgba(255,107,0,.04); }
+    .payment-label:hover { border-color: var(--orange-light); }
+    .payment-label i { font-size: 2rem; }
+    .payment-online i { color: var(--orange); }
+    .payment-cash i { color: var(--success); }
+    .payment-name { font-size: 1rem; font-weight: 800; color: var(--gray-800); }
+    .payment-desc { font-size: .78rem; color: var(--gray-600); }
+    .payment-amount { font-size: 1.25rem; font-weight: 900; color: var(--orange); }
+
+    /* FedaPay Box */
+    #fedapayBox { display: none; }
+    .fedapay-info {
+      background: linear-gradient(135deg,rgba(255,107,0,.06),rgba(255,107,0,.02));
+      border: 1.5px solid rgba(255,107,0,.2); border-radius: var(--radius);
+      padding: 24px; margin-top: 16px; text-align: center;
+    }
+    .fedapay-info h4 { font-size: 1rem; font-weight: 800; color: var(--gray-800); margin-bottom: 6px; }
+    .fedapay-info p { font-size: .82rem; color: var(--gray-600); margin-bottom: 16px; }
+    .fedapay-amount { font-size: 2rem; font-weight: 900; color: var(--orange); margin-bottom: 18px; }
+    .fedapay-amount span { font-size: .9rem; font-weight: 600; color: var(--gray-600); }
+    #btnFedapay { background: var(--orange); color: var(--white); border: none; padding: 14px 32px; border-radius: 50px; font-family: var(--font); font-size: .95rem; font-weight: 700; cursor: pointer; transition: var(--transition); box-shadow: 0 6px 20px rgba(255,107,0,.35); display: flex; align-items: center; gap: 8px; margin: 0 auto; }
+    #btnFedapay:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(255,107,0,.4); }
+    #btnFedapay:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* Presential box */
+    #presentialBox { display: none; }
+    .presential-info {
+      background: rgba(5,150,105,.05); border: 1.5px solid rgba(5,150,105,.2);
+      border-radius: var(--radius); padding: 24px; margin-top: 16px;
+    }
+    .presential-info h4 { color: var(--success); font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .presential-info ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .presential-info li { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: var(--gray-600); }
+    .presential-info li i { color: var(--success); width: 16px; flex-shrink: 0; }
+
+    /* ─── NAV BUTTONS ─── */
+    .step-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
+    .btn-back { display: flex; align-items: center; gap: 7px; padding: 11px 24px; border-radius: 50px; border: 1.5px solid var(--gray-200); background: var(--white); font-family: var(--font); font-size: .88rem; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: var(--transition); }
+    .btn-back:hover { border-color: var(--blue); color: var(--blue); }
+    .btn-next { display: flex; align-items: center; gap: 7px; padding: 11px 28px; border-radius: 50px; border: none; background: var(--blue); color: var(--white); font-family: var(--font); font-size: .88rem; font-weight: 700; cursor: pointer; transition: var(--transition); box-shadow: 0 4px 16px rgba(10,61,145,.3); }
+    .btn-next:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10,61,145,.35); }
+    .btn-submit { background: var(--orange); box-shadow: 0 4px 16px rgba(255,107,0,.3); }
+    .btn-submit:hover { background: var(--orange-light); box-shadow: 0 8px 24px rgba(255,107,0,.4); }
+
+    /* ─── SUMMARY STEP ─── */
+    .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .summary-item { background: var(--gray-50); border-radius: var(--radius-sm); padding: 14px; border: 1px solid var(--gray-200); }
+    .summary-item .si-label { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--gray-400); margin-bottom: 4px; }
+    .summary-item .si-val { font-size: .9rem; font-weight: 700; color: var(--gray-800); }
+    .summary-item.full { grid-column: 1 / -1; }
+    .summary-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 50px; font-size: .78rem; font-weight: 700; }
+    .badge-paid { background: rgba(5,150,105,.12); color: var(--success); }
+    .badge-pending { background: rgba(245,158,11,.12); color: #d97706; }
+    .badge-presential { background: rgba(10,61,145,.1); color: var(--blue); }
+
+    /* ─── SUCCESS STEP ─── */
+    #stepSuccess { text-align: center; }
+    .success-anim { width: 90px; height: 90px; border-radius: 50%; background: rgba(5,150,105,.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; animation: pulse 2s ease infinite; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(5,150,105,.3)} 50%{box-shadow:0 0 0 16px rgba(5,150,105,0)} }
+    .success-anim i { font-size: 2.4rem; color: var(--success); }
+    .success-title { font-size: 1.8rem; font-weight: 900; color: var(--gray-800); margin-bottom: 8px; }
+    .success-sub { font-size: .95rem; color: var(--gray-600); margin-bottom: 28px; }
+    .matricule-box { display: inline-flex; align-items: center; gap: 10px; background: var(--blue); color: var(--white); padding: 12px 24px; border-radius: 12px; margin-bottom: 28px; }
+    .matricule-box span:first-child { font-size: .75rem; opacity: .7; font-weight: 600; }
+    .matricule-box span:last-child { font-size: 1.4rem; font-weight: 900; letter-spacing: 2px; }
+    #qrContainer { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-bottom: 32px; }
+    #qrContainer p { font-size: .8rem; color: var(--gray-600); }
+    #qrcode { padding: 14px; background: var(--white); border-radius: 12px; box-shadow: var(--shadow-md); display: inline-block; }
+    .success-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .btn-pdf { background: var(--blue); color: var(--white); border: none; padding: 14px 28px; border-radius: 50px; font-family: var(--font); font-size: .92rem; font-weight: 700; cursor: pointer; transition: var(--transition); display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 20px rgba(10,61,145,.3); }
+    .btn-pdf:hover { background: var(--blue-light); transform: translateY(-2px); }
+    .btn-home { background: transparent; color: var(--gray-600); border: 1.5px solid var(--gray-200); padding: 14px 24px; border-radius: 50px; font-family: var(--font); font-size: .88rem; font-weight: 600; cursor: pointer; transition: var(--transition); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .btn-home:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ─── TOAST ─── */
+    .toast-wrap { position: fixed; bottom: 28px; right: 28px; z-index: 9000; display: flex; flex-direction: column; gap: 10px; }
+    .toast {
+      background: var(--blue); color: var(--white); padding: 13px 20px; border-radius: 12px;
+      font-size: .86rem; font-weight: 600; box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; gap: 10px; min-width: 240px;
+      transform: translateX(120%); transition: transform .35s cubic-bezier(.4,0,.2,1);
+    }
+    .toast.show { transform: translateX(0); }
+    .toast.success { background: var(--success); }
+    .toast.error { background: var(--error); }
+    .toast.warning { background: #d97706; }
+
+    /* ─── OVERLAY MODAL ─── */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(6,42,104,.7); backdrop-filter: blur(6px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--white); border-radius: var(--radius-lg); padding: 36px; max-width: 440px; width: 100%; box-shadow: var(--shadow-xl, 0 40px 100px rgba(0,0,0,.3)); text-align: center; animation: popIn .35s cubic-bezier(.34,1.56,.64,1); }
+    @keyframes popIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+    .modal i { font-size: 2.5rem; margin-bottom: 14px; }
+    .modal h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+    .modal p { font-size: .9rem; color: var(--gray-600); margin-bottom: 24px; line-height: 1.65; }
+    .modal-btns { display: flex; gap: 10px; justify-content: center; }
+    .modal-btn-cancel { padding: 10px 22px; border-radius: 50px; border: 1.5px solid var(--gray-200); background: none; font-family: var(--font); font-size: .85rem; font-weight: 600; color: var(--gray-600); cursor: pointer; transition: var(--transition); }
+    .modal-btn-cancel:hover { border-color: var(--gray-400); }
+    .modal-btn-confirm { padding: 10px 22px; border-radius: 50px; border: none; background: var(--blue); color: var(--white); font-family: var(--font); font-size: .85rem; font-weight: 700; cursor: pointer; transition: var(--transition); }
+    .modal-btn-confirm:hover { background: var(--blue-light); }
+
+    /* ─── HIDDEN PDF TEMPLATE ─── */
+    #pdfTemplate {
+      position: absolute; left: -9999px; top: 0;
+      width: 794px; background: white; font-family: 'Poppins', sans-serif;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-row.triple { grid-template-columns: 1fr 1fr; }
+      .session-grid, .payment-grid { grid-template-columns: 1fr; }
+      .summary-grid { grid-template-columns: 1fr; }
+      .success-actions { flex-direction: column; align-items: center; }
+      .card { padding: 22px 18px; }
+      .radio-group { gap: 8px; }
+    }
+    @media(max-width: 420px) {
+      .hero-stats { gap: 12px; }
+      .step-label { display: none; }
+      .form-row.triple { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── LOADER ─── -->
+<div id="pageLoader">
+  <div class="loader-logo">JS<span>TECH</span></div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-text">Chargement de la plateforme...</div>
+</div>
+
+<!-- ─── TOASTS ─── -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ─── CONFIRM MODAL ─── -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal">
+    <i class="fa-solid fa-paper-plane" style="color:var(--blue)"></i>
+    <h3>Confirmer l'inscription</h3>
+    <p>Voulez-vous confirmer votre inscription à la <strong>PROMO VACANCES 2026</strong> de JS TECH ? Vos données seront enregistrées de manière sécurisée.</p>
+    <div class="modal-btns">
+      <button class="modal-btn-cancel" onclick="closeModal()">Annuler</button>
+      <button class="modal-btn-confirm" onclick="submitFinal()"><i class="fa-solid fa-check"></i> Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">JS</div>
+      <div class="logo-label">
+        <span>JS TECH</span>
+        <span>PROMO VACANCES 2026</span>
+      </div>
+    </a>
+    <a href="index.html" class="header-back"><i class="fa-solid fa-arrow-left"></i> Retour au site</a>
+  </div>
+</header>
+
+<!-- ─── HERO ─── -->
+<div class="hero-band">
+  <h1><i class="fa-solid fa-pen-to-square" style="color:var(--orange)"></i> Formulaire d'inscription officiel</h1>
+  <p>Complétez ce formulaire pour rejoindre la PROMO VACANCES 2026 · Formation informatique pratique</p>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-num">15 000<span> F</span></div><div class="hs-label">Frais de formation</div></div>
+    <div class="hs"><div class="hs-num"><span>🆓</span> Gratuit</div><div class="hs-label">Inscription</div></div>
+    <div class="hs"><div class="hs-num">4<span>+</span></div><div class="hs-label">Modules</div></div>
+    <div class="hs"><div class="hs-num">13 Jul<span>–</span>28 Août</div><div class="hs-label">Période</div></div>
+  </div>
+</div>
+
+<!-- ─── PROGRESS ─── -->
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="step-item active" id="s1"><div class="step-circle">1</div><div class="step-label">Participant</div></div>
+    <div class="step-item" id="s2"><div class="step-circle">2</div><div class="step-label">Coordonnées</div></div>
+    <div class="step-item" id="s3"><div class="step-circle">3</div><div class="step-label">Session</div></div>
+    <div class="step-item" id="s4"><div class="step-circle">4</div><div class="step-label">Paiement</div></div>
+    <div class="step-item" id="s5"><div class="step-circle">5</div><div class="step-label">Confirmation</div></div>
+    <div class="step-item" id="s6"><div class="step-circle"><i class="fa-solid fa-check" style="font-size:.6rem"></i></div><div class="step-label">Succès</div></div>
+  </div>
+</div>
+
+<!-- ─── FORM AREA ─── -->
+<div class="form-area">
+
+  <!-- ─ STEP 1 : INFORMATIONS PARTICIPANT ─ -->
+  <div class="form-step active" id="stepForm1">
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-user"></i> Informations du participant</div>
+      <div class="card-subtitle">Renseignez vos informations personnelles exactes.</div>
+
+      <!-- Photo -->
+      <div class="form-row single" style="margin-bottom:20px">
+        <div class="field">
+          <label>Photo (optionnel)</label>
+          <div class="photo-upload" id="photoWrap">
+            <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto(this)"/>
+            <img id="photoPreview" class="photo-preview" alt="Photo"/>
+            <div class="photo-placeholder" id="photoPlaceholder">
+              <i class="fa-solid fa-camera"></i>
+              <p>Cliquer pour ajouter une photo</p>
+              <span>JPG, PNG — Max 2 Mo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" id="fNom">
+          <label>Nom <span class="req">*</span></label>
+          <input type="text" id="nom" placeholder="KOSSOU" autocomplete="family-name"/>
+          <span class="err-msg">Ce champ est obligatoire</span>
+        </div>
+        <div class="field" id="fPrenom">
+          <label>Prénom(s) <span class="req">*</span></label>
+          <input type="text" id="prenom" placeholder="Adélaïde" autocomplete="given-name"/>
+          <span class="err-msg">Ce champ est obligatoire</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" id="fDob">
+          <label>Date de naissance <span class="req">*</span></label>
+          <input type="date" id="dateNaissance"/>
+          <span class="err-msg">Ce champ est obligatoire</span>
+        </div>
+        <div class="field" id="fSexe">
+          <label>Sexe <span class="req">*</span></label>
+          <div class="radio-group" style="margin-top:4px">
+            <div class="radio-btn"><input type="radio" name="sexe" id="sexeM" value="Masculin"/><label for="sexeM"><i class="fa-solid fa-mars"></i> Masculin</label></div>
+            <div class="radio-btn"><input type="radio" name="sexe" id="sexeF" value="Féminin"/><label for="sexeF"><i class="fa-solid fa-venus"></i> Féminin</label></div>
+          </div>
+          <span class="err-msg" id="sexeErr" style="display:none;font-size:.72rem;color:var(--error);font-weight:600">Choisissez votre sexe</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" id="fProfession">
+          <label>Profession / Statut <span class="req">*</span></label>
+          <select id="profession">
+            <option value="">— Choisir —</option>
+            <option value="Élève">Élève</option>
+            <option value="Étudiant(e)">Étudiant(e)</option>
+            <option value="Enseignant(e)">Enseignant(e)</option>
+            <option value="Directeur(rice)">Directeur(rice)</option>
+            <option value="Autre">Autre</option>
+          </select>
+          <span class="err-msg">Ce champ est obligatoire</span>
+        </div>
+        <div class="field" id="fEtablissement">
+          <label>Établissement / Structure</label>
+          <input type="text" id="etablissement" placeholder="Lycée Technique, Université..."/>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <span></span>
+      <button class="btn-next" onclick="nextStep(1)"><i class="fa-solid fa-arrow-right"></i> Continuer</button>
+    </div>
+  </div>
+
+  <!-- ─ STEP 2 : COORDONNÉES ─ -->
+  <div class="form-step" id="stepForm2">
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-address-card"></i> Coordonnées</div>
+      <div class="card-subtitle">Comment vous contacter et vous localiser.</div>
+
+      <div class="form-row single">
+        <div class="field" id="fAdresse">
+          <label>Adresse <span class="req">*</span></label>
+          <input type="text" id="adresse" placeholder="Quartier, commune, ville..."/>
+          <span class="err-msg">Ce champ est obligatoire</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" id="fTelephone">
+          <label>Téléphone WhatsApp <span class="req">*</span></label>
+          <input type="tel" id="telephone" placeholder="(+229) 01 XX XX XX XX"/>
+          <span class="err-msg">Numéro de téléphone obligatoire</span>
+        </div>
+        <div class="field" id="fEmail">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="votre@email.com" autocomplete="email"/>
+          <span class="err-msg">Adresse email invalide</span>
+          <div class="field-hint">Recevrez votre confirmation par email</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(2)"><i class="fa-solid fa-arrow-left"></i> Retour</button>
+      <button class="btn-next" onclick="nextStep(2)"><i class="fa-solid fa-arrow-right"></i> Continuer</button>
+    </div>
+  </div>
+
+  <!-- ─ STEP 3 : SESSION ─ -->
+  <div class="form-step" id="stepForm3">
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-calendar-check"></i> Choix de la session</div>
+      <div class="card-subtitle">Sélectionnez le créneau qui correspond à votre profil.</div>
+
+      <div class="session-grid">
+        <div class="session-card">
+          <input type="radio" name="session" id="sessA" value="Initiation Informatique"/>
+          <label class="session-label" for="sessA">
+            <div class="session-icon si-blue"><i class="fa-solid fa-user-graduate"></i></div>
+            <div class="session-name">Initiation Informatique</div>
+            <div class="session-group">Élèves &amp; Étudiants</div>
+            <div class="session-time"><i class="fa-solid fa-clock"></i> 08H – 13H</div>
+            <div class="session-check"></div>
+          </label>
+          <div class="session-checked"><i class="fa-solid fa-check"></i></div>
+        </div>
+        <div class="session-card">
+          <input type="radio" name="session" id="sessB" value="Mise à Niveau Informatique"/>
+          <label class="session-label" for="sessB">
+            <div class="session-icon si-orange"><i class="fa-solid fa-chalkboard-teacher"></i></div>
+            <div class="session-name">Mise à Niveau Informatique</div>
+            <div class="session-group">Directeurs &amp; Enseignants</div>
+            <div class="session-time" style="color:var(--orange);background:rgba(255,107,0,.1)"><i class="fa-solid fa-clock"></i> 17H – 19H</div>
+            <div class="session-check"></div>
+          </label>
+          <div class="session-checked" style="background:var(--orange)"><i class="fa-solid fa-check"></i></div>
+        </div>
+      </div>
+      <span id="sessionErr" style="display:none;font-size:.72rem;color:var(--error);font-weight:600;margin-top:8px;display:none">Veuillez choisir une session</span>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(3)"><i class="fa-solid fa-arrow-left"></i> Retour</button>
+      <button class="btn-next" onclick="nextStep(3)"><i class="fa-solid fa-arrow-right"></i> Continuer</button>
+    </div>
+  </div>
+
+  <!-- ─ STEP 4 : PAIEMENT ─ -->
+  <div class="form-step" id="stepForm4">
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-credit-card"></i> Mode de paiement</div>
+      <div class="card-subtitle">Choisissez comment vous souhaitez régler les frais de formation (15 000 F CFA).</div>
+
+      <div class="payment-grid">
+        <div class="payment-card">
+          <input type="radio" name="paiement" id="payOnline" value="online" onchange="togglePayment('online')"/>
+          <label class="payment-label payment-online" for="payOnline">
+            <i class="fa-solid fa-wifi"></i>
+            <div class="payment-name">Paiement en ligne</div>
+            <div class="payment-desc">FedaPay sécurisé</div>
+            <div class="payment-amount">15 000 F</div>
+          </label>
+        </div>
+        <div class="payment-card">
+          <input type="radio" name="paiement" id="payCash" value="presential" onchange="togglePayment('presential')"/>
+          <label class="payment-label payment-cash" for="payCash">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <div class="payment-name">Paiement en présentiel</div>
+            <div class="payment-desc">Sur place au centre</div>
+            <div class="payment-amount" style="color:var(--success)">Sur place</div>
+          </label>
+        </div>
+      </div>
+
+      <!-- FedaPay box -->
+      <div id="fedapayBox" class="fedapay-info">
+        <h4><i class="fa-solid fa-shield-halved" style="color:var(--orange);margin-right:6px"></i>Paiement sécurisé FedaPay</h4>
+        <p>Vous serez redirigé vers une fenêtre de paiement sécurisée FedaPay. Tous les paiements sont chiffrés et sécurisés.</p>
+        <div class="fedapay-amount">15 000 <span>F CFA</span></div>
+        <button id="btnFedapay" onclick="lancerPaiementFedapay()">
+          <i class="fa-solid fa-lock"></i> Payer maintenant avec FedaPay
+        </button>
+        <p style="font-size:.72rem;color:var(--gray-400);margin-top:12px"><i class="fa-solid fa-shield-halved"></i> Paiement 100% sécurisé · SSL · Visa · Mastercard · Mobile Money</p>
+      </div>
+
+      <!-- Presential box -->
+      <div id="presentialBox" class="presential-info">
+        <h4><i class="fa-solid fa-location-dot"></i> Paiement sur place</h4>
+        <ul>
+          <li><i class="fa-solid fa-check-circle"></i> Votre place sera réservée gratuitement</li>
+          <li><i class="fa-solid fa-check-circle"></i> Apportez 15 000 F CFA le jour de la formation</li>
+          <li><i class="fa-solid fa-location-dot"></i> Lieu : Derrière la gare routière d'Avogbanna</li>
+          <li><i class="fa-solid fa-calendar"></i> Dès le 13 Juillet 2026</li>
+          <li><i class="fa-solid fa-phone"></i> (+229) 01 43 33 43 78</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(4)"><i class="fa-solid fa-arrow-left"></i> Retour</button>
+      <button class="btn-next" id="btnStep4Next" onclick="nextStep(4)"><i class="fa-solid fa-eye"></i> Voir le récapitulatif</button>
+    </div>
+  </div>
+
+  <!-- ─ STEP 5 : RÉCAPITULATIF ─ -->
+  <div class="form-step" id="stepForm5">
+    <div class="card">
+      <div class="card-title"><i class="fa-solid fa-clipboard-list"></i> Récapitulatif de votre inscription</div>
+      <div class="card-subtitle">Vérifiez vos informations avant de valider.</div>
+      <div class="summary-grid" id="summaryContent"></div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="prevStep(5)"><i class="fa-solid fa-arrow-left"></i> Modifier</button>
+      <button class="btn-next btn-submit" onclick="openModal()"><i class="fa-solid fa-paper-plane"></i> Valider l'inscription</button>
+    </div>
+  </div>
+
+  <!-- ─ STEP 6 : SUCCÈS ─ -->
+  <div class="form-step" id="stepSuccess">
+    <div class="card">
+      <div class="success-anim"><i class="fa-solid fa-check"></i></div>
+      <h2 class="success-title">Inscription réussie !</h2>
+      <p class="success-sub">Bienvenue dans la <strong>PROMO VACANCES 2026</strong> de JS TECH. Votre dossier a été enregistré avec succès.</p>
+
+      <div class="matricule-box">
+        <span>Votre matricule</span>
+        <span id="matriculeDisplay">JST-2026-XXXX</span>
+      </div>
+
+      <div id="qrContainer">
+        <p><i class="fa-solid fa-qrcode" style="color:var(--blue);margin-right:6px"></i> Votre QR Code unique</p>
+        <div id="qrcode"></div>
+        <p style="font-size:.72rem;color:var(--gray-400)">Présentez ce QR code à l'entrée de la formation</p>
+      </div>
+
+      <div class="success-actions">
+        <button class="btn-pdf" onclick="downloadPDF()"><i class="fa-solid fa-file-pdf"></i> Télécharger ma fiche PDF</button>
+        <a href="index.html" class="btn-home"><i class="fa-solid fa-house"></i> Retour à l'accueil</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /form-area -->
+
+<!-- ─── HIDDEN PDF TEMPLATE ─── -->
+<div id="pdfTemplate" style="position:absolute;left:-9999px;top:0;width:794px;background:white;font-family:'Poppins',sans-serif;padding:0">
+  <!-- Built dynamically by JS -->
+</div>
+
+<!-- ─── FIREBASE ─── -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, serverTimestamp }
+    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD-GqWDwWmE3g6oUrsrVZ9vGhwyn64YVkc",
+    authDomain: "js-tech-978a1.firebaseapp.com",
+    projectId: "js-tech-978a1",
+    storageBucket: "js-tech-978a1.firebasestorage.app",
+    messagingSenderId: "174162300177",
+    appId: "1:174162300177:web:0a51ee1363ac8e14d610b0",
+    measurementId: "G-VFWPDZPCBH"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window._db = db;
+  window._fsAdd = addDoc;
+  window._fsCollection = collection;
+  window._fsQuery = query;
+  window._fsGetDocs = getDocs;
+  window._fsOrderBy = orderBy;
+  window._fsLimit = limit;
+  window._fsTimestamp = serverTimestamp;
+  window._firebaseReady = true;
+  console.log('✅ Firebase initialisé');
+</script>
+
+<!-- ─── FedaPay SDK ─── -->
+<script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+
+<!-- ─── MAIN JS ─── -->
+<script>
+/* ═══════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════ */
+let currentStep = 1;
+let formData = {};
+let paymentStatus = 'pending';
+let generatedMatricule = '';
+let photoBase64 = '';
+let qrDataUrl = '';
+
+/* ═══════════════════════════════════════════════════
+   LOADER
+═══════════════════════════════════════════════════ */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('pageLoader').classList.add('hidden');
+  }, 1800);
+});
+
+/* ═══════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════ */
+function toast(msg, type = 'info') {
+  const wrap = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  const icons = { info: 'circle-info', success: 'circle-check', error: 'circle-xmark', warning: 'triangle-exclamation' };
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fa-solid fa-${icons[type]||icons.info}"></i><span>${msg}</span>`;
+  wrap.appendChild(t);
+  requestAnimationFrame(() => { requestAnimationFrame(() => { t.classList.add('show'); }); });
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, 3500);
+}
+
+/* ═══════════════════════════════════════════════════
+   PHOTO PREVIEW
+═══════════════════════════════════════════════════ */
+function previewPhoto(input) {
+  const file = input.files[0];
+  if (!file) return;
+  if (file.size > 2 * 1024 * 1024) { toast('Photo trop lourde (max 2 Mo)', 'warning'); return; }
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    photoBase64 = e.target.result;
+    document.getElementById('photoPreview').src = photoBase64;
+    document.getElementById('photoPreview').style.display = 'block';
+    document.getElementById('photoPlaceholder').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+/* ═══════════════════════════════════════════════════
+   VALIDATION
+═══════════════════════════════════════════════════ */
+function validateStep(n) {
+  let ok = true;
+
+  if (n === 1) {
+    ok = checkField('nom', 'fNom') && ok;
+    ok = checkField('prenom', 'fPrenom') && ok;
+    ok = checkField('dateNaissance', 'fDob') && ok;
+    ok = checkField('profession', 'fProfession') && ok;
+    const sexe = document.querySelector('input[name="sexe"]:checked');
+    if (!sexe) {
+      document.getElementById('sexeErr').style.display = 'block';
+      ok = false;
+    } else { document.getElementById('sexeErr').style.display = 'none'; }
+  }
+
+  if (n === 2) {
+    ok = checkField('adresse', 'fAdresse') && ok;
+    ok = checkField('telephone', 'fTelephone') && ok;
+    const em = document.getElementById('email').value;
+    if (em && !em.includes('@')) {
+      document.getElementById('fEmail').classList.add('has-error');
+      ok = false;
+    } else { document.getElementById('fEmail').classList.remove('has-error'); }
+  }
+
+  if (n === 3) {
+    const sess = document.querySelector('input[name="session"]:checked');
+    if (!sess) {
+      const el = document.getElementById('sessionErr');
+      el.style.display = 'block';
+      setTimeout(() => { el.style.display = 'none'; }, 3000);
+      ok = false;
+    }
+  }
+
+  if (n === 4) {
+    const pay = document.querySelector('input[name="paiement"]:checked');
+    if (!pay) { toast('Veuillez choisir un mode de paiement', 'warning'); ok = false; }
+    if (pay && pay.value === 'online' && paymentStatus !== 'paid') {
+      toast('Veuillez compléter le paiement FedaPay', 'warning'); ok = false;
+    }
+  }
+
+  return ok;
+}
+
+function checkField(id, wrapId) {
+  const val = document.getElementById(id).value.trim();
+  const wrap = document.getElementById(wrapId);
+  if (!val) { wrap.classList.add('has-error'); document.getElementById(id).classList.add('error'); return false; }
+  wrap.classList.remove('has-error'); document.getElementById(id).classList.remove('error'); return true;
+}
+
+/* Live validation */
+['nom','prenom','dateNaissance','profession','adresse','telephone'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', () => {
+    el.classList.remove('error');
+    const wrap = el.closest('.field');
+    if (wrap) wrap.classList.remove('has-error');
+  });
+});
+
+/* ═══════════════════════════════════════════════════
+   STEP NAVIGATION
+═══════════════════════════════════════════════════ */
+function nextStep(n) {
+  if (!validateStep(n)) return;
+  collectData();
+  if (n === 5) { openModal(); return; }
+  goToStep(n + 1);
+  if (n + 1 === 5) buildSummary();
+}
+
+function prevStep(n) { goToStep(n - 1); }
+
+function goToStep(n) {
+  document.getElementById(`stepForm${currentStep}`)?.classList.remove('active');
+  document.getElementById(`stepSuccess`)?.classList.remove('active');
+
+  if (n === 6) {
+    document.getElementById('stepSuccess').classList.add('active');
+    markStep(6);
+  } else {
+    document.getElementById(`stepForm${n}`).classList.add('active');
+    markStep(n);
+  }
+  currentStep = n;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function markStep(n) {
+  for (let i = 1; i <= 6; i++) {
+    const s = document.getElementById(`s${i}`);
+    s.classList.remove('active', 'done');
+    if (i < n) s.classList.add('done');
+    if (i === n) s.classList.add('active');
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   COLLECT DATA
+═══════════════════════════════════════════════════ */
+function collectData() {
+  formData.nom = document.getElementById('nom').value.trim().toUpperCase();
+  formData.prenom = document.getElementById('prenom').value.trim();
+  formData.dateNaissance = document.getElementById('dateNaissance').value;
+  formData.sexe = document.querySelector('input[name="sexe"]:checked')?.value || '';
+  formData.profession = document.getElementById('profession').value;
+  formData.etablissement = document.getElementById('etablissement').value.trim();
+  formData.adresse = document.getElementById('adresse').value.trim();
+  formData.telephone = document.getElementById('telephone').value.trim();
+  formData.email = document.getElementById('email').value.trim();
+  formData.session = document.querySelector('input[name="session"]:checked')?.value || '';
+  formData.paymentMode = document.querySelector('input[name="paiement"]:checked')?.value || '';
+  formData.photoURL = photoBase64;
+}
+
+/* ═══════════════════════════════════════════════════
+   SUMMARY
+═══════════════════════════════════════════════════ */
+function buildSummary() {
+  collectData();
+  const pm = formData.paymentMode === 'online' ? 'En ligne (FedaPay)' : 'En présentiel';
+  const ps = paymentStatus === 'paid'
+    ? '<span class="summary-badge badge-paid"><i class="fa-solid fa-check"></i> Payé</span>'
+    : (formData.paymentMode === 'online'
+      ? '<span class="summary-badge badge-pending"><i class="fa-solid fa-clock"></i> En attente</span>'
+      : '<span class="summary-badge badge-presential"><i class="fa-solid fa-location-dot"></i> Sur place</span>');
+
+  document.getElementById('summaryContent').innerHTML = `
+    <div class="summary-item"><div class="si-label">Nom complet</div><div class="si-val">${formData.nom} ${formData.prenom}</div></div>
+    <div class="summary-item"><div class="si-label">Date de naissance</div><div class="si-val">${formatDate(formData.dateNaissance)}</div></div>
+    <div class="summary-item"><div class="si-label">Sexe</div><div class="si-val">${formData.sexe || '—'}</div></div>
+    <div class="summary-item"><div class="si-label">Profession</div><div class="si-val">${formData.profession}</div></div>
+    <div class="summary-item full"><div class="si-label">Établissement</div><div class="si-val">${formData.etablissement || '—'}</div></div>
+    <div class="summary-item full"><div class="si-label">Adresse</div><div class="si-val">${formData.adresse}</div></div>
+    <div class="summary-item"><div class="si-label">Téléphone</div><div class="si-val">${formData.telephone}</div></div>
+    <div class="summary-item"><div class="si-label">Email</div><div class="si-val">${formData.email || '—'}</div></div>
+    <div class="summary-item full"><div class="si-label">Session choisie</div><div class="si-val">${formData.session}</div></div>
+    <div class="summary-item"><div class="si-label">Mode de paiement</div><div class="si-val">${pm}</div></div>
+    <div class="summary-item"><div class="si-label">Statut paiement</div><div class="si-val">${ps}</div></div>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════
+   PAYMENT TOGGLE
+═══════════════════════════════════════════════════ */
+function togglePayment(mode) {
+  document.getElementById('fedapayBox').style.display = mode === 'online' ? 'block' : 'none';
+  document.getElementById('presentialBox').style.display = mode === 'presential' ? 'block' : 'none';
+}
+
+/* ═══════════════════════════════════════════════════
+   FEDAPAY
+═══════════════════════════════════════════════════ */
+function lancerPaiementFedapay() {
+  collectData();
+  if (!formData.nom || !formData.prenom) { toast('Renseignez d\'abord vos informations', 'warning'); return; }
+
+  const btn = document.getElementById('btnFedapay');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Connexion FedaPay...';
+
+  try {
+    FedaPay.init({
+      public_key: 'pk_live_y7fqKxfU03QR3wqVRvI0k3GY',
+      transaction: {
+        amount: 15000,
+        description: 'JS TECH – PROMO VACANCES 2026 – ' + formData.nom + ' ' + formData.prenom
+      },
+      customer: {
+        email: formData.email || 'noreply@jstech.bj',
+        lastname: formData.nom,
+        firstname: formData.prenom,
+        phone_number: { number: formData.telephone, country: 'BJ' }
+      },
+      onComplete: function(object) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-lock"></i> Payer maintenant avec FedaPay';
+        if (object.reason === FedaPay.DIALOG_DISMISSED) {
+          toast('Paiement annulé', 'warning');
+        } else if (object.transaction && object.transaction.status === 'approved') {
+          paymentStatus = 'paid';
+          toast('Paiement confirmé ! ✅', 'success');
+          document.getElementById('btnFedapay').innerHTML = '<i class="fa-solid fa-check-circle"></i> Paiement effectué';
+          document.getElementById('btnFedapay').style.background = 'var(--success)';
+          document.getElementById('btnFedapay').disabled = true;
+        } else {
+          toast('Paiement non approuvé, réessayez', 'error');
+        }
+      }
+    }).open();
+  } catch(e) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-lock"></i> Payer maintenant avec FedaPay';
+    toast('Erreur FedaPay: ' + e.message, 'error');
+    console.error('FedaPay:', e);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════════════ */
+function openModal() { document.getElementById('confirmModal').classList.add('open'); }
+function closeModal() { document.getElementById('confirmModal').classList.remove('open'); }
+
+/* ═══════════════════════════════════════════════════
+   GENERATE MATRICULE
+═══════════════════════════════════════════════════ */
+async function generateMatricule() {
+  try {
+    if (!window._firebaseReady) throw new Error('Firebase non prêt');
+    const q = window._fsQuery(
+      window._fsCollection(window._db, 'students'),
+      window._fsOrderBy('createdAt', 'desc'),
+      window._fsLimit(1)
+    );
+    const snap = await window._fsGetDocs(q);
+    let num = 1;
+    if (!snap.empty) {
+      const last = snap.docs[0].data().matricule || 'JST-2026-0000';
+      const parts = last.split('-');
+      num = (parseInt(parts[2]) || 0) + 1;
+    }
+    return `JST-2026-${String(num).padStart(4, '0')}`;
+  } catch(e) {
+    // Fallback: timestamp-based
+    return `JST-2026-${Date.now().toString().slice(-4)}`;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GENERATE QR CODE
+═══════════════════════════════════════════════════ */
+function generateQR(matricule) {
+  return new Promise((resolve) => {
+    const container = document.getElementById('qrcode');
+    container.innerHTML = '';
+    const qr = new QRCode(container, {
+      text: JSON.stringify({
+        matricule,
+        nom: formData.nom,
+        prenom: formData.prenom,
+        session: formData.session,
+        formation: 'JS TECH PROMO VACANCES 2026'
+      }),
+      width: 160, height: 160,
+      colorDark: '#0A3D91', colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+    setTimeout(() => {
+      const img = container.querySelector('img');
+      qrDataUrl = img ? img.src : '';
+      resolve(qrDataUrl);
+    }, 500);
+  });
+}
+
+/* ═══════════════════════════════════════════════════
+   SUBMIT
+═══════════════════════════════════════════════════ */
+async function submitFinal() {
+  closeModal();
+  collectData();
+  toast('Enregistrement en cours...', 'info');
+
+  try {
+    // 1. Generate matricule
+    generatedMatricule = await generateMatricule();
+    formData.matricule = generatedMatricule;
+
+    // 2. Save to Firestore
+    const docData = {
+      nom: formData.nom,
+      prenom: formData.prenom,
+      telephone: formData.telephone,
+      email: formData.email || '',
+      adresse: formData.adresse,
+      dateNaissance: formData.dateNaissance,
+      sexe: formData.sexe || '',
+      profession: formData.profession,
+      etablissement: formData.etablissement || '',
+      session: formData.session,
+      paymentMode: formData.paymentMode,
+      paymentStatus: paymentStatus,
+      matricule: generatedMatricule,
+      qrCode: '',
+      photoURL: photoBase64 ? '[photo_uploaded]' : '',
+      createdAt: window._firebaseReady ? window._fsTimestamp() : new Date().toISOString()
+    };
+
+    if (window._firebaseReady) {
+      await window._fsAdd(window._fsCollection(window._db, 'students'), docData);
+    }
+
+    toast('Inscription enregistrée avec succès !', 'success');
+
+    // 3. Go to success
+    goToStep(6);
+    document.getElementById('matriculeDisplay').textContent = generatedMatricule;
+
+    // 4. Generate QR
+    await generateQR(generatedMatricule);
+
+    setTimeout(() => {
+      toast('Votre fiche PDF est prête à télécharger !', 'info');
+    }, 1500);
+
+  } catch(e) {
+    console.error('Submit error:', e);
+    toast('Erreur lors de l\'enregistrement : ' + e.message, 'error');
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   GENERATE PDF
+═══════════════════════════════════════════════════ */
+async function downloadPDF() {
+  toast('Génération du PDF en cours...', 'info');
+
+  try {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+
+    const W = 210, H = 297;
+    const blue = [10, 61, 145];
+    const orange = [255, 107, 0];
+    const white = [255, 255, 255];
+    const gray = [90, 106, 138];
+    const lightGray = [238, 242, 251];
+
+    // ── HEADER BACKGROUND
+    doc.setFillColor(...blue);
+    doc.rect(0, 0, W, 48, 'F');
+
+    // ── LOGO TEXT
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(26);
+    doc.setTextColor(...white);
+    doc.text('JS TECH', 18, 22);
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(200, 215, 245);
+    doc.text('PROMO VACANCES 2026', 18, 28);
+
+    // ── HEADER RIGHT
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(13);
+    doc.setTextColor(...white);
+    doc.text('FICHE D\'INSCRIPTION OFFICIELLE', W - 18, 20, { align: 'right' });
+    doc.setFontSize(8);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(200, 215, 245);
+    doc.text('Document officiel · ' + new Date().toLocaleDateString('fr-FR'), W - 18, 27, { align: 'right' });
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'bold');
+    doc.setTextColor(...white);
+    doc.text('Matricule : ' + generatedMatricule, W - 18, 34, { align: 'right' });
+    doc.text('Formation : 13 Juillet — 28 Août 2026', W - 18, 40, { align: 'right' });
+
+    // ── ORANGE BAR
+    doc.setFillColor(...orange);
+    doc.rect(0, 48, W, 3, 'F');
+
+    // ── SECTION HELPER
+    let y = 60;
+    function section(title, icon) {
+      doc.setFillColor(...lightGray);
+      doc.roundedRect(12, y, W - 24, 8, 2, 2, 'F');
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9);
+      doc.setTextColor(...blue);
+      doc.text(title, 16, y + 5.5);
+      y += 13;
+    }
+    function row(label, value, x1 = 12, x2 = 60) {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(...gray);
+      doc.text(label, x1, y);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(30, 45, 74);
+      doc.text(String(value || '—'), x2, y);
+      y += 7;
+    }
+    function twoRows(l1, v1, l2, v2) {
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(...gray);
+      doc.text(l1, 12, y);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(30, 45, 74);
+      doc.text(String(v1 || '—'), 60, y);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(8);
+      doc.setTextColor(...gray);
+      doc.text(l2, 110, y);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8.5);
+      doc.setTextColor(30, 45, 74);
+      doc.text(String(v2 || '—'), 155, y);
+      y += 7;
+    }
+
+    // ── PARTICIPANT
+    section('1. INFORMATIONS DU PARTICIPANT');
+    twoRows('Nom :', formData.nom, 'Prénom(s) :', formData.prenom);
+    twoRows('Date de naissance :', formatDate(formData.dateNaissance), 'Sexe :', formData.sexe);
+    twoRows('Profession / Statut :', formData.profession, 'Matricule :', generatedMatricule);
+    row('Établissement :', formData.etablissement || '—', 12, 60);
+    y += 2;
+
+    // ── COORDONNÉES
+    section('2. COORDONNÉES');
+    row('Adresse :', formData.adresse);
+    twoRows('Téléphone WhatsApp :', formData.telephone, 'Email :', formData.email || '—');
+    y += 2;
+
+    // ── SESSION
+    section('3. SESSION CHOISIE');
+    doc.setFillColor(10, 61, 145, 0.08);
+    doc.roundedRect(12, y, W - 24, 18, 3, 3, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(...blue);
+    doc.text(formData.session, 16, y + 8);
+    const sessionTime = formData.session.includes('Initiation') ? '08H – 13H · Élèves & Étudiants' : '17H – 19H · Directeurs & Enseignants';
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(...gray);
+    doc.text(sessionTime, 16, y + 14);
+    y += 24;
+
+    // ── PAIEMENT
+    section('4. STATUT DU PAIEMENT');
+    const isPaid = paymentStatus === 'paid';
+    const isPresential = formData.paymentMode === 'presential';
+    const statusColor = isPaid ? [5, 150, 105] : (isPresential ? blue : [217, 119, 6]);
+    const statusText = isPaid ? 'PAYÉ EN LIGNE' : (isPresential ? 'PAIEMENT EN PRÉSENTIEL' : 'EN ATTENTE DE PAIEMENT');
+    doc.setFillColor(...statusColor);
+    doc.roundedRect(12, y, 80, 10, 2, 2, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(8);
+    doc.setTextColor(...white);
+    doc.text(statusText, 16, y + 7);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(9);
+    doc.setTextColor(30, 45, 74);
+    doc.text('Montant : 15 000 F CFA', 100, y + 7);
+    y += 18;
+
+    // ── QR CODE
+    if (qrDataUrl) {
+      const qrX = (W - 40) / 2;
+      doc.addImage(qrDataUrl, 'PNG', qrX, y, 40, 40);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7);
+      doc.setTextColor(...gray);
+      doc.text('QR Code unique — ' + generatedMatricule, W / 2, y + 44, { align: 'center' });
+      y += 52;
+    }
+
+    // ── FOOTER LINE
+    doc.setDrawColor(...blue);
+    doc.setLineWidth(0.5);
+    doc.line(12, H - 28, W - 12, H - 28);
+
+    doc.setFillColor(...blue);
+    doc.rect(0, H - 22, W, 22, 'F');
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7.5);
+    doc.setTextColor(...white);
+    doc.text('JS TECH · Derrière la gare routière d\'Avogbanna · (+229) 01 43 33 43 78 · (+229) 01 91 14 43 44', W / 2, H - 14, { align: 'center' });
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(6.5);
+    doc.setTextColor(180, 200, 235);
+    doc.text('Document officiel généré automatiquement par JS TECH · ' + new Date().toLocaleString('fr-FR'), W / 2, H - 8, { align: 'center' });
+
+    // ── SIGNATURE AREA
+    if (y < H - 55) {
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(8);
+      doc.setTextColor(30, 45, 74);
+      doc.text('Signature JS TECH', W - 50, H - 45);
+      doc.setFont('helvetica', 'italic');
+      doc.setFontSize(11);
+      doc.setTextColor(...blue);
+      doc.text('JS TECH 2026', W - 55, H - 36);
+      doc.setDrawColor(...blue);
+      doc.setLineWidth(0.3);
+      doc.line(W - 60, H - 32, W - 20, H - 32);
+    }
+
+    // ── SAVE
+    const fname = `JS_TECH_${formData.nom}_${generatedMatricule}.pdf`;
+    doc.save(fname);
+    toast('PDF téléchargé avec succès ! 📄', 'success');
+
+  } catch(e) {
+    console.error('PDF error:', e);
+    toast('Erreur génération PDF : ' + e.message, 'error');
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════ */
+function formatDate(dateStr) {
+  if (!dateStr) return '—';
+  const d = new Date(dateStr + 'T00:00:00');
+  return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' });
+}
+
+/* ─── Expose to window ─── */
+window.nextStep = nextStep;
+window.prevStep = prevStep;
+window.togglePayment = togglePayment;
+window.lancerPaiementFedapay = lancerPaiementFedapay;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.submitFinal = submitFinal;
+window.downloadPDF = downloadPDF;
+window.previewPhoto = previewPhoto;
+</script>
+</body>
+</html>
