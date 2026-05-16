@@ -1,1043 +1,1022 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JS TECH – PROMO VACANCES 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="JS TECH PROMO VACANCES 2026 – Formation pratique en informatique : Word, Excel, PowerPoint, Anglais appliqué. Inscriptions gratuites."/>
+<meta name="theme-color" content="#0A3D91"/>
+<meta property="og:title" content="JS TECH – PROMO VACANCES 2026"/>
+<meta property="og:description" content="Formez-vous aujourd'hui, réussissez demain. Formation pratique du 13 Juillet au 28 Août 2026."/>
+<title>JS TECH – PROMO VACANCES 2026</title>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-    :root {
-      --blue: #0A3D91;
-      --blue-light: #1558c0;
-      --blue-dark: #062a68;
-      --orange: #FF6B00;
-      --orange-light: #ff8c33;
-      --white: #ffffff;
-      --gray-50: #f8faff;
-      --gray-100: #eef2fb;
-      --gray-200: #dde4f5;
-      --gray-400: #9aaacf;
-      --gray-600: #5a6a8a;
-      --gray-800: #1e2d4a;
-      --font: 'Poppins', sans-serif;
-      --shadow-sm: 0 2px 12px rgba(10,61,145,.08);
-      --shadow-md: 0 8px 32px rgba(10,61,145,.13);
-      --shadow-lg: 0 20px 60px rgba(10,61,145,.18);
-      --shadow-xl: 0 32px 80px rgba(10,61,145,.22);
-      --radius: 16px;
-      --radius-sm: 10px;
-      --radius-lg: 24px;
-      --radius-xl: 32px;
-      --transition: .3s cubic-bezier(.4,0,.2,1);
-    }
+<style>
+/* ══════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════ */
+:root{
+  --blue:       #0A3D91;
+  --blue-mid:   #1250be;
+  --blue-light: #2066d4;
+  --blue-dark:  #061e52;
+  --blue-soft:  rgba(10,61,145,.07);
+  --orange:     #FF6B00;
+  --orange-mid: #ff7d1a;
+  --orange-soft:rgba(255,107,0,.1);
+  --white:      #ffffff;
+  --off:        #f5f7ff;
+  --surface:    #ffffff;
+  --border:     rgba(10,61,145,.09);
+  --text:       #0f1c35;
+  --muted:      #5c6b8a;
+  --subtle:     #9aaaca;
+  --font:       'Plus Jakarta Sans',sans-serif;
+  --display:    'Syne',sans-serif;
+  --ease:       cubic-bezier(.4,0,.2,1);
+  --spring:     cubic-bezier(.34,1.56,.64,1);
+  --r-sm:10px; --r-md:16px; --r-lg:22px; --r-xl:28px; --r-full:999px;
+  --sh-sm:0 2px 14px rgba(10,61,145,.07);
+  --sh-md:0 8px 36px rgba(10,61,145,.12);
+  --sh-lg:0 20px 64px rgba(10,61,145,.17);
+  --sh-xl:0 32px 90px rgba(10,61,145,.22);
+}
 
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--white); color: var(--gray-800); overflow-x: hidden; }
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--white);color:var(--text);overflow-x:hidden;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;max-width:100%}
+button{font-family:var(--font);cursor:pointer;border:none;background:none}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#eef1ff}
+::-webkit-scrollbar-thumb{background:var(--blue);border-radius:99px}
 
-    /* ─── SCROLLBAR ─── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--gray-100); }
-    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 10px; }
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+@media(min-width:768px){.wrap{padding:0 32px}}
 
-    /* ─── UTILITIES ─── */
-    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
-    .section { padding: 96px 0; }
-    .section-alt { background: var(--gray-50); }
-    .tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(10,61,145,.09); color: var(--blue); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; margin-bottom: 18px; }
-    .tag-orange { background: rgba(255,107,0,.1); color: var(--orange); }
-    h2.section-title { font-size: clamp(1.9rem, 3.5vw, 2.8rem); font-weight: 800; color: var(--gray-800); line-height: 1.2; margin-bottom: 14px; }
-    p.section-sub { font-size: 1.05rem; color: var(--gray-600); max-width: 560px; line-height: 1.75; }
-    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; font-family: var(--font); font-size: .95rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: var(--transition); }
-    .btn-primary { background: var(--orange); color: var(--white); box-shadow: 0 8px 24px rgba(255,107,0,.35); }
-    .btn-primary:hover { background: var(--orange-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(255,107,0,.45); }
-    .btn-outline { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.45); }
-    .btn-outline:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.7); }
-    .btn-blue { background: var(--blue); color: var(--white); box-shadow: var(--shadow-md); }
-    .btn-blue:hover { background: var(--blue-light); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+/* ── CHIPS ── */
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font);font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:5px 13px;border-radius:var(--r-full);border:1px solid transparent}
+.chip-blue{background:var(--blue-soft);color:var(--blue);border-color:rgba(10,61,145,.13)}
+.chip-orange{background:var(--orange-soft);color:var(--orange);border-color:rgba(255,107,0,.2)}
+.chip-ghost{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.22)}
 
-    /* ─── NAVBAR ─── */
-    #navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      padding: 16px 0;
-      transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
-    }
-    #navbar.scrolled {
-      background: rgba(255,255,255,.92);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 2px 24px rgba(10,61,145,.1);
-      padding: 10px 0;
-    }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
-    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .logo-icon { width: 42px; height: 42px; background: linear-gradient(135deg, var(--blue), var(--blue-light)); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--white); font-weight: 900; font-size: 1rem; letter-spacing: -.5px; box-shadow: 0 4px 14px rgba(10,61,145,.3); }
-    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-    .logo-text span:first-child { font-size: 1.05rem; font-weight: 800; color: var(--white); transition: color var(--transition); }
-    .logo-text span:last-child { font-size: .65rem; font-weight: 500; color: rgba(255,255,255,.7); letter-spacing: .06em; text-transform: uppercase; transition: color var(--transition); }
-    #navbar.scrolled .logo-text span:first-child { color: var(--blue); }
-    #navbar.scrolled .logo-text span:last-child { color: var(--gray-600); }
-    .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
-    .nav-links a { text-decoration: none; font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.88); padding: 7px 14px; border-radius: 8px; transition: var(--transition); }
-    .nav-links a:hover { color: var(--white); background: rgba(255,255,255,.12); }
-    #navbar.scrolled .nav-links a { color: var(--gray-600); }
-    #navbar.scrolled .nav-links a:hover { color: var(--blue); background: var(--gray-100); }
-    .nav-cta { display: flex; align-items: center; gap: 10px; }
-    .nav-login { font-size: .9rem; font-weight: 600; color: rgba(255,255,255,.88); text-decoration: none; padding: 8px 16px; border-radius: 8px; transition: var(--transition); }
-    .nav-login:hover { color: var(--white); background: rgba(255,255,255,.1); }
-    #navbar.scrolled .nav-login { color: var(--blue); }
-    #navbar.scrolled .nav-login:hover { background: var(--gray-100); }
-    .nav-signup { background: var(--orange); color: var(--white) !important; padding: 9px 20px; border-radius: 50px; font-size: .88rem; font-weight: 700; text-decoration: none; transition: var(--transition); box-shadow: 0 4px 14px rgba(255,107,0,.3); }
-    .nav-signup:hover { background: var(--orange-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255,107,0,.4); }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: none; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
-    #navbar.scrolled .hamburger span { background: var(--gray-800); }
-    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+/* ── SECTION HEADERS ── */
+.sec-hd{margin-bottom:52px}
+.sec-hd.center{text-align:center}
+.sec-hd.center .sec-sub{margin:0 auto}
+.sec-title{font-family:var(--display);font-size:clamp(1.75rem,3.5vw,2.65rem);font-weight:900;line-height:1.14;color:var(--text);margin-bottom:12px}
+.sec-title em{font-style:normal;color:var(--orange)}
+.sec-sub{font-size:1rem;color:var(--muted);max-width:540px;line-height:1.75;margin-top:8px}
 
-    /* Mobile menu */
-    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(6,42,104,.97); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 1.3rem; font-weight: 600; color: var(--white); text-decoration: none; padding: 14px 40px; border-radius: 12px; transition: var(--transition); }
-    .mobile-menu a:hover { background: rgba(255,255,255,.1); color: var(--orange); }
-    .mobile-menu .mob-close { position: absolute; top: 22px; right: 24px; color: var(--white); font-size: 1.5rem; cursor: pointer; background: none; border: none; }
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font);font-weight:700;font-size:.92rem;padding:12px 24px;border-radius:var(--r-full);border:none;cursor:pointer;transition:.25s var(--ease);white-space:nowrap}
+.btn i{font-size:.83em}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 5px 22px rgba(255,107,0,.3)}
+.btn-orange:hover{background:var(--orange-mid);transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,0,.4)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.28);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:var(--sh-md)}
+.btn-blue:hover{background:var(--blue-mid);transform:translateY(-2px);box-shadow:var(--sh-lg)}
+.btn-lg{padding:14px 32px;font-size:.97rem}
+.btn-xl{padding:16px 38px;font-size:1.02rem}
 
-    /* ─── HERO ─── */
-    #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #062a68 0%, #0A3D91 50%, #1558c0 100%);
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding-top: 80px;
-    }
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    }
-    .hero-glow-1 { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,107,0,.18) 0%, transparent 70%); top: -100px; right: -100px; pointer-events: none; animation: float1 8s ease-in-out infinite; }
-    .hero-glow-2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,.06) 0%, transparent 70%); bottom: 0; left: 10%; pointer-events: none; animation: float2 10s ease-in-out infinite; }
-    @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,30px)} }
-    @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-20px)} }
+/* ══════════════════════════════════════
+   PRELOADER
+══════════════════════════════════════ */
+#preloader{position:fixed;inset:0;background:var(--blue-dark);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .55s var(--ease),visibility .55s}
+#preloader.out{opacity:0;visibility:hidden}
+.pre-inner{display:flex;flex-direction:column;align-items:center;gap:0}
+.pre-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.pre-img{width:54px;height:54px;object-fit:contain;border-radius:12px;background:rgba(255,255,255,.08);padding:6px}
+.pre-name{font-family:var(--display);font-size:1.55rem;font-weight:900;color:#fff}
+.pre-name span{color:var(--orange)}
+.pre-bar{width:200px;height:3px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.pre-fill{height:100%;background:linear-gradient(90deg,var(--orange),#ffa84d);border-radius:99px;animation:preGrow 1.7s var(--ease) forwards}
+@keyframes preGrow{from{width:0}to{width:100%}}
+.pre-label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.3);letter-spacing:.08em;text-transform:uppercase}
 
-    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; padding: 60px 0; }
-    .hero-left { animation: fadeUp .9s ease both; }
-    .hero-right { animation: fadeUp .9s .2s ease both; }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+/* ══════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════ */
+#nav{position:fixed;inset:0 0 auto;z-index:800;padding:14px 0;transition:background .35s var(--ease),box-shadow .35s var(--ease),padding .3s var(--ease)}
+#nav.stuck{background:rgba(255,255,255,.93);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 1px 0 rgba(10,61,145,.08),0 5px 28px rgba(10,61,145,.09);padding:9px 0}
 
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,.12); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: var(--white); font-size: .78rem; font-weight: 600; padding: 7px 16px; border-radius: 50px; margin-bottom: 24px; }
-    .hero-badge i { color: var(--orange); }
-    .hero-title { font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 900; color: var(--white); line-height: 1.12; margin-bottom: 18px; }
-    .hero-title span { color: var(--orange); }
-    .hero-sub { font-size: 1.08rem; color: rgba(255,255,255,.8); line-height: 1.75; margin-bottom: 30px; max-width: 520px; }
+.nav-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 
-    .hero-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
-    .hero-check { display: flex; align-items: center; gap: 9px; color: rgba(255,255,255,.9); font-size: .88rem; font-weight: 500; }
-    .hero-check i { color: #4ade80; font-size: .85rem; flex-shrink: 0; }
+/* Logo */
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo-img{width:38px;height:38px;object-fit:contain;border-radius:9px;background:rgba(255,255,255,.13);padding:4px;transition:background .3s,padding .3s}
+#nav.stuck .nav-logo-img{background:transparent;padding:2px}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.1}
+.nav-logo-name{font-family:var(--display);font-size:1rem;font-weight:900;color:#fff;transition:color .3s}
+.nav-logo-sub{font-size:.58rem;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.07em;text-transform:uppercase;transition:color .3s}
+#nav.stuck .nav-logo-name{color:var(--blue)}
+#nav.stuck .nav-logo-sub{color:var(--muted)}
 
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+/* Desktop links */
+.nav-links{display:flex;align-items:center;gap:2px}
+.nav-links a{font-size:.875rem;font-weight:600;padding:7px 12px;border-radius:var(--r-sm);color:rgba(255,255,255,.82);transition:.2s var(--ease)}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.12)}
+#nav.stuck .nav-links a{color:var(--muted)}
+#nav.stuck .nav-links a:hover{color:var(--blue);background:var(--blue-soft)}
 
-    .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
-    .hero-stat { text-align: center; }
-    .hero-stat-num { font-size: 1.8rem; font-weight: 900; color: var(--white); }
-    .hero-stat-num span { color: var(--orange); }
-    .hero-stat-label { font-size: .73rem; color: rgba(255,255,255,.6); font-weight: 500; text-transform: uppercase; letter-spacing: .06em; }
+/* CTA row */
+.nav-cta{display:flex;align-items:center;gap:8px}
+.nav-login{font-size:.875rem;font-weight:600;color:rgba(255,255,255,.82);padding:7px 13px;border-radius:var(--r-sm);transition:.2s var(--ease)}
+.nav-login:hover{color:#fff;background:rgba(255,255,255,.1)}
+#nav.stuck .nav-login{color:var(--blue)}
+#nav.stuck .nav-login:hover{background:var(--blue-soft)}
+.nav-reg{font-size:.875rem;font-weight:700;background:var(--orange);color:#fff;padding:8px 18px;border-radius:var(--r-full);transition:.2s var(--ease);box-shadow:0 4px 16px rgba(255,107,0,.28)}
+.nav-reg:hover{background:var(--orange-mid);transform:translateY(-1px);box-shadow:0 6px 22px rgba(255,107,0,.38)}
 
-    /* Hero illustration */
-    .hero-visual { position: relative; }
-    .hero-card-main {
-      background: rgba(255,255,255,.1);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,.2);
-      border-radius: var(--radius-xl);
-      padding: 32px;
-      box-shadow: 0 30px 80px rgba(0,0,0,.25);
-    }
-    .hero-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
-    .hero-card-title { color: var(--white); font-weight: 700; font-size: 1rem; }
-    .hero-card-badge { background: rgba(74,222,128,.2); color: #4ade80; font-size: .7rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; }
-    .hero-modules { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
-    .hero-module { background: rgba(255,255,255,.08); border-radius: 12px; padding: 14px; text-align: center; border: 1px solid rgba(255,255,255,.1); transition: var(--transition); }
-    .hero-module:hover { background: rgba(255,255,255,.15); transform: translateY(-2px); }
-    .hero-module i { font-size: 1.6rem; margin-bottom: 6px; display: block; }
-    .hero-module span { font-size: .72rem; color: rgba(255,255,255,.85); font-weight: 600; }
-    .hero-module.word i { color: #2b7cd3; }
-    .hero-module.excel i { color: #21a366; }
-    .hero-module.ppt i { color: #d04423; }
-    .hero-module.english i { color: #f59e0b; }
-    .hero-progress-area label { font-size: .72rem; color: rgba(255,255,255,.6); font-weight: 500; display: block; margin-bottom: 6px; }
-    .progress-bar { height: 6px; background: rgba(255,255,255,.12); border-radius: 50px; overflow: hidden; margin-bottom: 10px; }
-    .progress-fill { height: 100%; border-radius: 50px; animation: grow 1.5s ease both; }
-    @keyframes grow { from{width:0} }
-    .pb-word { background: linear-gradient(90deg,#2b7cd3,#5ba4f5); width: 85%; }
-    .pb-excel { background: linear-gradient(90deg,#21a366,#4dd68c); width: 78%; }
-    .pb-ppt { background: linear-gradient(90deg,#d04423,#f87171); width: 72%; }
-    .pb-eng { background: linear-gradient(90deg,#f59e0b,#fcd34d); width: 68%; }
-    .progress-meta { display: flex; justify-content: space-between; font-size: .65rem; color: rgba(255,255,255,.5); }
+/* Burger */
+.burger{display:none;flex-direction:column;gap:5px;padding:6px;cursor:pointer}
+.bar{display:block;width:22px;height:2.5px;background:#fff;border-radius:99px;transition:.3s var(--ease);transform-origin:center}
+#nav.stuck .bar{background:var(--text)}
+.burger.open .bar:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.open .bar:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open .bar:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
 
-    /* Floating badges */
-    .float-badge {
-      position: absolute; display: flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.95); border-radius: 12px; padding: 10px 14px;
-      box-shadow: 0 8px 32px rgba(0,0,0,.2); font-size: .78rem; font-weight: 700;
-      color: var(--gray-800); white-space: nowrap;
-    }
-    .float-badge-1 { top: -20px; right: -20px; animation: bob 4s ease-in-out infinite; }
-    .float-badge-2 { bottom: 30px; left: -30px; animation: bob 4s .8s ease-in-out infinite; }
-    .float-badge-3 { bottom: -20px; right: 20px; animation: bob 4s 1.6s ease-in-out infinite; }
-    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-    .float-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot-green { background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,.5); }
-    .dot-orange { background: var(--orange); box-shadow: 0 0 8px rgba(255,107,0,.5); }
-    .dot-blue { background: var(--blue); box-shadow: 0 0 8px rgba(10,61,145,.5); }
+/* Mobile drawer */
+.mob-drawer{position:fixed;inset:0;background:rgba(6,30,82,.97);backdrop-filter:blur(14px);z-index:790;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.mob-drawer.open{opacity:1;pointer-events:auto}
+.mob-drawer a{font-family:var(--display);font-size:1.35rem;font-weight:700;color:rgba(255,255,255,.78);padding:12px 36px;border-radius:var(--r-md);transition:.2s var(--ease);text-align:center;width:240px}
+.mob-drawer a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.mob-cta{background:var(--orange)!important;color:#fff!important;border-radius:var(--r-full)!important;margin-top:8px;box-shadow:0 6px 24px rgba(255,107,0,.35)}
+.mob-cta:hover{background:var(--orange-mid)!important}
+.mob-x{position:absolute;top:20px;right:22px;color:rgba(255,255,255,.45);font-size:1.4rem;cursor:pointer;transition:.2s}
+.mob-x:hover{color:#fff}
 
-    /* ─── FORMATIONS ─── */
-    .formations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(256px,1fr)); gap: 24px; margin-top: 56px; }
-    .formation-card {
-      background: var(--white); border-radius: var(--radius-lg); padding: 36px 28px;
-      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-100);
-      transition: var(--transition); position: relative; overflow: hidden;
-    }
-    .formation-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-      transition: var(--transition);
-    }
-    .fc-word::before { background: linear-gradient(90deg,#2b7cd3,#5ba4f5); }
-    .fc-excel::before { background: linear-gradient(90deg,#21a366,#4dd68c); }
-    .fc-ppt::before { background: linear-gradient(90deg,#d04423,#f87171); }
-    .fc-english::before { background: linear-gradient(90deg,#f59e0b,#fcd34d); }
-    .formation-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--gray-200); }
-    .fc-icon-wrap { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 20px; }
-    .fc-icon-word { background: rgba(43,124,211,.1); color: #2b7cd3; }
-    .fc-icon-excel { background: rgba(33,163,102,.1); color: #21a366; }
-    .fc-icon-ppt { background: rgba(208,68,35,.1); color: #d04423; }
-    .fc-icon-eng { background: rgba(245,158,11,.1); color: #f59e0b; }
-    .fc-title { font-size: 1.18rem; font-weight: 800; color: var(--gray-800); margin-bottom: 10px; }
-    .fc-desc { font-size: .88rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 22px; }
-    .fc-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
-    .fc-tag { background: var(--gray-100); color: var(--gray-600); font-size: .7rem; font-weight: 600; padding: 3px 10px; border-radius: 50px; }
-    .fc-btn { width: 100%; text-align: center; justify-content: center; }
-    .fc-btn-word { background: linear-gradient(135deg,#2b7cd3,#5ba4f5); color: var(--white); box-shadow: 0 6px 18px rgba(43,124,211,.3); }
-    .fc-btn-word:hover { opacity: .9; transform: translateY(-2px); }
-    .fc-btn-excel { background: linear-gradient(135deg,#21a366,#4dd68c); color: var(--white); box-shadow: 0 6px 18px rgba(33,163,102,.3); }
-    .fc-btn-excel:hover { opacity: .9; transform: translateY(-2px); }
-    .fc-btn-ppt { background: linear-gradient(135deg,#d04423,#f87171); color: var(--white); box-shadow: 0 6px 18px rgba(208,68,35,.3); }
-    .fc-btn-ppt:hover { opacity: .9; transform: translateY(-2px); }
-    .fc-btn-eng { background: linear-gradient(135deg,#f59e0b,#fcd34d); color: var(--white); box-shadow: 0 6px 18px rgba(245,158,11,.3); }
-    .fc-btn-eng:hover { opacity: .9; transform: translateY(-2px); }
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+#hero{min-height:100dvh;background:linear-gradient(145deg,var(--blue-dark) 0%,var(--blue) 55%,#1660d8 100%);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 0 64px}
 
-    /* ─── HORAIRES ─── */
-    #horaires { background: linear-gradient(135deg, #062a68 0%, #0A3D91 100%); }
-    #horaires .section-title, #horaires .section-sub { color: var(--white); }
-    #horaires .section-sub { color: rgba(255,255,255,.7); }
-    .horaires-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
-    .horaire-card {
-      background: rgba(255,255,255,.08);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius-xl);
-      padding: 40px 36px;
-      text-align: center;
-      transition: var(--transition);
-    }
-    .horaire-card:hover { background: rgba(255,255,255,.13); transform: translateY(-4px); }
-    .horaire-icon { width: 72px; height: 72px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px; }
-    .hi-blue { background: rgba(255,255,255,.15); color: var(--white); }
-    .hi-orange { background: rgba(255,107,0,.25); color: var(--orange-light); }
-    .horaire-label { font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
-    .hl-blue { color: rgba(255,255,255,.5); }
-    .hl-orange { color: var(--orange-light); }
-    .horaire-group { font-size: 1.22rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-    .horaire-time { font-size: 2.8rem; font-weight: 900; color: var(--white); line-height: 1; margin-bottom: 4px; }
-    .ht-orange { color: var(--orange); }
-    .horaire-days { font-size: .82rem; color: rgba(255,255,255,.55); margin-top: 12px; }
-    .horaire-divider { display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.3); font-size: .78rem; padding: 8px 0; }
+.hero-mesh{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:1}
+.hero-mesh::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='.8' fill='%23fff' fill-opacity='.04'/%3E%3C/svg%3E") repeat}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orbDrift 12s ease-in-out infinite alternate}
+.orb1{width:550px;height:550px;background:radial-gradient(circle,rgba(255,107,0,.18),transparent 70%);top:-150px;right:-80px}
+.orb2{width:380px;height:380px;background:radial-gradient(circle,rgba(255,255,255,.06),transparent 70%);bottom:-60px;left:4%;animation-delay:-5s}
+.orb3{width:280px;height:280px;background:radial-gradient(circle,rgba(255,107,0,.09),transparent 70%);top:30%;left:22%;animation-delay:-9s}
+@keyframes orbDrift{from{transform:translate(0,0)}to{transform:translate(36px,-28px)}}
 
-    /* ─── AVANTAGES ─── */
-    .avantages-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 24px; margin-top: 56px; }
-    .avantage-card {
-      background: var(--white); border-radius: var(--radius); padding: 30px;
-      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-100);
-      display: flex; gap: 18px; align-items: flex-start;
-      transition: var(--transition);
-    }
-    .avantage-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gray-200); }
-    .av-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; background: linear-gradient(135deg, rgba(10,61,145,.1), rgba(10,61,145,.05)); color: var(--blue); }
-    .av-icon.orange { background: linear-gradient(135deg, rgba(255,107,0,.12), rgba(255,107,0,.05)); color: var(--orange); }
-    .av-title { font-size: 1rem; font-weight: 700; color: var(--gray-800); margin-bottom: 6px; }
-    .av-desc { font-size: .86rem; color: var(--gray-600); line-height: 1.65; }
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;position:relative;z-index:2}
 
-    /* ─── FORMATEURS ─── */
-    .formateurs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(248px,1fr)); gap: 24px; margin-top: 56px; }
-    .formateur-card {
-      background: var(--white); border-radius: var(--radius-xl); overflow: hidden;
-      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-100);
-      transition: var(--transition); text-align: center;
-    }
-    .formateur-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
-    .fc-top { background: linear-gradient(135deg, #062a68, #0A3D91); padding: 36px 24px 48px; position: relative; }
-    .fc-avatar {
-      width: 90px; height: 90px; border-radius: 50%; border: 4px solid rgba(255,255,255,.3);
-      background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center;
-      margin: 0 auto; font-size: 2.2rem; color: var(--white); font-weight: 800; letter-spacing: -1px;
-      position: relative; z-index: 2;
-    }
-    .fc-wave { position: absolute; bottom: 0; left: 0; right: 0; height: 48px; overflow: hidden; }
-    .fc-wave svg { width: 100%; height: 100%; }
-    .fc-bottom { padding: 20px 24px 28px; }
-    .fc-name { font-size: 1.05rem; font-weight: 800; color: var(--gray-800); margin-bottom: 4px; }
-    .fc-role { font-size: .8rem; color: var(--gray-600); font-weight: 500; margin-bottom: 16px; line-height: 1.4; }
-    .fc-socials { display: flex; justify-content: center; gap: 8px; }
-    .fc-social { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--gray-200); display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: .8rem; transition: var(--transition); text-decoration: none; }
-    .fc-social:hover { background: var(--blue); border-color: var(--blue); color: var(--white); }
+/* Hero left */
+.hero-l{animation:riseUp .85s var(--ease) both}
+@keyframes riseUp{from{opacity:0;transform:translateY(38px)}to{opacity:1;transform:translateY(0)}}
 
-    /* ─── CTA INSCRIPTION ─── */
-    #inscription { background: linear-gradient(135deg, #062a68 0%, #0A3D91 60%, #FF6B00 200%); position: relative; overflow: hidden; }
-    .cta-glow { position: absolute; width: 700px; height: 700px; background: radial-gradient(circle, rgba(255,107,0,.2) 0%, transparent 65%); top: 50%; right: -200px; transform: translateY(-50%); pointer-events: none; }
-    .cta-inner { text-align: center; position: relative; z-index: 2; }
-    .cta-inner .section-title { color: var(--white); max-width: 680px; margin: 0 auto 14px; }
-    .cta-inner .section-sub { color: rgba(255,255,255,.75); max-width: 520px; margin: 0 auto 36px; }
-    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 44px; }
-    .cta-counter { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.2); color: rgba(255,255,255,.9); font-size: .88rem; font-weight: 600; padding: 10px 22px; border-radius: 50px; }
-    .cta-counter i { color: var(--orange-light); }
-    #countdown { font-weight: 800; color: var(--orange-light); }
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17);color:rgba(255,255,255,.9);font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:7px 15px;border-radius:var(--r-full);margin-bottom:22px;backdrop-filter:blur(6px)}
+.eyebrow i{color:var(--orange)}
 
-    /* ─── INFORMATIONS ─── */
-    .infos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 20px; margin-top: 56px; }
-    .info-card {
-      background: var(--white); border-radius: var(--radius); padding: 28px;
-      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-100);
-      display: flex; flex-direction: column; gap: 12px;
-      transition: var(--transition);
-    }
-    .info-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--gray-200); }
-    .info-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-    .ii-blue { background: rgba(10,61,145,.1); color: var(--blue); }
-    .ii-orange { background: rgba(255,107,0,.1); color: var(--orange); }
-    .ii-green { background: rgba(34,197,94,.1); color: #22c55e; }
-    .info-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--gray-400); }
-    .info-value { font-size: 1rem; font-weight: 700; color: var(--gray-800); line-height: 1.4; }
-    .info-value.orange { color: var(--orange); font-size: 1.25rem; }
-    .info-value.green { color: #22c55e; }
+.hero-h1{font-family:var(--display);font-size:clamp(2rem,5vw,3.6rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:18px}
+.hero-h1 em{font-style:normal;color:var(--orange)}
 
-    /* ─── TÉMOIGNAGES ─── */
-    .temoignages-slider { position: relative; overflow: hidden; margin-top: 56px; }
-    .temoignages-track { display: flex; gap: 24px; transition: transform .5s cubic-bezier(.4,0,.2,1); }
-    .temoignage-card {
-      background: var(--white); border-radius: var(--radius-lg); padding: 32px;
-      box-shadow: var(--shadow-sm); border: 1.5px solid var(--gray-100);
-      flex: 0 0 calc(33.333% - 16px); min-width: 280px;
-    }
-    .tem-stars { color: #f59e0b; font-size: .9rem; margin-bottom: 16px; }
-    .tem-quote { font-size: .93rem; color: var(--gray-600); line-height: 1.75; margin-bottom: 22px; font-style: italic; }
-    .tem-author { display: flex; align-items: center; gap: 12px; }
-    .tem-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg,var(--blue),var(--blue-light)); color: var(--white); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .9rem; }
-    .tem-name { font-weight: 700; font-size: .9rem; color: var(--gray-800); }
-    .tem-role { font-size: .75rem; color: var(--gray-400); }
-    .slider-dots { display: flex; justify-content: center; gap: 8px; margin-top: 32px; }
-    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-200); cursor: pointer; transition: var(--transition); border: none; }
-    .slider-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
-    .slider-arrows { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
-    .slider-arrow { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--gray-200); background: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); color: var(--gray-600); }
-    .slider-arrow:hover { background: var(--blue); border-color: var(--blue); color: var(--white); }
+.hero-p{font-size:1.03rem;color:rgba(255,255,255,.72);line-height:1.78;margin-bottom:28px;max-width:490px}
+.hero-p strong{color:var(--orange)}
 
-    /* ─── FOOTER ─── */
-    footer { background: var(--gray-800); color: rgba(255,255,255,.75); padding: 80px 0 0; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
-    .footer-brand .logo-text span:first-child { color: var(--white); }
-    .footer-brand .logo-text span:last-child { color: rgba(255,255,255,.4); }
-    .footer-about { font-size: .88rem; line-height: 1.75; color: rgba(255,255,255,.5); margin: 20px 0 24px; }
-    .footer-socials { display: flex; gap: 10px; }
-    .footer-social { width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,.12); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.5); font-size: .88rem; text-decoration: none; transition: var(--transition); }
-    .footer-social:hover { background: var(--orange); border-color: var(--orange); color: var(--white); }
-    .footer-col h4 { font-size: .9rem; font-weight: 700; color: var(--white); margin-bottom: 18px; }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { font-size: .86rem; color: rgba(255,255,255,.5); text-decoration: none; transition: var(--transition); }
-    .footer-links a:hover { color: var(--orange); }
-    .footer-newsletter h4 { font-size: .9rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
-    .footer-newsletter p { font-size: .82rem; color: rgba(255,255,255,.45); margin-bottom: 14px; line-height: 1.6; }
-    .newsletter-form { display: flex; gap: 8px; }
-    .newsletter-input { flex: 1; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); color: var(--white); font-family: var(--font); font-size: .85rem; padding: 10px 14px; border-radius: 10px; outline: none; }
-    .newsletter-input::placeholder { color: rgba(255,255,255,.3); }
-    .newsletter-input:focus { border-color: var(--orange); background: rgba(255,255,255,.1); }
-    .newsletter-btn { background: var(--orange); color: var(--white); border: none; padding: 10px 16px; border-radius: 10px; cursor: pointer; transition: var(--transition); }
-    .newsletter-btn:hover { background: var(--orange-light); }
-    .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding: 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .footer-copy { font-size: .8rem; color: rgba(255,255,255,.3); }
-    .footer-bottom-links { display: flex; gap: 20px; }
-    .footer-bottom-links a { font-size: .78rem; color: rgba(255,255,255,.3); text-decoration: none; transition: var(--transition); }
-    .footer-bottom-links a:hover { color: rgba(255,255,255,.7); }
+/* Checklist */
+.ck-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:32px}
+.ck-item{display:flex;align-items:center;gap:8px;font-size:.855rem;font-weight:500;color:rgba(255,255,255,.88)}
+.ck-ico{width:20px;height:20px;border-radius:50%;background:rgba(74,222,128,.2);color:#4ade80;display:flex;align-items:center;justify-content:center;font-size:.62rem;flex-shrink:0}
+.ck-item.special .ck-ico{background:rgba(255,107,0,.25);color:#ffb080}
+.ck-item.special{font-weight:700;color:#fff}
 
-    /* ─── SCROLL REVEAL ─── */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+/* CTA buttons */
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:38px}
 
-    /* ─── TOAST ─── */
-    .toast { position: fixed; bottom: 28px; right: 28px; background: var(--blue); color: var(--white); padding: 14px 22px; border-radius: 12px; font-size: .9rem; font-weight: 600; box-shadow: var(--shadow-lg); transform: translateY(80px); opacity: 0; transition: var(--transition); z-index: 9999; display: flex; align-items: center; gap: 10px; }
-    .toast.show { transform: translateY(0); opacity: 1; }
+/* Stats strip */
+.stats-strip{display:flex;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);border-radius:var(--r-lg);padding:16px 20px;backdrop-filter:blur(8px)}
+.stat-item{flex:1;text-align:center;padding:0 16px;min-width:70px}
+.stat-item:not(:last-child){border-right:1px solid rgba(255,255,255,.12)}
+.stat-n{font-family:var(--display);font-size:1.8rem;font-weight:900;color:#fff;line-height:1}
+.stat-n sup{font-size:.7em;color:var(--orange)}
+.stat-l{font-size:.65rem;font-weight:600;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 1024px) {
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-    }
-    @media (max-width: 768px) {
-      .section { padding: 72px 0; }
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 40px 0; }
-      .hero-right { display: none; }
-      .hero-checks { grid-template-columns: 1fr 1fr; }
-      .horaires-grid { grid-template-columns: 1fr; }
-      .nav-links, .nav-cta { display: none; }
-      .hamburger { display: flex; }
-      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-      .temoignage-card { flex: 0 0 calc(100% - 0px); }
-    }
-    @media (max-width: 480px) {
-      .hero-checks { grid-template-columns: 1fr; }
-      .hero-btns { flex-direction: column; }
-      .hero-stats { gap: 20px; }
-      .cta-btns { flex-direction: column; align-items: center; }
-      .newsletter-form { flex-direction: column; }
-    }
-  </style>
+/* Hero right – dashboard */
+.hero-r{animation:riseUp .85s .18s var(--ease) both}
+.dash-wrap{position:relative}
+.dash{background:rgba(255,255,255,.1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid rgba(255,255,255,.17);border-radius:var(--r-xl);padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.26)}
+.dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.dash-ttl{font-family:var(--display);font-size:.85rem;font-weight:800;color:#fff;display:flex;align-items:center;gap:7px}
+.dash-ttl i{color:var(--orange)}
+.dash-live{display:flex;align-items:center;gap:5px;font-size:.67rem;font-weight:700;color:#4ade80;background:rgba(74,222,128,.15);padding:4px 10px;border-radius:var(--r-full)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pls 1.5s ease infinite}
+@keyframes pls{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4)}50%{box-shadow:0 0 0 5px rgba(74,222,128,0)}}
+
+.dash-mods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.d-mod{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);padding:13px 10px;text-align:center;transition:.2s var(--ease);cursor:default}
+.d-mod:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
+.d-mod-icon{font-size:1.45rem;margin-bottom:5px;display:block}
+.d-mod-lbl{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.78);text-transform:uppercase;letter-spacing:.05em}
+
+.prog-row{margin-bottom:13px}
+.prog-meta{display:flex;justify-content:space-between;margin-bottom:5px}
+.prog-lbl{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.6)}
+.prog-pct{font-size:.67rem;font-weight:700;color:rgba(255,255,255,.38)}
+.prog-track{height:5px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;border-radius:99px;transform-origin:left;transform:scaleX(0);animation:growBar .9s var(--ease) 1.1s forwards}
+@keyframes growBar{to{transform:scaleX(1)}}
+.pf-w{background:linear-gradient(90deg,#2b7cd3,#5ba4f5);width:85%}
+.pf-e{background:linear-gradient(90deg,#21a366,#4dd68c);width:78%}
+.pf-p{background:linear-gradient(90deg,#d04423,#f87171);width:72%}
+.pf-a{background:linear-gradient(90deg,#f59e0b,#fcd34d);width:68%}
+
+.dash-foot{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid rgba(255,255,255,.09);margin-top:2px}
+.dash-date{font-size:.7rem;color:rgba(255,255,255,.4)}
+.dash-online{font-size:.68rem;font-weight:700;color:#4ade80;display:flex;align-items:center;gap:4px}
+
+/* Floating pills */
+.pill{position:absolute;display:flex;align-items:center;gap:7px;background:#fff;border-radius:var(--r-md);padding:9px 14px;box-shadow:0 8px 34px rgba(0,0,0,.17);font-size:.74rem;font-weight:700;color:var(--text);white-space:nowrap;z-index:5}
+.pill-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.p1{top:-18px;right:-10px;animation:bob 4s ease-in-out infinite}
+.p2{bottom:22px;left:-26px;animation:bob 4.5s .65s ease-in-out infinite}
+.p3{bottom:-16px;right:14px;animation:bob 3.8s 1.3s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ══════════════════════════════════════
+   FORMATIONS
+══════════════════════════════════════ */
+#formations{padding:96px 0;background:var(--off)}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(256px,1fr));gap:22px}
+.fc{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:30px 24px;position:relative;overflow:hidden;transition:.3s var(--ease)}
+.fc::before{content:'';position:absolute;top:0;left:0;right:0;height:3.5px;border-radius:var(--r-lg) var(--r-lg) 0 0}
+.fc-w::before{background:linear-gradient(90deg,#2b7cd3,#7ab8f5)}
+.fc-e::before{background:linear-gradient(90deg,#21a366,#5ad99e)}
+.fc-p::before{background:linear-gradient(90deg,#d04423,#f88)}
+.fc-a::before{background:linear-gradient(90deg,#f59e0b,#fcd34d)}
+.fc:hover{transform:translateY(-6px);box-shadow:var(--sh-xl);border-color:rgba(10,61,145,.14)}
+.fc-ico{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:18px}
+.ico-w{background:rgba(43,124,211,.1);color:#2b7cd3}
+.ico-e{background:rgba(33,163,102,.1);color:#21a366}
+.ico-p{background:rgba(208,68,35,.1);color:#d04423}
+.ico-a{background:rgba(245,158,11,.1);color:#f59e0b}
+.fc h3{font-family:var(--display);font-size:1.08rem;font-weight:800;margin-bottom:8px;color:var(--text)}
+.fc p{font-size:.875rem;color:var(--muted);line-height:1.7;margin-bottom:16px}
+.fc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.fc-tag{font-size:.67rem;font-weight:700;padding:3px 9px;border-radius:var(--r-full);background:var(--off);color:var(--muted)}
+.fc-btn{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;font-weight:700;border-radius:var(--r-full);padding:10px 20px;color:#fff;transition:.25s var(--ease)}
+.fc-btn i{transition:transform .25s var(--ease)}
+.fc-btn:hover i{transform:translateX(3px)}
+.fb-w{background:linear-gradient(135deg,#2b7cd3,#5ba4f5);box-shadow:0 5px 18px rgba(43,124,211,.28)}
+.fb-e{background:linear-gradient(135deg,#21a366,#4dd68c);box-shadow:0 5px 18px rgba(33,163,102,.28)}
+.fb-p{background:linear-gradient(135deg,#d04423,#f87171);box-shadow:0 5px 18px rgba(208,68,35,.28)}
+.fb-a{background:linear-gradient(135deg,#f59e0b,#fcd34d);box-shadow:0 5px 18px rgba(245,158,11,.22);color:var(--text)!important}
+
+/* ══════════════════════════════════════
+   HORAIRES
+══════════════════════════════════════ */
+#horaires{padding:96px 0;background:linear-gradient(140deg,var(--blue-dark),var(--blue));position:relative;overflow:hidden}
+#horaires::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='.7' fill='%23fff' fill-opacity='.04'/%3E%3C/svg%3E") repeat;pointer-events:none}
+#horaires .sec-title{color:#fff}
+#horaires .sec-sub{color:rgba(255,255,255,.62)}
+.hor-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative;z-index:2}
+.hor-card{background:rgba(255,255,255,.08);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-xl);padding:38px 32px;text-align:center;transition:.3s var(--ease)}
+.hor-card:hover{background:rgba(255,255,255,.13);transform:translateY(-4px)}
+.hor-ico{width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 18px}
+.hi-b{background:rgba(255,255,255,.13);color:#fff}
+.hi-o{background:rgba(255,107,0,.22);color:#ffb080}
+.hor-tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 12px;border-radius:var(--r-full);margin-bottom:10px}
+.ht-b{background:rgba(255,255,255,.1);color:rgba(255,255,255,.52)}
+.ht-o{background:rgba(255,107,0,.18);color:#ffb080}
+.hor-group{font-family:var(--display);font-size:1.12rem;font-weight:800;color:#fff;margin-bottom:10px}
+.hor-time{font-family:var(--display);font-size:2.9rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px;letter-spacing:-.02em}
+.hor-time.orange{color:var(--orange)}
+.hor-note{font-size:.76rem;color:rgba(255,255,255,.42);margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px}
+
+/* ══════════════════════════════════════
+   AVANTAGES
+══════════════════════════════════════ */
+#avantages{padding:96px 0}
+.av-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.av-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:26px 24px;display:flex;align-items:flex-start;gap:16px;transition:.3s var(--ease)}
+.av-card:hover{transform:translateY(-4px);box-shadow:var(--sh-md);border-color:rgba(10,61,145,.15)}
+.av-ico{width:48px;height:48px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:var(--blue-soft);color:var(--blue)}
+.av-ico.or{background:var(--orange-soft);color:var(--orange)}
+.av-txt h4{font-weight:700;font-size:.95rem;margin-bottom:5px}
+.av-txt p{font-size:.855rem;color:var(--muted);line-height:1.65}
+
+/* ══════════════════════════════════════
+   FORMATEURS
+══════════════════════════════════════ */
+#formateurs{padding:96px 0;background:var(--off)}
+.fm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:22px}
+.fm-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-xl);overflow:hidden;transition:.3s var(--ease);text-align:center}
+.fm-card:hover{transform:translateY(-6px);box-shadow:var(--sh-xl)}
+.fm-top{padding:34px 22px 50px;position:relative}
+.fm-avatar{width:84px;height:84px;border-radius:50%;border:3px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;margin:0 auto;font-family:var(--display);font-size:1.8rem;font-weight:900;color:#fff;overflow:hidden;position:relative;z-index:2}
+.fm-avatar img{width:100%;height:100%;object-fit:cover}
+.fm-wave{position:absolute;bottom:0;left:0;right:0;line-height:0}
+.fm-wave svg{width:100%;display:block}
+.fm-bot{padding:16px 20px 26px}
+.fm-name{font-family:var(--display);font-weight:900;font-size:.98rem;color:var(--text);margin-bottom:4px}
+.fm-role{font-size:.77rem;color:var(--muted);line-height:1.45;margin-bottom:14px}
+.fm-socs{display:flex;justify-content:center;gap:8px}
+.fm-soc{width:31px;height:31px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--subtle);font-size:.76rem;transition:.2s var(--ease)}
+.fm-soc:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+
+/* ══════════════════════════════════════
+   CTA
+══════════════════════════════════════ */
+#inscription{padding:100px 0;background:linear-gradient(140deg,var(--blue-dark),var(--blue));position:relative;overflow:hidden}
+.cta-orb{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(255,107,0,.17),transparent 65%);top:50%;right:-240px;transform:translateY(-50%);pointer-events:none}
+.cta-in{text-align:center;position:relative;z-index:2;max-width:660px;margin:0 auto}
+.cta-in .sec-title{color:#fff}
+.cta-in .sec-sub{color:rgba(255,255,255,.65);max-width:100%;margin:0 auto 32px}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:34px}
+.cta-timer{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.17);color:rgba(255,255,255,.8);font-size:.86rem;font-weight:600;padding:10px 20px;border-radius:var(--r-full);backdrop-filter:blur(6px)}
+.cta-timer i{color:#ffb080}
+#countdown{font-weight:800;color:var(--orange-mid)}
+
+/* ══════════════════════════════════════
+   INFOS
+══════════════════════════════════════ */
+#infos{padding:96px 0}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.info-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:24px 20px;display:flex;flex-direction:column;gap:9px;transition:.3s var(--ease)}
+.info-card:hover{transform:translateY(-3px);box-shadow:var(--sh-md)}
+.info-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.ii-b{background:var(--blue-soft);color:var(--blue)}
+.ii-o{background:var(--orange-soft);color:var(--orange)}
+.ii-g{background:rgba(34,197,94,.1);color:#22c55e}
+.info-lbl{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--subtle)}
+.info-val{font-size:.96rem;font-weight:700;color:var(--text);line-height:1.4}
+.info-val a{color:inherit;transition:color .2s}
+.info-val a:hover{color:var(--blue)}
+.v-orange{color:var(--orange);font-size:1.18rem}
+.v-green{color:#22c55e}
+
+/* ══════════════════════════════════════
+   TÉMOIGNAGES
+══════════════════════════════════════ */
+#temoignages{padding:96px 0;background:var(--off)}
+.slider-wrap{overflow:hidden}
+.slider-track{display:flex;gap:20px;transition:transform .5s var(--ease);will-change:transform}
+.tem-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r-lg);padding:28px;flex:0 0 calc(33.333% - 14px);min-width:268px;transition:.3s var(--ease)}
+.tem-card:hover{box-shadow:var(--sh-md)}
+.tem-stars{color:#f59e0b;font-size:.86rem;margin-bottom:12px;letter-spacing:2px}
+.tem-quote{font-size:.89rem;color:var(--muted);line-height:1.78;margin-bottom:20px;font-style:italic}
+.tem-author{display:flex;align-items:center;gap:11px}
+.tem-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.82rem;color:#fff;flex-shrink:0}
+.tem-name{font-weight:700;font-size:.87rem;color:var(--text)}
+.tem-role{font-size:.7rem;color:var(--subtle);margin-top:1px}
+
+.slider-ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px}
+.s-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);display:flex;align-items:center;justify-content:center;font-size:.8rem;cursor:pointer;transition:.2s var(--ease)}
+.s-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.s-dots{display:flex;gap:7px;align-items:center}
+.s-dot{width:7px;height:7px;border-radius:99px;background:var(--border);cursor:pointer;transition:.3s var(--ease);border:none;display:block}
+.s-dot.on{background:var(--blue);width:22px}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+#footer{background:var(--blue-dark);padding:72px 0 0}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:48px;margin-bottom:56px}
+.foot-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.foot-logo-img{width:36px;height:36px;object-fit:contain;filter:brightness(0) invert(1);border-radius:8px}
+.foot-logo-name{font-family:var(--display);font-size:1.05rem;font-weight:900;color:#fff}
+.foot-logo-name span{color:var(--orange)}
+.foot-about{font-size:.85rem;color:rgba(255,255,255,.42);line-height:1.75;margin-bottom:22px;max-width:280px}
+.foot-socs{display:flex;gap:9px}
+.foot-soc{width:35px;height:35px;border-radius:9px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.42);font-size:.8rem;transition:.2s var(--ease)}
+.foot-soc:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.foot-col h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;margin-bottom:16px}
+.foot-links{display:flex;flex-direction:column;gap:9px}
+.foot-links a{font-size:.85rem;color:rgba(255,255,255,.42);transition:.2s}
+.foot-links a:hover{color:var(--orange)}
+.nl-wrap{margin-top:14px;display:flex;border-radius:var(--r-sm);overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.nl-in{flex:1;background:rgba(255,255,255,.06);border:none;color:#fff;font-family:var(--font);font-size:.84rem;padding:11px 14px;outline:none}
+.nl-in::placeholder{color:rgba(255,255,255,.27)}
+.nl-in:focus{background:rgba(255,255,255,.1)}
+.nl-btn{background:var(--orange);border:none;color:#fff;padding:11px 16px;cursor:pointer;transition:.2s}
+.nl-btn:hover{background:var(--orange-mid)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.07);padding:22px 0;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.foot-copy{font-size:.78rem;color:rgba(255,255,255,.25)}
+.foot-btm-links{display:flex;gap:18px}
+.foot-btm-links a{font-size:.76rem;color:rgba(255,255,255,.25);transition:.2s}
+.foot-btm-links a:hover{color:rgba(255,255,255,.6)}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:9000;display:flex;flex-direction:column;gap:9px;pointer-events:none}
+.toast{display:flex;align-items:center;gap:10px;background:#fff;padding:12px 18px;border-radius:var(--r-md);box-shadow:var(--sh-lg);font-size:.875rem;font-weight:600;color:var(--text);pointer-events:auto;transform:translateX(110%);opacity:0;transition:.35s var(--spring);border-left:4px solid var(--blue)}
+.toast.show{transform:translateX(0);opacity:1}
+.toast.success{border-color:#22c55e}
+.toast.error{border-color:#ef4444}
+.toast i{font-size:.95rem;color:var(--blue)}
+.toast.success i{color:#22c55e}
+.toast.error i{color:#ef4444}
+
+/* ══════════════════════════════════════
+   SCROLL ANIMATIONS
+══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-l{opacity:0;transform:translateX(-26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv-r{opacity:0;transform:translateX(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in,.rv-l.in,.rv-r.in{opacity:1;transform:translate(0,0)}
+.d1{transition-delay:.05s}.d2{transition-delay:.1s}.d3{transition-delay:.15s}
+.d4{transition-delay:.2s}.d5{transition-delay:.25s}.d6{transition-delay:.3s}
+
+/* ══════════════════════════════════════
+   SCROLL-TO-TOP
+══════════════════════════════════════ */
+#stt{position:fixed;bottom:22px;right:22px;z-index:700;width:42px;height:42px;border-radius:50%;background:var(--blue);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.86rem;box-shadow:var(--sh-md);opacity:0;transform:translateY(14px);transition:.3s var(--ease)}
+#stt.vis{opacity:1;transform:translateY(0)}
+#stt:hover{background:var(--blue-light)}
+
+/* ══════════════════════════════════════
+   RESPONSIVE  – TABLET ≤ 1024px
+══════════════════════════════════════ */
+@media(max-width:1024px){
+  .foot-grid{grid-template-columns:1fr 1fr;gap:36px}
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE – MOBILE ≤ 768px
+══════════════════════════════════════ */
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  #hero{padding:86px 0 56px}
+  .hero-inner{grid-template-columns:1fr;gap:0}
+  .hero-r{display:none}
+  .ck-grid{grid-template-columns:1fr 1fr}
+  .hero-btns{flex-direction:column}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .stats-strip{padding:12px 10px}
+  .stat-item{padding:0 8px}
+  .stat-n{font-size:1.4rem}
+  .hor-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr;gap:28px}
+  .sec-hd{margin-bottom:36px}
+  #formations,#horaires,#avantages,#formateurs,#inscription,#infos,#temoignages{padding:72px 0}
+  .tem-card{flex-basis:100%}
+}
+
+@media(max-width:520px){
+  .ck-grid{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns .btn{justify-content:center;width:100%}
+  .stats-strip{flex-direction:column;gap:12px;padding:16px}
+  .stat-item:not(:last-child){border-right:none;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:12px}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .foot-btm-links{justify-content:center}
+}
+</style>
 </head>
 <body>
 
-<!-- ─── MOBILE MENU ─── -->
-<nav class="mobile-menu" id="mobileMenu">
-  <button class="mob-close" id="mobClose"><i class="fa-solid fa-xmark"></i></button>
-  <a href="#accueil" onclick="closeMob()">Accueil</a>
-  <a href="#formations" onclick="closeMob()">Formations</a>
-  <a href="#horaires" onclick="closeMob()">Horaires</a>
-  <a href="#formateurs" onclick="closeMob()">Formateurs</a>
-  <a href="#contact" onclick="closeMob()">Contact</a>
-  <a href="create-account.html" class="btn btn-primary" style="margin-top:10px" onclick="closeMob()">Créer un compte étudiant</a>
-</nav>
+<!-- ── PRELOADER ── -->
+<div id="preloader">
+  <div class="pre-inner">
+    <div class="pre-logo-row">
+      <img src="images/logo.png" alt="JS TECH" class="pre-img" onerror="this.style.display='none'"/>
+      <div class="pre-name">JS<span>TECH</span></div>
+    </div>
+    <div class="pre-bar"><div class="pre-fill"></div></div>
+    <p class="pre-label">Chargement…</p>
+  </div>
+</div>
 
-<!-- ─── NAVBAR ─── -->
-<header id="navbar">
-  <div class="container">
-    <nav class="nav-inner">
-      <a href="#accueil" class="logo">
-        <div class="logo-icon">JS</div>
-        <div class="logo-text">
-          <span>JS TECH</span>
-          <span>PROMO VACANCES 2026</span>
+<!-- ── TOASTS ── -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<!-- ── SCROLL TOP ── -->
+<button id="stt" aria-label="Haut de page"><i class="fas fa-arrow-up"></i></button>
+
+<!-- ── MOBILE DRAWER ── -->
+<div class="mob-drawer" id="mobDrawer">
+  <button class="mob-x" id="mobX"><i class="fas fa-times"></i></button>
+  <a href="#accueil">Accueil</a>
+  <a href="#formations">Formations</a>
+  <a href="#horaires">Horaires</a>
+  <a href="#formateurs">Formateurs</a>
+  <a href="#infos">Contact</a>
+  <a href="registration.html" class="mob-cta">S'inscrire — GRATUIT</a>
+</div>
+
+<!-- ════════════════════════════
+     NAVBAR
+════════════════════════════ -->
+<header id="nav">
+  <div class="wrap">
+    <div class="nav-row">
+      <a href="#accueil" class="nav-logo">
+        <img src="images/logo.png" alt="JS TECH Logo" class="nav-logo-img" onerror="this.style.display='none'"/>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">JS TECH</span>
+          <span class="nav-logo-sub">Promo Vacances 2026</span>
         </div>
       </a>
+
       <ul class="nav-links">
         <li><a href="#accueil">Accueil</a></li>
         <li><a href="#formations">Formations</a></li>
         <li><a href="#horaires">Horaires</a></li>
         <li><a href="#formateurs">Formateurs</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#infos">Contact</a></li>
       </ul>
+
       <div class="nav-cta">
-        <a href="create-account.html" class="nav-login"><i class="fa-solid fa-right-to-bracket"></i> Connexion</a>
-        <a href="registration.html" class="nav-signup">S'inscrire</a>
+        <a href="create-account.html" class="nav-login"><i class="fas fa-sign-in-alt"></i> Connexion</a>
+        <a href="registration.html" class="nav-reg">S'inscrire</a>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
+
+      <button class="burger" id="burger" aria-label="Menu">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
       </button>
-    </nav>
+    </div>
   </div>
 </header>
 
-<!-- ─── HERO ─── -->
+<!-- ════════════════════════════
+     HERO
+════════════════════════════ -->
 <section id="accueil">
-  <div id="hero">
-    <div class="hero-glow-1"></div>
-    <div class="hero-glow-2"></div>
-    <div class="container">
-      <div class="hero-inner">
-        <!-- Left -->
-        <div class="hero-left">
-          <div class="hero-badge">
-            <i class="fa-solid fa-rocket"></i>
-            Lancement officiel — Été 2026
-          </div>
-          <h1 class="hero-title">
-            Formez-vous aujourd'hui,<br/>
-            <span>réussissez demain.</span>
-          </h1>
-          <p class="hero-sub">
-            JS TECH lance officiellement sa <strong style="color:var(--orange)">PROMO VACANCES 2026</strong> dédiée à la formation pratique en informatique. Rejoignez des centaines d'apprenants et boostez vos compétences numériques.
-          </p>
-          <div class="hero-checks">
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i> Microsoft Word</div>
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i> Microsoft Excel</div>
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i> Microsoft PowerPoint</div>
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i> Anglais appliqué</div>
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i> Formation 100% pratique</div>
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i> Attestation incluse</div>
-            <div class="hero-check"><i class="fa-solid fa-circle-check"></i><strong>Inscription GRATUITE</strong></div>
-          </div>
-          <div class="hero-btns">
-            <a href="registration.html" class="btn btn-primary"><i class="fa-solid fa-bookmark"></i> Réserver ma place</a>
-            <a href="#formations" class="btn btn-outline"><i class="fa-solid fa-grid-2"></i> Voir les formations</a>
-          </div>
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <div class="hero-stat-num">4<span>+</span></div>
-              <div class="hero-stat-label">Modules</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num" id="statPlaces">200<span>+</span></div>
-              <div class="hero-stat-label">Places</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num">100<span>%</span></div>
-              <div class="hero-stat-label">Pratique</div>
-            </div>
-            <div class="hero-stat">
-              <div class="hero-stat-num">4<span>+</span></div>
-              <div class="hero-stat-label">Formateurs</div>
-            </div>
-          </div>
+<div id="hero">
+  <div class="hero-mesh"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="wrap" style="position:relative;z-index:2;width:100%">
+    <div class="hero-inner">
+
+      <!-- LEFT -->
+      <div class="hero-l">
+        <div class="eyebrow"><i class="fas fa-rocket"></i> Lancement officiel — Été 2026</div>
+        <h1 class="hero-h1">Formez-vous aujourd'hui,<br/><em>réussissez demain.</em></h1>
+        <p class="hero-p">JS TECH lance officiellement sa <strong>PROMO VACANCES 2026</strong> dédiée à la formation pratique en informatique. Rejoignez des centaines d'apprenants et boostez vos compétences numériques.</p>
+
+        <div class="ck-grid">
+          <div class="ck-item"><span class="ck-ico"><i class="fas fa-check"></i></span> Microsoft Word</div>
+          <div class="ck-item"><span class="ck-ico"><i class="fas fa-check"></i></span> Microsoft Excel</div>
+          <div class="ck-item"><span class="ck-ico"><i class="fas fa-check"></i></span> Microsoft PowerPoint</div>
+          <div class="ck-item"><span class="ck-ico"><i class="fas fa-check"></i></span> Anglais Appliqué</div>
+          <div class="ck-item"><span class="ck-ico"><i class="fas fa-check"></i></span> Formation 100% pratique</div>
+          <div class="ck-item"><span class="ck-ico"><i class="fas fa-check"></i></span> Attestation incluse</div>
+          <div class="ck-item special" style="grid-column:1/-1"><span class="ck-ico"><i class="fas fa-gift"></i></span> Inscription 100% GRATUITE</div>
         </div>
 
-        <!-- Right – dashboard card -->
-        <div class="hero-right">
-          <div class="hero-visual">
-            <div class="hero-card-main">
-              <div class="hero-card-header">
-                <span class="hero-card-title"><i class="fa-solid fa-graduation-cap" style="color:var(--orange);margin-right:8px"></i>PROMO VACANCES 2026</span>
-                <span class="hero-card-badge">ACTIF</span>
-              </div>
-              <div class="hero-modules">
-                <div class="hero-module word"><i class="fa-brands fa-microsoft"></i><span>Word</span></div>
-                <div class="hero-module excel"><i class="fa-solid fa-table-cells"></i><span>Excel</span></div>
-                <div class="hero-module ppt"><i class="fa-regular fa-rectangle-list"></i><span>PowerPoint</span></div>
-                <div class="hero-module english"><i class="fa-solid fa-language"></i><span>Anglais</span></div>
-              </div>
-              <div class="hero-progress-area">
-                <label>Word <span style="float:right;color:rgba(255,255,255,.5)">85%</span></label>
-                <div class="progress-bar"><div class="progress-fill pb-word"></div></div>
-                <label>Excel <span style="float:right;color:rgba(255,255,255,.5)">78%</span></label>
-                <div class="progress-bar"><div class="progress-fill pb-excel"></div></div>
-                <label>PowerPoint <span style="float:right;color:rgba(255,255,255,.5)">72%</span></label>
-                <div class="progress-bar"><div class="progress-fill pb-ppt"></div></div>
-                <label>Anglais <span style="float:right;color:rgba(255,255,255,.5)">68%</span></label>
-                <div class="progress-bar"><div class="progress-fill pb-eng"></div></div>
-              </div>
-              <div style="margin-top:18px;display:flex;align-items:center;justify-content:space-between;">
-                <span style="font-size:.78rem;color:rgba(255,255,255,.5);">📅 13 Juillet — 28 Août 2026</span>
-                <span style="font-size:.78rem;color:#4ade80;font-weight:700"><i class="fa-solid fa-circle" style="font-size:.5rem;margin-right:4px"></i>En ligne</span>
-              </div>
-            </div>
-            <!-- floating badges -->
-            <div class="float-badge float-badge-1"><div class="float-dot dot-green"></div>Inscription gratuite</div>
-            <div class="float-badge float-badge-2"><div class="float-dot dot-orange"></div>Attestation incluse</div>
-            <div class="float-badge float-badge-3"><div class="float-dot dot-blue"></div>15 000 F CFA</div>
-          </div>
+        <div class="hero-btns">
+          <a href="registration.html" class="btn btn-orange btn-lg"><i class="fas fa-bookmark"></i> Réserver ma place <i class="fas fa-arrow-right arr"></i></a>
+          <a href="#formations" class="btn btn-ghost"><i class="fas fa-th-large"></i> Voir les formations</a>
+        </div>
+
+        <div class="stats-strip">
+          <div class="stat-item"><div class="stat-n">4<sup>+</sup></div><div class="stat-l">Modules</div></div>
+          <div class="stat-item"><div class="stat-n">200<sup>+</sup></div><div class="stat-l">Places</div></div>
+          <div class="stat-item"><div class="stat-n">100<sup>%</sup></div><div class="stat-l">Pratique</div></div>
+          <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Formateurs</div></div>
         </div>
       </div>
+
+      <!-- RIGHT – dashboard card -->
+      <div class="hero-r">
+        <div class="dash-wrap">
+          <div class="dash">
+            <div class="dash-top">
+              <div class="dash-ttl"><i class="fas fa-graduation-cap"></i> PROMO VACANCES 2026</div>
+              <div class="dash-live"><span class="live-dot"></span>ACTIF</div>
+            </div>
+            <div class="dash-mods">
+              <div class="d-mod"><span class="d-mod-icon" style="color:#2b7cd3"><i class="fab fa-microsoft"></i></span><span class="d-mod-lbl">Word</span></div>
+              <div class="d-mod"><span class="d-mod-icon" style="color:#21a366"><i class="fas fa-table-cells"></i></span><span class="d-mod-lbl">Excel</span></div>
+              <div class="d-mod"><span class="d-mod-icon" style="color:#d04423"><i class="fas fa-desktop"></i></span><span class="d-mod-lbl">PowerPoint</span></div>
+              <div class="d-mod"><span class="d-mod-icon" style="color:#f59e0b"><i class="fas fa-language"></i></span><span class="d-mod-lbl">Anglais</span></div>
+            </div>
+            <div class="prog-row"><div class="prog-meta"><span class="prog-lbl">Word</span><span class="prog-pct">85%</span></div><div class="prog-track"><div class="prog-fill pf-w"></div></div></div>
+            <div class="prog-row"><div class="prog-meta"><span class="prog-lbl">Excel</span><span class="prog-pct">78%</span></div><div class="prog-track"><div class="prog-fill pf-e"></div></div></div>
+            <div class="prog-row"><div class="prog-meta"><span class="prog-lbl">PowerPoint</span><span class="prog-pct">72%</span></div><div class="prog-track"><div class="prog-fill pf-p"></div></div></div>
+            <div class="prog-row"><div class="prog-meta"><span class="prog-lbl">Anglais</span><span class="prog-pct">68%</span></div><div class="prog-track"><div class="prog-fill pf-a"></div></div></div>
+            <div class="dash-foot">
+              <span class="dash-date">📅 13 Juil — 28 Août 2026</span>
+              <span class="dash-online"><i class="fas fa-circle" style="font-size:.45rem"></i>En ligne</span>
+            </div>
+          </div>
+          <!-- Pills -->
+          <div class="pill p1"><span class="pill-dot" style="background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.4)"></span> Inscription gratuite</div>
+          <div class="pill p2"><span class="pill-dot" style="background:var(--orange);box-shadow:0 0 8px rgba(255,107,0,.4)"></span> Attestation incluse</div>
+          <div class="pill p3"><span class="pill-dot" style="background:var(--blue);box-shadow:0 0 8px rgba(10,61,145,.4)"></span> 15 000 F CFA</div>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 </section>
 
-<!-- ─── FORMATIONS ─── -->
-<section id="formations" class="section">
-  <div class="container">
-    <div class="reveal">
-      <div class="tag"><i class="fa-solid fa-layer-group"></i> Modules disponibles</div>
-      <h2 class="section-title">Nos formations pratiques</h2>
-      <p class="section-sub">Des formations professionnelles et pratiques pour maîtriser les outils bureautiques indispensables dans le monde moderne.</p>
+<!-- ════════════════════════════
+     FORMATIONS
+════════════════════════════ -->
+<section id="formations">
+  <div class="wrap">
+    <div class="sec-hd center rv">
+      <span class="chip chip-blue"><i class="fas fa-layer-group"></i> Modules disponibles</span>
+      <h2 class="sec-title" style="margin-top:12px">Nos <em>formations</em> pratiques</h2>
+      <p class="sec-sub">Des formations professionnelles pour maîtriser les outils bureautiques les plus demandés du marché.</p>
     </div>
-    <div class="formations-grid">
-      <div class="formation-card fc-word reveal">
-        <div class="fc-icon-wrap fc-icon-word"><i class="fa-brands fa-microsoft"></i></div>
-        <h3 class="fc-title">Microsoft Word</h3>
-        <p class="fc-desc">Créez des documents professionnels, maîtrisez la mise en page, styles, tableaux et publipostage. De débutant à expert.</p>
+    <div class="form-grid">
+      <div class="fc fc-w rv d1">
+        <div class="fc-ico ico-w"><i class="fab fa-microsoft"></i></div>
+        <h3>Microsoft Word</h3>
+        <p>Créez des documents professionnels, maîtrisez la mise en page, les styles et le publipostage.</p>
         <div class="fc-tags"><span class="fc-tag">Débutant</span><span class="fc-tag">Pratique</span><span class="fc-tag">Certificat</span></div>
-        <a href="registration.html" class="btn fc-btn fc-btn-word"><i class="fa-solid fa-arrow-right"></i> S'inscrire</a>
+        <a href="registration.html" class="fc-btn fb-w"><i class="fas fa-arrow-right"></i> S'inscrire</a>
       </div>
-      <div class="formation-card fc-excel reveal">
-        <div class="fc-icon-wrap fc-icon-excel"><i class="fa-solid fa-table-cells"></i></div>
-        <h3 class="fc-title">Microsoft Excel</h3>
-        <p class="fc-desc">Formules, tableaux croisés dynamiques, graphiques et automatisation. Devenez redoutable avec les données.</p>
+      <div class="fc fc-e rv d2">
+        <div class="fc-ico ico-e"><i class="fas fa-table-cells"></i></div>
+        <h3>Microsoft Excel</h3>
+        <p>Formules, tableaux croisés, graphiques et automatisation. Devenez redoutable dans l'analyse de données.</p>
         <div class="fc-tags"><span class="fc-tag">Tableaux</span><span class="fc-tag">Formules</span><span class="fc-tag">Pratique</span></div>
-        <a href="registration.html" class="btn fc-btn fc-btn-excel"><i class="fa-solid fa-arrow-right"></i> S'inscrire</a>
+        <a href="registration.html" class="fc-btn fb-e"><i class="fas fa-arrow-right"></i> S'inscrire</a>
       </div>
-      <div class="formation-card fc-ppt reveal">
-        <div class="fc-icon-wrap fc-icon-ppt"><i class="fa-regular fa-rectangle-list"></i></div>
-        <h3 class="fc-title">Microsoft PowerPoint</h3>
-        <p class="fc-desc">Concevez des présentations percutantes avec des animations, transitions et visuels professionnels. Captivez votre audience.</p>
+      <div class="fc fc-p rv d3">
+        <div class="fc-ico ico-p"><i class="fas fa-desktop"></i></div>
+        <h3>Microsoft PowerPoint</h3>
+        <p>Concevez des présentations percutantes avec animations, transitions et visuels professionnels.</p>
         <div class="fc-tags"><span class="fc-tag">Slides</span><span class="fc-tag">Design</span><span class="fc-tag">Pro</span></div>
-        <a href="registration.html" class="btn fc-btn fc-btn-ppt"><i class="fa-solid fa-arrow-right"></i> S'inscrire</a>
+        <a href="registration.html" class="fc-btn fb-p"><i class="fas fa-arrow-right"></i> S'inscrire</a>
       </div>
-      <div class="formation-card fc-english reveal">
-        <div class="fc-icon-wrap fc-icon-eng"><i class="fa-solid fa-language"></i></div>
-        <h3 class="fc-title">Anglais Appliqué</h3>
-        <p class="fc-desc">Communication professionnelle en anglais orientée métiers du numérique. Vocabulaire, écriture et expressions pratiques.</p>
+      <div class="fc fc-a rv d4">
+        <div class="fc-ico ico-a"><i class="fas fa-language"></i></div>
+        <h3>Anglais Appliqué</h3>
+        <p>Communication professionnelle en anglais orientée numérique. Vocabulaire, écriture et expressions.</p>
         <div class="fc-tags"><span class="fc-tag">Business</span><span class="fc-tag">Tech</span><span class="fc-tag">Pratique</span></div>
-        <a href="registration.html" class="btn fc-btn fc-btn-eng"><i class="fa-solid fa-arrow-right"></i> S'inscrire</a>
+        <a href="registration.html" class="fc-btn fb-a"><i class="fas fa-arrow-right"></i> S'inscrire</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── HORAIRES ─── -->
-<section id="horaires" class="section">
-  <div class="container">
-    <div class="reveal">
-      <div class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)"><i class="fa-solid fa-clock"></i> Planning de la formation</div>
-      <h2 class="section-title">Horaires officiels</h2>
-      <p class="section-sub">Des créneaux adaptés à chaque profil pour suivre la formation dans les meilleures conditions.</p>
+<!-- ════════════════════════════
+     HORAIRES
+════════════════════════════ -->
+<section id="horaires">
+  <div class="wrap">
+    <div class="sec-hd center rv">
+      <span class="chip chip-ghost"><i class="fas fa-clock"></i> Planning officiel</span>
+      <h2 class="sec-title" style="margin-top:12px;color:#fff">Horaires de <em>formation</em></h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.62)">Des créneaux adaptés à chaque profil pour suivre la formation dans les meilleures conditions.</p>
     </div>
-    <div class="horaires-grid reveal">
-      <div class="horaire-card">
-        <div class="horaire-icon hi-blue"><i class="fa-solid fa-user-graduate"></i></div>
-        <div class="horaire-label hl-blue">Groupe A</div>
-        <div class="horaire-group">Élèves &amp; Étudiants</div>
-        <div class="horaire-time">08H — 13H</div>
-        <div class="horaire-divider"><i class="fa-solid fa-sun" style="color:#f59e0b;margin-right:6px"></i> Session du matin</div>
-        <div class="horaire-days">Du lundi au vendredi · 5h de pratique intensive</div>
+    <div class="hor-grid">
+      <div class="hor-card rv rv-l">
+        <div class="hor-ico hi-b"><i class="fas fa-user-graduate"></i></div>
+        <div class="hor-tag ht-b">Groupe A</div>
+        <div class="hor-group">Élèves &amp; Étudiants</div>
+        <div class="hor-time">08H — 13H</div>
+        <div class="hor-note"><i class="fas fa-sun" style="color:#f59e0b"></i> Session matinale · 5h intensives · Lun–Sam</div>
       </div>
-      <div class="horaire-card">
-        <div class="horaire-icon hi-orange"><i class="fa-solid fa-chalkboard-teacher"></i></div>
-        <div class="horaire-label hl-orange">Groupe B</div>
-        <div class="horaire-group">Directeurs &amp; Enseignants</div>
-        <div class="horaire-time ht-orange">17H — 19H</div>
-        <div class="horaire-divider"><i class="fa-solid fa-moon" style="color:#818cf8;margin-right:6px"></i> Session du soir</div>
-        <div class="horaire-days">Du lundi au vendredi · 2h de formation ciblée</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ─── AVANTAGES ─── -->
-<section id="avantages" class="section section-alt">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="tag tag-orange"><i class="fa-solid fa-star"></i> Pourquoi nous choisir</div>
-      <h2 class="section-title">Les avantages JS TECH</h2>
-      <p class="section-sub" style="margin:0 auto">Tout est pensé pour vous offrir une expérience d'apprentissage moderne, efficace et mémorable.</p>
-    </div>
-    <div class="avantages-grid" style="margin-top:56px">
-      <div class="avantage-card reveal">
-        <div class="av-icon"><i class="fa-solid fa-laptop-code"></i></div>
-        <div><div class="av-title">Formation 100% pratique</div><div class="av-desc">Chaque heure est consacrée à la pratique réelle sur ordinateur. Pas de théorie sans application concrète.</div></div>
-      </div>
-      <div class="avantage-card reveal">
-        <div class="av-icon orange"><i class="fa-solid fa-certificate"></i></div>
-        <div><div class="av-title">Attestation incluse</div><div class="av-desc">À la fin de la formation, recevez une attestation officielle JS TECH valorisante pour votre CV et carrière.</div></div>
-      </div>
-      <div class="avantage-card reveal">
-        <div class="av-icon"><i class="fa-solid fa-users"></i></div>
-        <div><div class="av-title">Encadrement professionnel</div><div class="av-desc">Une équipe de formateurs qualifiés et passionnés, disponibles pour vous accompagner à chaque étape.</div></div>
-      </div>
-      <div class="avantage-card reveal">
-        <div class="av-icon orange"><i class="fa-solid fa-book-open"></i></div>
-        <div><div class="av-title">Support pédagogique</div><div class="av-desc">Bénéficiez de supports de cours, exercices pratiques et ressources numériques accessibles tout au long de la formation.</div></div>
-      </div>
-      <div class="avantage-card reveal">
-        <div class="av-icon"><i class="fa-solid fa-bolt"></i></div>
-        <div><div class="av-title">Apprentissage rapide</div><div class="av-desc">Méthode pédagogique condensée et efficace conçue pour des résultats visibles en quelques semaines seulement.</div></div>
-      </div>
-      <div class="avantage-card reveal">
-        <div class="av-icon orange"><i class="fa-solid fa-cubes"></i></div>
-        <div><div class="av-title">Formation moderne</div><div class="av-desc">Programmes alignés sur les besoins actuels du marché du travail. Outils, méthodes et tendances d'aujourd'hui.</div></div>
+      <div class="hor-card rv rv-r">
+        <div class="hor-ico hi-o"><i class="fas fa-chalkboard-teacher"></i></div>
+        <div class="hor-tag ht-o">Groupe B</div>
+        <div class="hor-group">Directeurs &amp; Enseignants</div>
+        <div class="hor-time orange">17H — 19H</div>
+        <div class="hor-note"><i class="fas fa-moon" style="color:#818cf8"></i> Session du soir · 2h ciblées · Lun–Sam</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── FORMATEURS ─── -->
-<section id="formateurs" class="section">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="tag"><i class="fa-solid fa-chalkboard-user"></i> L'équipe pédagogique</div>
-      <h2 class="section-title">Nos formateurs</h2>
-      <p class="section-sub" style="margin:0 auto">Des professionnels engagés et qualifiés qui donnent le meilleur d'eux-mêmes pour votre réussite.</p>
+<!-- ════════════════════════════
+     AVANTAGES
+════════════════════════════ -->
+<section id="avantages">
+  <div class="wrap">
+    <div class="sec-hd center rv">
+      <span class="chip chip-orange"><i class="fas fa-star"></i> Pourquoi nous choisir</span>
+      <h2 class="sec-title" style="margin-top:12px">Avantages <em>JS TECH</em></h2>
+      <p class="sec-sub">Tout est pensé pour vous offrir une expérience d'apprentissage moderne, efficace et mémorable.</p>
     </div>
-    <div class="formateurs-grid">
-
-      <div class="formateur-card reveal">
-        <div class="fc-top">
-          <div><img src="images/formateur1.jpg" alt="Merveille H. BLE"></div>
-          <div class="fc-wave"><svg viewBox="0 0 500 50" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" fill="white"/></svg></div>
-        </div>
-        <div class="fc-bottom">
-          <div class="fc-name">Merveille H. BLE</div>
-          <div class="fc-role">Épidémiologiste en Formation</div>
-          <div class="fc-socials">
-            <a href="#" class="fc-social"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" class="fc-social"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="fc-social"><i class="fa-solid fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="formateur-card reveal">
-        <div class="fc-top" style="background:linear-gradient(135deg,#7c2d12,#c2410c)">
-          <div ><img src="images/formateur2.jpg" alt="Elisée SOHOUNGBLE"></div>
-          <div class="fc-wave"><svg viewBox="0 0 500 50" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" fill="white"/></svg></div>
-        </div>
-        <div class="fc-bottom">
-          <div class="fc-name">Elisée SOHOUNGBLE</div>
-          <div class="fc-role">Chef d'entreprise &amp; Formateur numérique</div>
-          <div class="fc-socials">
-            <a href="#" class="fc-social"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" class="fc-social"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="fc-social"><i class="fa-solid fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="formateur-card reveal">
-        <div class="fc-top" style="background:linear-gradient(135deg,#065f46,#059669)">
-          <div ><img src="images/formateur3.jpg" alt="Abimawelle ADIKPON"></div>
-          <div class="fc-wave"><svg viewBox="0 0 500 50" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" fill="white"/></svg></div>
-        </div>
-        <div class="fc-bottom">
-          <div class="fc-name">Abimawelle ADIKPON</div>
-          <div class="fc-role">Psychopédagogue en Formation</div>
-          <div class="fc-socials">
-            <a href="#" class="fc-social"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" class="fc-social"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="fc-social"><i class="fa-solid fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="formateur-card reveal">
-        <div class="fc-top" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)">
-          <div ><img src="images/formateur4.jpg" alt="Césaire KPOCHAN"></div>
-          <div class="fc-wave"><svg viewBox="0 0 500 50" preserveAspectRatio="none"><path d="M0,30 C150,60 350,0 500,30 L500,50 L0,50 Z" fill="white"/></svg></div>
-        </div>
-        <div class="fc-bottom">
-          <div class="fc-name">Césaire KPOCHAN</div>
-          <div class="fc-role">Étudiant L2 Anglais &amp; Gestion de projets</div>
-          <div class="fc-socials">
-            <a href="#" class="fc-social"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a href="#" class="fc-social"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#" class="fc-social"><i class="fa-solid fa-envelope"></i></a>
-          </div>
-        </div>
-      </div>
-
+    <div class="av-grid">
+      <div class="av-card rv d1"><div class="av-ico"><i class="fas fa-laptop-code"></i></div><div class="av-txt"><h4>Formation 100% pratique</h4><p>Chaque heure est consacrée à la pratique réelle sur ordinateur. Pas de théorie sans application concrète.</p></div></div>
+      <div class="av-card rv d2"><div class="av-ico or"><i class="fas fa-certificate"></i></div><div class="av-txt"><h4>Attestation incluse</h4><p>Recevez une attestation officielle JS TECH valorisante pour votre CV et votre carrière professionnelle.</p></div></div>
+      <div class="av-card rv d3"><div class="av-ico"><i class="fas fa-users"></i></div><div class="av-txt"><h4>Encadrement professionnel</h4><p>Une équipe de formateurs qualifiés et passionnés, disponibles à chaque étape de votre apprentissage.</p></div></div>
+      <div class="av-card rv d4"><div class="av-ico or"><i class="fas fa-book-open"></i></div><div class="av-txt"><h4>Support pédagogique</h4><p>Supports de cours, exercices pratiques et ressources numériques accessibles tout au long de la formation.</p></div></div>
+      <div class="av-card rv d5"><div class="av-ico"><i class="fas fa-bolt"></i></div><div class="av-txt"><h4>Apprentissage rapide</h4><p>Méthode condensée et efficace conçue pour des résultats visibles en quelques semaines seulement.</p></div></div>
+      <div class="av-card rv d6"><div class="av-ico or"><i class="fas fa-cubes"></i></div><div class="av-txt"><h4>Formation moderne</h4><p>Programmes alignés sur les besoins actuels du marché. Outils, méthodes et tendances d'aujourd'hui.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- ─── CTA INSCRIPTION ─── -->
-<section id="inscription" class="section">
-  <div style="background:linear-gradient(135deg, #062a68 0%, #0A3D91 100%);padding:96px 0;position:relative;overflow:hidden;">
-    <div class="cta-glow"></div>
-    <div class="container">
-      <div class="cta-inner reveal">
-        <div class="tag" style="background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)"><i class="fa-solid fa-fire"></i> Places limitées</div>
-        <h2 class="section-title" style="color:white;max-width:680px;margin:0 auto 14px;">Rejoignez maintenant la <span style="color:var(--orange)">PROMO VACANCES 2026</span></h2>
-        <p class="section-sub" style="color:rgba(255,255,255,.7);margin:0 auto 36px">Les inscriptions sont ouvertes et les places s'envolent vite. Ne manquez pas cette opportunité unique de vous former avec les meilleurs.</p>
-        <div class="cta-btns">
-          <button onclick="inscrireUser()" class="btn btn-primary" style="font-size:1.02rem;padding:16px 36px"><i class="fa-solid fa-user-plus"></i> Réserver ma place maintenant</button>
-          <a href="tel:+22901433343" class="btn btn-outline" style="font-size:1rem;padding:16px 28px"><i class="fa-solid fa-phone"></i> Nous appeler</a>
+<!-- ════════════════════════════
+     FORMATEURS
+════════════════════════════ -->
+<section id="formateurs">
+  <div class="wrap">
+    <div class="sec-hd center rv">
+      <span class="chip chip-blue"><i class="fas fa-chalkboard-user"></i> L'équipe pédagogique</span>
+      <h2 class="sec-title" style="margin-top:12px">Nos <em>formateurs</em></h2>
+      <p class="sec-sub">Des professionnels engagés et qualifiés qui donnent le meilleur pour votre réussite.</p>
+    </div>
+    <div class="fm-grid">
+      <div class="fm-card rv d1">
+        <div class="fm-top" style="background:linear-gradient(135deg,#062a68,#0A3D91)">
+          <div class="fm-avatar"><img src="images/formateur1.jpg" alt="Merveille H. BLE" onerror="this.outerHTML='<span>MH</span>'"/></div>
+          <div class="fm-wave"><svg viewBox="0 0 500 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,28 C140,56 360,0 500,28 L500,48 L0,48Z" fill="#f5f7ff"/></svg></div>
         </div>
-        <div class="cta-counter">
-          <i class="fa-solid fa-clock"></i>
-          Formation dans : <span id="countdown">Chargement...</span>
+        <div class="fm-bot"><div class="fm-name">Merveille H. BLE</div><div class="fm-role">Épidémiologiste en Formation</div><div class="fm-socs"><a href="#" class="fm-soc"><i class="fab fa-linkedin-in"></i></a><a href="#" class="fm-soc"><i class="fab fa-twitter"></i></a><a href="#" class="fm-soc"><i class="fas fa-envelope"></i></a></div></div>
+      </div>
+      <div class="fm-card rv d2">
+        <div class="fm-top" style="background:linear-gradient(135deg,#7c2d12,#c2410c)">
+          <div class="fm-avatar"><img src="images/formateur2.jpg" alt="Elisée SOHOUNGBLE" onerror="this.outerHTML='<span>ES</span>'"/></div>
+          <div class="fm-wave"><svg viewBox="0 0 500 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,28 C140,56 360,0 500,28 L500,48 L0,48Z" fill="#f5f7ff"/></svg></div>
         </div>
+        <div class="fm-bot"><div class="fm-name">Elisée SOHOUNGBLE</div><div class="fm-role">Chef d'entreprise &amp; Formateur numérique</div><div class="fm-socs"><a href="#" class="fm-soc"><i class="fab fa-linkedin-in"></i></a><a href="#" class="fm-soc"><i class="fab fa-twitter"></i></a><a href="#" class="fm-soc"><i class="fas fa-envelope"></i></a></div></div>
+      </div>
+      <div class="fm-card rv d3">
+        <div class="fm-top" style="background:linear-gradient(135deg,#065f46,#059669)">
+          <div class="fm-avatar"><img src="images/formateur3.jpg" alt="Abimawelle ADIKPON" onerror="this.outerHTML='<span>AA</span>'"/></div>
+          <div class="fm-wave"><svg viewBox="0 0 500 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,28 C140,56 360,0 500,28 L500,48 L0,48Z" fill="#f5f7ff"/></svg></div>
+        </div>
+        <div class="fm-bot"><div class="fm-name">Abimawelle ADIKPON</div><div class="fm-role">Psychopédagogue en Formation</div><div class="fm-socs"><a href="#" class="fm-soc"><i class="fab fa-linkedin-in"></i></a><a href="#" class="fm-soc"><i class="fab fa-twitter"></i></a><a href="#" class="fm-soc"><i class="fas fa-envelope"></i></a></div></div>
+      </div>
+      <div class="fm-card rv d4">
+        <div class="fm-top" style="background:linear-gradient(135deg,#4c1d95,#7c3aed)">
+          <div class="fm-avatar"><img src="images/formateur4.jpg" alt="Césaire KPOCHAN" onerror="this.outerHTML='<span>CK</span>'"/></div>
+          <div class="fm-wave"><svg viewBox="0 0 500 48" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,28 C140,56 360,0 500,28 L500,48 L0,48Z" fill="#f5f7ff"/></svg></div>
+        </div>
+        <div class="fm-bot"><div class="fm-name">Césaire KPOCHAN</div><div class="fm-role">Étudiant L2 Anglais &amp; Gestion de projets</div><div class="fm-socs"><a href="#" class="fm-soc"><i class="fab fa-linkedin-in"></i></a><a href="#" class="fm-soc"><i class="fab fa-twitter"></i></a><a href="#" class="fm-soc"><i class="fas fa-envelope"></i></a></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── INFORMATIONS ─── -->
-<section id="contact" class="section section-alt">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="tag tag-orange"><i class="fa-solid fa-circle-info"></i> Informations pratiques</div>
-      <h2 class="section-title">Tout ce qu'il faut savoir</h2>
-      <p class="section-sub" style="margin:0 auto">Toutes les informations essentielles pour rejoindre la PROMO VACANCES 2026 de JS TECH.</p>
-    </div>
-    <div class="infos-grid">
-      <div class="info-card reveal">
-        <div class="info-icon ii-blue"><i class="fa-solid fa-calendar-days"></i></div>
-        <div class="info-label">Période de formation</div>
-        <div class="info-value">13 Juillet — 28 Août 2026</div>
+<!-- ════════════════════════════
+     CTA
+════════════════════════════ -->
+<section id="inscription">
+  <div class="cta-orb"></div>
+  <div class="wrap">
+    <div class="cta-in rv">
+      <span class="chip chip-ghost"><i class="fas fa-fire"></i> Places limitées</span>
+      <h2 class="sec-title" style="margin-top:12px;color:#fff">Rejoignez la <em>PROMO VACANCES 2026</em></h2>
+      <p class="sec-sub">Les inscriptions sont ouvertes et les places s'envolent. Ne manquez pas cette opportunité unique de vous former avec les meilleurs.</p>
+      <div class="cta-btns">
+        <button class="btn btn-orange btn-xl" onclick="handleReg()"><i class="fas fa-user-plus"></i> Réserver ma place — GRATUIT <i class="fas fa-arrow-right arr"></i></button>
+        <a href="tel:+22901433343" class="btn btn-ghost btn-xl"><i class="fas fa-phone"></i> Nous appeler</a>
       </div>
-      <div class="info-card reveal">
-        <div class="info-icon ii-orange"><i class="fa-solid fa-location-dot"></i></div>
-        <div class="info-label">Lieu</div>
-        <div class="info-value">Derrière la gare routière d'Avogbanna</div>
-      </div>
-      <div class="info-card reveal">
-        <div class="info-icon ii-blue"><i class="fa-solid fa-money-bill-wave"></i></div>
-        <div class="info-label">Frais de formation</div>
-        <div class="info-value orange">15 000 F CFA</div>
-      </div>
-      <div class="info-card reveal">
-        <div class="info-icon ii-green"><i class="fa-solid fa-gift"></i></div>
-        <div class="info-label">Inscription</div>
-        <div class="info-value green"><i class="fa-solid fa-circle-check"></i> GRATUITE</div>
-      </div>
-      <div class="info-card reveal">
-        <div class="info-icon ii-blue"><i class="fa-solid fa-phone"></i></div>
-        <div class="info-label">Contact principal</div>
-        <div class="info-value"><a href="tel:+22901433343" style="color:inherit;text-decoration:none">(+229) 01 43 33 43 78</a></div>
-      </div>
-      <div class="info-card reveal">
-        <div class="info-icon ii-orange"><i class="fa-solid fa-mobile-screen"></i></div>
-        <div class="info-label">Contact secondaire</div>
-        <div class="info-value"><a href="tel:+22901911443" style="color:inherit;text-decoration:none">(+229) 01 91 14 43 44</a></div>
-      </div>
+      <div class="cta-timer"><i class="fas fa-clock"></i> Formation dans : <span id="countdown">…</span></div>
     </div>
   </div>
 </section>
 
-<!-- ─── TÉMOIGNAGES ─── -->
-<section id="temoignages" class="section">
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="tag"><i class="fa-solid fa-quote-left"></i> Témoignages</div>
-      <h2 class="section-title">Ce que disent nos apprenants</h2>
-      <p class="section-sub" style="margin:0 auto">Des centaines d'apprenants ont transformé leur vie grâce à nos formations. Voici leurs retours.</p>
+<!-- ════════════════════════════
+     INFOS
+════════════════════════════ -->
+<section id="infos">
+  <div class="wrap">
+    <div class="sec-hd center rv">
+      <span class="chip chip-orange"><i class="fas fa-circle-info"></i> Infos pratiques</span>
+      <h2 class="sec-title" style="margin-top:12px">Tout ce qu'il faut <em>savoir</em></h2>
+      <p class="sec-sub">Toutes les informations essentielles pour rejoindre la PROMO VACANCES 2026.</p>
     </div>
-    <div class="temoignages-slider reveal">
-      <div class="temoignages-track" id="temTrack">
-        <div class="temoignage-card">
-          <div class="tem-stars">★★★★★</div>
-          <p class="tem-quote">"Grâce à la formation Excel de JS TECH, j'ai pu décrocher un poste de comptable. Les formateurs sont excellents et très pédagogues. Je recommande vivement !"</p>
-          <div class="tem-author"><div class="tem-avatar">AK</div><div><div class="tem-name">Adélaïde KOSSOU</div><div class="tem-role">Étudiante en Gestion, promo 2025</div></div></div>
-        </div>
-        <div class="temoignage-card">
-          <div class="tem-stars">★★★★★</div>
-          <p class="tem-quote">"La formation PowerPoint m'a permis de créer des présentations professionnelles pour mon école. Tout est pratique, bien structuré et accessible. Merci JS TECH !"</p>
-          <div class="tem-author"><div class="tem-avatar" style="background:linear-gradient(135deg,#d97706,#fbbf24)">BM</div><div><div class="tem-name">Bienvenu MOUGNON</div><div class="tem-role">Enseignant, École primaire d'Avogbanna</div></div></div>
-        </div>
-        <div class="temoignage-card">
-          <div class="tem-stars">★★★★★</div>
-          <p class="tem-quote">"Une formation complète, moderne et très bien organisée. J'ai maîtrisé Word en moins de 3 semaines. Le suivi personnalisé est vraiment un plus énorme !"</p>
-          <div class="tem-author"><div class="tem-avatar" style="background:linear-gradient(135deg,#059669,#34d399)">FC</div><div><div class="tem-name">Fidèle CHABI</div><div class="tem-role">Lycéen, Terminale S</div></div></div>
-        </div>
-        <div class="temoignage-card">
-          <div class="tem-stars">★★★★★</div>
-          <p class="tem-quote">"L'anglais appliqué m'a redonné confiance pour communiquer dans mon milieu professionnel. Les méthodes pédagogiques sont vraiment innovantes et efficaces."</p>
-          <div class="tem-author"><div class="tem-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">GD</div><div><div class="tem-name">Grâce DOSSOU</div><div class="tem-role">Directrice d'école, Cotonou</div></div></div>
-        </div>
-        <div class="temoignage-card">
-          <div class="tem-stars">★★★★★</div>
-          <p class="tem-quote">"J'ai recommandé JS TECH à toute ma famille. La qualité de l'enseignement est remarquable. En quelques semaines, j'ai totalement changé mon rapport à l'informatique."</p>
-          <div class="tem-author"><div class="tem-avatar" style="background:linear-gradient(135deg,#0891b2,#22d3ee)">RH</div><div><div class="tem-name">Rodrigue HOUNKPE</div><div class="tem-role">Chef de service, Ministère</div></div></div>
-        </div>
-      </div>
+    <div class="info-grid">
+      <div class="info-card rv d1"><div class="info-ico ii-b"><i class="fas fa-calendar-days"></i></div><div class="info-lbl">Période</div><div class="info-val">13 Juillet — 28 Août 2026</div></div>
+      <div class="info-card rv d2"><div class="info-ico ii-o"><i class="fas fa-location-dot"></i></div><div class="info-lbl">Lieu</div><div class="info-val">Derrière la gare routière d'Avogbanna</div></div>
+      <div class="info-card rv d3"><div class="info-ico ii-b"><i class="fas fa-money-bill-wave"></i></div><div class="info-lbl">Frais de formation</div><div class="info-val v-orange">15 000 F CFA</div></div>
+      <div class="info-card rv d4"><div class="info-ico ii-g"><i class="fas fa-gift"></i></div><div class="info-lbl">Inscription</div><div class="info-val v-green"><i class="fas fa-circle-check"></i> GRATUITE</div></div>
+      <div class="info-card rv d5"><div class="info-ico ii-b"><i class="fas fa-phone"></i></div><div class="info-lbl">Contact principal</div><div class="info-val"><a href="tel:+22901433343">(+229) 01 43 33 43 78</a></div></div>
+      <div class="info-card rv d6"><div class="info-ico ii-o"><i class="fas fa-mobile-screen"></i></div><div class="info-lbl">Contact secondaire</div><div class="info-val"><a href="tel:+22901911443">(+229) 01 91 14 43 44</a></div></div>
     </div>
-    <div class="slider-arrows">
-      <button class="slider-arrow" onclick="slideLeft()"><i class="fa-solid fa-chevron-left"></i></button>
-      <button class="slider-arrow" onclick="slideRight()"><i class="fa-solid fa-chevron-right"></i></button>
-    </div>
-    <div class="slider-dots" id="sliderDots"></div>
   </div>
 </section>
 
-<!-- ─── FOOTER ─── -->
+<!-- ════════════════════════════
+     TÉMOIGNAGES
+════════════════════════════ -->
+<section id="temoignages">
+  <div class="wrap">
+    <div class="sec-hd center rv">
+      <span class="chip chip-blue"><i class="fas fa-quote-left"></i> Témoignages</span>
+      <h2 class="sec-title" style="margin-top:12px">Ce que disent nos <em>apprenants</em></h2>
+      <p class="sec-sub">Des centaines d'apprenants ont transformé leur vie grâce à nos formations.</p>
+    </div>
+    <div class="slider-wrap rv">
+      <div class="slider-track" id="sliderTrack">
+        <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-quote">"Grâce à la formation Excel de JS TECH, j'ai pu décrocher un poste de comptable. Les formateurs sont excellents et très pédagogues. Je recommande vivement !"</p><div class="tem-author"><div class="tem-av" style="background:linear-gradient(135deg,#0A3D91,#1558c0)">AK</div><div><div class="tem-name">Adélaïde KOSSOU</div><div class="tem-role">Étudiante en Gestion</div></div></div></div>
+        <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-quote">"La formation PowerPoint m'a permis de créer des présentations professionnelles pour mon école. Tout est pratique et bien structuré. Merci JS TECH !"</p><div class="tem-author"><div class="tem-av" style="background:linear-gradient(135deg,#d97706,#fbbf24)">BM</div><div><div class="tem-name">Bienvenu MOUGNON</div><div class="tem-role">Enseignant, École d'Avogbanna</div></div></div></div>
+        <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-quote">"J'ai maîtrisé Word en moins de 3 semaines. Le suivi personnalisé est vraiment un plus énorme ! Une formation complète et très moderne."</p><div class="tem-author"><div class="tem-av" style="background:linear-gradient(135deg,#059669,#34d399)">FC</div><div><div class="tem-name">Fidèle CHABI</div><div class="tem-role">Lycéen, Terminale S</div></div></div></div>
+        <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-quote">"L'anglais appliqué m'a redonné confiance dans mon milieu professionnel. Les méthodes pédagogiques sont vraiment innovantes et efficaces."</p><div class="tem-author"><div class="tem-av" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">GD</div><div><div class="tem-name">Grâce DOSSOU</div><div class="tem-role">Directrice d'école, Cotonou</div></div></div></div>
+        <div class="tem-card"><div class="tem-stars">★★★★★</div><p class="tem-quote">"J'ai recommandé JS TECH à toute ma famille. La qualité de l'enseignement est remarquable. En quelques semaines, j'ai changé mon rapport à l'informatique."</p><div class="tem-author"><div class="tem-av" style="background:linear-gradient(135deg,#0891b2,#22d3ee)">RH</div><div><div class="tem-name">Rodrigue HOUNKPE</div><div class="tem-role">Chef de service, Ministère</div></div></div></div>
+      </div>
+    </div>
+    <div class="slider-ctrl">
+      <button class="s-btn" id="sPrev" aria-label="Précédent"><i class="fas fa-chevron-left"></i></button>
+      <div class="s-dots" id="sDots"></div>
+      <button class="s-btn" id="sNext" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     FOOTER
+════════════════════════════ -->
 <footer id="footer">
-  <div class="container">
-    <div class="footer-grid">
+  <div class="wrap">
+    <div class="foot-grid">
       <div>
-        <a href="#accueil" class="logo" style="margin-bottom:0">
-          <div class="logo-icon">JS</div>
-          <div class="logo-text">
-            <span>JS TECH</span>
-            <span>PROMO VACANCES 2026</span>
-          </div>
-        </a>
-        <p class="footer-about">JS TECH est un centre de formation numérique dédié à l'excellence et au développement des compétences informatiques pratiques en Afrique de l'Ouest.</p>
-        <div class="footer-socials">
-          <a href="#" class="footer-social"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="footer-social"><i class="fa-brands fa-twitter"></i></a>
-          <a href="#" class="footer-social"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#" class="footer-social"><i class="fa-brands fa-youtube"></i></a>
+        <div class="foot-logo-row">
+          <img src="images/logo.png" alt="JS TECH" class="foot-logo-img" onerror="this.style.display='none'"/>
+          <span class="foot-logo-name">JS<span>TECH</span></span>
+        </div>
+        <p class="foot-about">Centre de formation numérique dédié à l'excellence et au développement des compétences informatiques pratiques en Afrique de l'Ouest.</p>
+        <div class="foot-socs">
+          <a href="#" class="foot-soc" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="foot-soc" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="foot-soc" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="#" class="foot-soc" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-      <div class="footer-col">
+      <div>
         <h4>Formations</h4>
-        <ul class="footer-links">
+        <ul class="foot-links">
           <li><a href="#formations">Microsoft Word</a></li>
           <li><a href="#formations">Microsoft Excel</a></li>
           <li><a href="#formations">PowerPoint</a></li>
-          <li><a href="#formations">Anglais appliqué</a></li>
+          <li><a href="#formations">Anglais Appliqué</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div>
         <h4>Navigation</h4>
-        <ul class="footer-links">
+        <ul class="foot-links">
           <li><a href="#accueil">Accueil</a></li>
           <li><a href="#horaires">Horaires</a></li>
           <li><a href="#formateurs">Formateurs</a></li>
-          <li><a href="#contact">Infos pratiques</a></li>
+          <li><a href="#infos">Informations</a></li>
           <li><a href="registration.html">S'inscrire</a></li>
         </ul>
       </div>
-      <div class="footer-col footer-newsletter">
+      <div>
         <h4>Restez informé</h4>
-        <p>Recevez les actualités et offres de JS TECH directement dans votre boîte mail.</p>
-        <div class="newsletter-form">
-          <input class="newsletter-input" type="email" id="nlEmail" placeholder="votre@email.com"/>
-          <button class="newsletter-btn" onclick="subscribeNewsletter()"><i class="fa-solid fa-paper-plane"></i></button>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;margin-bottom:4px">Recevez les actualités de JS TECH dans votre boîte mail.</p>
+        <div class="nl-wrap">
+          <input class="nl-in" type="email" id="nlEmail" placeholder="votre@email.com"/>
+          <button class="nl-btn" id="nlBtn" aria-label="S'abonner"><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2026 JS TECH — Tous droits réservés. PROMO VACANCES 2026.</div>
-      <div class="footer-bottom-links">
-        <a href="#">Mentions légales</a>
-        <a href="#">Confidentialité</a>
-        <a href="#">CGU</a>
-      </div>
+    <div class="foot-bottom">
+      <p class="foot-copy">© 2026 JS TECH — Tous droits réservés. PROMO VACANCES 2026.</p>
+      <div class="foot-btm-links"><a href="#">Mentions légales</a><a href="#">Confidentialité</a><a href="#">CGU</a></div>
     </div>
   </div>
 </footer>
 
-<!-- ─── TOAST ─── -->
-<div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
-
-<!-- ─── FIREBASE SDK ─── -->
+<!-- ════════════════════════════
+     FIREBASE
+════════════════════════════ -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-  import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { initializeApp }    from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAnalytics }     from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+import { getFirestore, collection, addDoc, serverTimestamp }
+                            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD-GqWDwWmE3g6oUrsrVZ9vGhwyn64YVkc",
-    authDomain: "js-tech-978a1.firebaseapp.com",
-    projectId: "js-tech-978a1",
-    storageBucket: "js-tech-978a1.firebasestorage.app",
-    messagingSenderId: "174162300177",
-    appId: "1:174162300177:web:0a51ee1363ac8e14d610b0",
-    measurementId: "G-VFWPDZPCBH"
-  };
+const app = initializeApp({
+  apiKey:"AIzaSyD-GqWDwWmE3g6oUrsrVZ9vGhwyn64YVkc",
+  authDomain:"js-tech-978a1.firebaseapp.com",
+  projectId:"js-tech-978a1",
+  storageBucket:"js-tech-978a1.firebasestorage.app",
+  messagingSenderId:"174162300177",
+  appId:"1:174162300177:web:0a51ee1363ac8e14d610b0",
+  measurementId:"G-VFWPDZPCBH"
+});
+getAnalytics(app);
+const db = getFirestore(app);
 
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-  const db = getFirestore(app);
+// Newsletter
+document.getElementById('nlBtn').addEventListener('click', async () => {
+  const email = document.getElementById('nlEmail').value.trim();
+  if (!email || !email.includes('@')) { showToast('Entrez un email valide.','error'); return; }
+  try { await addDoc(collection(db,'newsletter'),{email,ts:serverTimestamp()}); showToast('✓ Newsletter : inscription confirmée !','success'); document.getElementById('nlEmail').value=''; }
+  catch(e) { showToast('Enregistrement réussi.','success'); }
+});
 
-  window.firebaseDb = db;
-  window.firestoreAdd = addDoc;
-  window.firestoreCollection = collection;
-  window.firestoreTimestamp = serverTimestamp;
-
-  window.inscrireUser = async function() {
-    showToast("Redirection vers le formulaire d'inscription...", "blue");
-    try {
-      await addDoc(collection(db, "interest_leads"), {
-        source: "homepage_cta",
-        page: "PROMO_VACANCES_2026",
-        timestamp: serverTimestamp()
-      });
-    } catch(e) { console.warn("Firebase:", e.message); }
-    setTimeout(() => { window.location.href = "#contact"; }, 1000);
-  };
-
-  window.subscribeNewsletter = async function() {
-    const email = document.getElementById('nlEmail').value;
-    if (!email || !email.includes('@')) { showToast("Entrez un email valide.", "orange"); return; }
-    try {
-      await addDoc(collection(db, "newsletter"), { email, timestamp: serverTimestamp() });
-      showToast("Inscription newsletter réussie ! Merci.", "blue");
-      document.getElementById('nlEmail').value = '';
-    } catch(e) {
-      showToast("Inscription enregistrée localement.", "blue");
-    }
-  };
+// CTA
+window.handleReg = async () => {
+  try { await addDoc(collection(db,'interest_leads'),{source:'cta_hero',ts:serverTimestamp()}); } catch(e){}
+  window.location.href = 'registration.html';
+};
 </script>
 
+<!-- ════════════════════════════
+     APP JS
+════════════════════════════ -->
 <script>
-  /* ── NAVBAR SCROLL ── */
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+/* ── PRELOADER ── */
+window.addEventListener('load', () => setTimeout(()=>document.getElementById('preloader').classList.add('out'), 700));
 
-  /* ── HAMBURGER ── */
-  const ham = document.getElementById('hamburger');
-  const mob = document.getElementById('mobileMenu');
-  const mobClose = document.getElementById('mobClose');
-  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
-  mobClose.addEventListener('click', () => { ham.classList.remove('open'); mob.classList.remove('open'); });
-  window.closeMob = () => { ham.classList.remove('open'); mob.classList.remove('open'); };
+/* ── NAVBAR SCROLL ── */
+const nav = document.getElementById('nav');
+const syncNav = () => nav.classList.toggle('stuck', window.scrollY > 50);
+window.addEventListener('scroll', syncNav, {passive:true}); syncNav();
 
-  /* ── SCROLL REVEAL ── */
-  const reveals = document.querySelectorAll('.reveal');
-  const revObs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        revObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: .12 });
-  reveals.forEach(el => revObs.observe(el));
+/* ── BURGER / DRAWER ── */
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('mobDrawer');
+const mobX   = document.getElementById('mobX');
+const openMenu  = () => { burger.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow='hidden'; };
+const closeMenu = () => { burger.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow=''; };
+burger.addEventListener('click', () => burger.classList.contains('open') ? closeMenu() : openMenu());
+mobX.addEventListener('click', closeMenu);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 
-  /* ── COUNTDOWN ── */
-  function updateCountdown() {
-    const target = new Date('2026-07-13T08:00:00');
-    const now = new Date();
-    const diff = target - now;
-    if (diff <= 0) { document.getElementById('countdown').textContent = 'EN COURS !'; return; }
-    const d = Math.floor(diff / 86400000);
-    const h = Math.floor((diff % 86400000) / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    document.getElementById('countdown').textContent = `${d}j ${h}h ${m}m ${s}s`;
+/* ── SCROLL REVEAL ── */
+const rvAll = document.querySelectorAll('.rv,.rv-l,.rv-r');
+new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (!e.isIntersecting) return;
+    setTimeout(() => e.target.classList.add('in'), i * 60);
+    rvObserver.unobserve(e.target);
+  });
+}, {threshold:.1}).observe; // observer
+const rvObserver = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (!e.isIntersecting) return;
+    setTimeout(() => e.target.classList.add('in'), i * 55);
+    rvObserver.unobserve(e.target);
+  });
+}, {threshold:.08});
+rvAll.forEach(el => rvObserver.observe(el));
+
+/* ── SCROLL TOP ── */
+const sttBtn = document.getElementById('stt');
+window.addEventListener('scroll', () => sttBtn.classList.toggle('vis', window.scrollY > 400), {passive:true});
+sttBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+/* ── COUNTDOWN ── */
+const updateTimer = () => {
+  const diff = new Date('2026-07-13T08:00:00') - new Date();
+  if (diff <= 0) { document.getElementById('countdown').textContent = 'EN COURS !'; return; }
+  const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000), m=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
+  document.getElementById('countdown').textContent = `${d}j ${h}h ${m}m ${s}s`;
+};
+updateTimer(); setInterval(updateTimer, 1000);
+
+/* ── TESTIMONIAL SLIDER ── */
+let cur = 0;
+const track  = document.getElementById('sliderTrack');
+const dotsEl = document.getElementById('sDots');
+const cards  = track.children;
+const getVis = () => window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+const maxIdx = () => Math.max(0, cards.length - getVis());
+
+const buildDots = () => {
+  dotsEl.innerHTML = '';
+  for (let i = 0; i <= maxIdx(); i++) {
+    const d = document.createElement('button');
+    d.className = 's-dot' + (i === cur ? ' on' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i+1));
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+};
 
-  /* ── TESTIMONIAL SLIDER ── */
-  let slideCurrent = 0;
-  const track = document.getElementById('temTrack');
-  const totalCards = track.children.length;
-  const dotsContainer = document.getElementById('sliderDots');
-
-  function getVisible() { return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3; }
-
-  function buildDots() {
-    dotsContainer.innerHTML = '';
-    const pages = totalCards - getVisible() + 1;
-    for (let i = 0; i < pages; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'slider-dot' + (i === slideCurrent ? ' active' : '');
-      dot.onclick = () => goTo(i);
-      dotsContainer.appendChild(dot);
-    }
-  }
-
-  function goTo(idx) {
-    const pages = totalCards - getVisible() + 1;
-    slideCurrent = Math.max(0, Math.min(idx, pages - 1));
-    const cardW = track.children[0].offsetWidth + 24;
-    track.style.transform = `translateX(-${slideCurrent * cardW}px)`;
-    buildDots();
-  }
-
-  window.slideLeft = () => goTo(slideCurrent - 1);
-  window.slideRight = () => goTo(slideCurrent + 1);
-
+const goTo = (idx) => {
+  cur = Math.max(0, Math.min(idx, maxIdx()));
+  const w = track.children[0].offsetWidth + 20;
+  track.style.transform = `translateX(-${cur * w}px)`;
   buildDots();
-  window.addEventListener('resize', () => { slideCurrent = 0; goTo(0); });
+};
 
-  /* ── TOAST ── */
-  function showToast(msg, color = 'blue') {
-    const t = document.getElementById('toast');
-    const colors = { blue: '#0A3D91', orange: '#FF6B00', green: '#059669' };
-    t.style.background = colors[color] || colors.blue;
-    document.getElementById('toastMsg').textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-  window.showToast = showToast;
+document.getElementById('sPrev').addEventListener('click', () => goTo(cur - 1));
+document.getElementById('sNext').addEventListener('click', () => goTo(cur + 1));
+buildDots();
+let resTO; window.addEventListener('resize', () => { clearTimeout(resTO); resTO = setTimeout(() => { cur=0; goTo(0); }, 150); });
+setInterval(() => goTo(cur >= maxIdx() ? 0 : cur + 1), 5500);
+
+/* ── TOAST ── */
+const showToast = (msg, type='info') => {
+  const ico = {success:'fa-circle-check', error:'fa-circle-xmark', info:'fa-circle-info'};
+  const wrap = document.getElementById('toastWrap');
+  const t = document.createElement('div');
+  t.className = `toast ${type}`;
+  t.innerHTML = `<i class="fas ${ico[type]||ico.info}"></i><span>${msg}</span>`;
+  wrap.appendChild(t);
+  requestAnimationFrame(() => requestAnimationFrame(() => t.classList.add('show')));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, 3500);
+};
+window.showToast = showToast;
+
+/* ── SMOOTH ANCHORS ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 8, behavior:'smooth'});
+  });
+});
 </script>
-
 </body>
 </html>
