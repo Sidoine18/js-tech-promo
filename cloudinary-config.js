@@ -4,8 +4,7 @@
 // ============================================================
 
 export const CLOUDINARY = {
-  cloudName:  'jstech2026',          // Your cloud name
-  apiKey:     '996788953141324',
+  const CNAME="du3fkizou",CPRESET="js tech",
   // NOTE: API Secret must NEVER be exposed client-side.
   // Use unsigned upload preset or a signed URL from your backend.
   uploadPreset: 'jst_unsigned',      // Create this preset in Cloudinary dashboard (unsigned)
